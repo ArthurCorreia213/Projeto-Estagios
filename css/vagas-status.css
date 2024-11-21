@@ -1,0 +1,66 @@
+/* *{border: 1px solid red;} */
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+article{
+    width: 70%;
+    /* text-align: center; */
+}
+
+#cabecalho-title{
+    font-size: 24px;
+}
+
+#cabecalho-text{
+    font-size: 20px;
+}
+
+#vagas-cards{
+    display: flex;
+    background-color: #FFF;
+    height: 300px;
+    align-items: center;
+    padding-left: 10%;
+    margin-top: 3%;
+}
+
+.vagas-info-p{
+    font-size: 18px;
+    margin-top: 24px;
+}
+
+#vagas-titulo{
+    font-size: 24px;
+    width: 200px;
+}
+
+#vagas-botoes{
+    margin-left: 12%;
+}
+
+#btn-todos-candidatos{
+    background-color: #4D4D4D;
+    color: #E5E9EA;
+    width: 300px;
+    height: 100px;
+    font-size: 24px;
+    margin-right: 60px;
+}
+
+#btn-melhores-candidatos{
+    background-color: #105F00;
+    color: #F4F6FF;
+    width: 300px;
+    height: 100px;
+    font-size: 24px;
+}
