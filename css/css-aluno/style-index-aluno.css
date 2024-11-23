@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
+}
+
+#pesquisa{
+    width: 80%;
+    margin-left: 20%;
+}
+
+#pesquisa-vagas{
+    width: 60%;
+    border-radius: 50px;
+    color: #8D8D8D;
+    background-color: #D4D4D4;
+    border: 1px solid #9A9A9A;
+    padding-left: 20px;
+    padding: 3px;
+}
+
+
