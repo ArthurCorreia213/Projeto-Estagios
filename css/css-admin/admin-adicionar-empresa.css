@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
+}
+
+.row{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    background-color: #D9D9D9;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 5% 10%;
+    margin: 1% 10%;
+}
+
+.row{
+    padding: 8px;
+}
+
+#row1, #row2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+#row1>row{
+    display: block;
+}
+.value{
+    background-color: #D9D9D9;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    border-radius: 10px;
+
+}
+
+/* Configurando botões  */
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.save{
+    border: 1px solid #105F00;
+    color: #105F00;
+}
+
+.cancel{
+    border: 1px solid #B91D32;
+    color: #B91D32;
+}
+.buttons>button{
+    background-color: #E6E6E6;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+    padding: 10px 20px;
+}
+
+.buttons>button:hover{
+    cursor: pointer;
+    transform: scale(1.05); 
+}
