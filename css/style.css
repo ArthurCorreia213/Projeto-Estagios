@@ -4,6 +4,7 @@ body{
     margin: 0;
     padding: 0;
     background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
 }
 
 main{
@@ -27,8 +28,20 @@ article{
 
 #cabecalho-login{
     background-color: #827D7E;
-    color: #FFF;
-    font-size: 16px;
+    color: #fafafa;
+    font-size: 25px;
+    letter-spacing: 1px;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 4px;
+    transition: all ease-in-out 200ms;
+}
+
+#cabecalho-login:hover{
+    background-color: #6b6667;
+    cursor: pointer;
+    color: #fafafa;
+    transition: all ease-in-out 200ms;
 }
 
 #pesquisa{
