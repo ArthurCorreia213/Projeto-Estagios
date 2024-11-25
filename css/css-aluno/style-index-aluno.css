@@ -5,7 +5,7 @@ body{
     font-family: "Montserrat", sans-serif;
 }
 
-#pesquisa{
+article{
     width: 80%;
     margin-left: 20%;
 }
@@ -20,4 +20,59 @@ body{
     padding: 3px;
 }
 
+main{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
+
+#vagas-disponiveis{
+    font-size: 36px;
+    margin:50px
+}
+
+#vagas-cards{
+    width: 20%;
+    margin-top: 80px;
+}
+
+#vagas-info{
+    padding: 5%;
+    width: 40%;
+    margin-top: 50px;
+}
+/* 
+abaixo é configurando nas bagunças de popover: */
+
+#my-popover{
+    background-color: #E6E6E6;
+    border: none;
+    border-left: 2px solid #000;
+    padding: 20px;
+    width: 50%;
+    margin-bottom: -11%;
+    margin-left: 40%;
+    position: absolute;
+    top: auto;
+}
+
+#vagas-cards button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+@media (max-width: 1500px) {
+    #my-popover {
+        background-color: #E6E6E6;
+        border: none;
+        padding: 20px;
+        width: 65%;
+        margin-bottom: -11%;
+        margin-left: 15%;
+        position: absolute;
+        top: auto;
+    }
+}
+/* 
+Como está em ids, não sei se fica legal, pois fica "individual" */
