@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/footer.css">
+	
+	<script src="scripts.js"></script>
 </head>
 <body>
     <header>
@@ -39,37 +41,8 @@
             Filtros
         </div>
 
-        <div id="vagas-cards">
-            <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-                <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
-        
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
-        
-                <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
-            </div><br><br>
-            <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-                <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
-        
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
-        
-                <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
-            </div><br><br>
-            <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-                <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
-        
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
-                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
-        
-                <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
-            </div>
+        <div id="vagas-container">
+
         </div>
 
         <div id="vagas-info">
@@ -79,6 +52,8 @@
 
             Proin in eros nec arcu dignissim auctor. Quisque felis ante, accumsan eu mi a, egestas aliquet libero. Fusce ultrices sem sit amet ultricies efficitur. Mauris vehicula massa id nisl suscipit porta. Cras porta, sapien et facilisis bibendum, est ligula blandit enim, sed vestibulum odio purus nec erat. Integer ultricies, augue at malesuada fermentum, magna mi hendrerit erat, vitae fringilla lorem nisl nec justo. Nulla pellentesque quam urna, vitae volutpat massa eleifend non. Vestibulum commodo quis neque ut pharetra. Sed elementum leo tortor, vitae varius urna gravida sit amet. Mauris tempor massa ex, non eleifend lorem sagittis nec. Praesent a eros bibendum, cursus massa ut, vehicula elit. Pellentesque eu enim diam. Integer cursus dignissim lacus vel facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque scelerisque turpis lorem, id vestibulum magna laoreet et. 
         </div>
+		
+		<script>carregarVagas()</script>
     </main>
 
     <footer>
