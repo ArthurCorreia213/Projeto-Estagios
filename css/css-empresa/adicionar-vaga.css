@@ -1,0 +1,114 @@
+body{
+    background-color: #e6e6e6;
+}
+
+article{
+    padding-left: 10%;
+
+    & .container{
+        & .row{
+            display: flex;
+            flex-direction: column;
+
+            & label{
+                font-size: 1.6em;
+            }
+
+            & input{
+                width: 40%;
+                height: 48px;
+
+                padding: 4px;
+                padding-left: 10px;
+
+                display: flex;
+                align-items: center;
+                
+                border-radius: 20px;
+                border: transparent;
+
+                font-size: 3em;
+
+                background-color: #d2d2d2;
+
+                margin-bottom: 2vh;
+            }
+
+            & textarea{
+                width: 40%;
+                /* height: 48px; */
+
+                padding: 4px;
+                padding-left: 10px;
+
+                display: flex;
+                align-items: center;
+                
+                border-radius: 20px;
+                border: transparent;
+
+                font-size: 3em;
+
+                background-color: #d2d2d2;
+                margin-bottom: 2vh;
+            }
+
+            
+        }
+
+        .row1{
+            display: flex;
+            flex-direction: column;
+            & label{
+                font-size: 1.6em;
+            }
+            & .correcao{
+                
+                
+                & input{
+                    width: 15%;
+                    height: 48px;
+
+                    padding: 4px;
+                    padding-left: 10px;
+
+                    border-radius: 20px;
+                    border: transparent;
+
+                    font-size: 3em;
+
+                    background-color: #d2d2d2;
+
+                    text-align: center;
+                    margin-bottom: 2vh;
+                }
+
+                & span{
+                    position: relative;
+                    bottom: 0.15em;
+
+                    margin-left: 3%;
+                    margin-right: 3%;
+
+                    font-size: 1.6em;
+                }
+            }
+        }
+
+        .button-container{
+            & button{
+                position: relative;
+                bottom: 2.7em;
+                left: 45%;
+
+                width: 15%;
+                height: 5vh;
+
+                font-size: 1.6em;
+
+                color: #fff;
+                background-color: #105f00;
+            }
+        }
+    }
+}

@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/header-senai.css">
     <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" href="../css/footer.css">
 </head>
 <body>
 
@@ -46,7 +47,7 @@
 
 
 
-    <div class="container">
+    <div>
         <div class="titulo">
             <H1>Pedido para cadastro</H1>
             <h3>SOU EMPRESA</h3>
@@ -61,29 +62,106 @@
         </div>
         
 
-        <div class="input1">   
-            <p>DIGITE O NOME DA EMPRESA: </p>
-            <input type="text" name="" id="">
-        </div>
+        <form action="/cadastro" method="POST" id="container">
+            <div class="input1">   
+                <p>DIGITE O NOME DA EMPRESA: </p>
+                <input type="text" name="nome" id="nome">
+            </div>
+            
+            <div class="input2">
+                <p>CNPJ: </p>
+                <input type="text" name="cnpj" id="cnpj">
+            </div>
+            
+            <div class="input3">
+                <p>DIGITE SEU E-MAIL: </p>
+                <input type="email" name="contato" id="contato">
+            </div>
         
-        <div class="input2">
-            <p>CNPJ: </p>
-            <input type="text" name="" id="">
-        </div>
-        
-        <div class="input3">
-            <p>DIGITE SEU E-MAIL: </p>
-            <input type="text" name="" id="">
-        </div>
-       
-        <div class="input4">
-            <p>DIGITE SUA SENHA: </p>
-            <input type="text" name="" id="">
-        </div>
-        
+            <!-- <div class="input4">
+                <p>CRIE UMA SENHA: </p>
+                <input type="password" name="" id="">
+            </div> -->
+            
 
-            <button>Pedir permissão</button>
-        
+            <input type="submit" value="Pedir permissão">
+        </form>
     </div>
+
+    
+
+    <script>
+        document.getElementById('container').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const produto = {
+                nome: document.getElementById('nome').value,
+                cnpj: document.getElementById('cnpj').value,
+                contato: document.getElementById('contato').value,
+                status_cadastro: 'Pendente'
+            };
+
+            try {
+                const response = await fetch('/cadastro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(produto)
+                });
+                const message = await response.text();
+                alert(message);
+            } catch (error) {
+                alert('Erro ao enviar dados: ' + error.message);
+            }
+        });
+    </script>
+
+    <footer>
+        <div id="texto">
+            <a href="">FALE CONOSCO</a>
+            <a href="">TRABALHE CONOSCO</a>
+            <a href="">OUVIDORIA</a>
+            <a href="">POLITICA DE PRIVACIDADE</a>
+            <a href="">A LGPD NO SENAI-SP</a>
+        </div>
+
+        <div id="redes-sociais">
+            <img src="../imagens/icones/facebook.svg">
+            <img src="../imagens/icones/twitter.svg">
+            <img src="../imagens/icones/youtube.svg">
+            <img src="../imagens/icones/linkedin.svg">
+            <img src="../imagens/icones/instagram.svg">
+            <img src="../imagens/icones/whatsapp.svg">
+        </div>
+
+        <div id="informacoes">
+
+            <div id="localizacao">
+                <h3 id="localizacao-title">EDIFÍCIO SEDE FIESP</h3>
+                <p>Av. Paulista, 1313, São Paulo/SP</p>
+                <p>CEP 01311-923</p>
+            </div>
+
+            <div id="atendimento">
+                <div id="alinhamento">
+                    <h3 id="atendimento-title">CENTRAL DE RELACIONAMENTO</h3>
+                    <p>(11) 3322-0050 (Telefone/WhatsApp)</p>
+                    <p>0800-055-1000 (Interior de SP, somente telefone fixo</p>
+                </div>
+            </div>
+
+            <div id="informacoes-links">
+                <a href="">Unidades</a>
+                <a href="">O SENAI</a>
+                <a href="">Perguntas Frequentes</a>
+                <a href="">Fale Conosco</a>
+                <a href="">Transparência</a>
+                <a href="">Para a sua empresa</a>
+            </div>
+        </div>
+
+        <div id="copyright">
+            <p>Copyright 2024 © Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>

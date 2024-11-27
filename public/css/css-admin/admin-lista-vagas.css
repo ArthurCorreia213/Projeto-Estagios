@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
+}
+/* 
+configurando o subheader: */
+
+.sub-header>h3{
+    font-size: 1.8rem;
+    color: #4D4D4D;
+}
+
+.sub-header>h4{
+    font-size: 1.2rem;
+    color: #4D4D4D;
+}
+
+.container{
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-right: 10%;
+}
+/* 
+configurando tabela: */
+
+table{
+    width: 100%;
+    border-collapse: collapse; 
+    margin: 20px 0; 
+}
+
+th, td {
+    border: 1px solid #4D4D4D; 
+    padding: 8px; 
+    text-align: left;
+}
+
+th {
+    background-color: #AFAFAF;  
+    font-weight: bold; 
+}
+
+
+.acoes{
+    display: flex;
+    gap: 10px;
+}
+
+.acoes button{
+    border: none;
+    background-color: #E6E6E6;
+    transition: transform 0.2s;
+}
+
+.acoes button:hover{
+    cursor: pointer;
+    transform: scale(1.05); 
+}
+/* 
+configurando botao: */
+.b-add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-add button{
+    background-color: #E6E6E6;
+    border: #105F00 1px solid;
+    color: #105F00;
+    font-size: 1.01rem;
+    padding: 10px 20px;
+    transition: transform 0.2s;
+}
+
+.b-add button:hover{
+    transform: scale(1.05); 
+    cursor: pointer;
+}

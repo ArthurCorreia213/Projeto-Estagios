@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/css-empresa/adicionar-vaga.css">
+    <link rel="stylesheet" href="../css/area-nav-empresa.css">
     <title>Estágios SENAI MOOCA</title>
 </head>
 <body>
@@ -15,8 +17,19 @@
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
         </div>
-        <a href="empresa-dados.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
+        <a href=""><img src="./imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
     </header>
+    
+        <div class="area-nav">
+            <div class="vagas">
+                <img src="../imagens/icones/icone-home.svg" alt="">
+    
+                <p>Vagas</p>
+            </div>
+            <div class="anunciar">
+                <p>Anunciar vaga</p>
+            </div>
+        </div>
 
     <article>
 
@@ -26,19 +39,21 @@
                     <label class="label" for="salario">Salário:</label>
                     <input class="input" type="text" id="salario" name="salario">
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <label class="label" for="data-inicio">Data de início:</label>
                     <input class="input" type="date" id="data-inicio" name="data-inicio">
                 </div>
                 <div class="row">
                     <label class="label" for="data-termino">Data de término:</label>
                     <input class="input" type="date" id="data-termino" name="data-termino">
-                </div>
-                <div class="row">
-                    <label class="label" for="horario-inicio">Horário de trabalho:</label>
-                    <input class="input" type="time" id="horario-inicio" name="horario-inicio">
-                    <span>às</span>
-                    <input class="input" type="time" id="horario-fim" name="horario-fim">
+                </div> -->
+                <div class="row1">
+                    <label class="label" for="h<link rel="stylesheet" href="../css/footer.css">Horário de trabalho:</label>
+                    <div class="correcao">
+                        <input class="input" type="time" id="horario-inicio" name="horario-inicio">
+                        <span>às</span>
+                        <input class="input" type="time" id="horario-fim" name="horario-fim">
+                    </div>
                 </div>
                 <div class="row">
                     <label class="label full-width" for="beneficios">Benefícios:</label>

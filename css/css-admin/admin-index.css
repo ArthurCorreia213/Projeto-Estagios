@@ -5,6 +5,8 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+/* PONTO IMPORTANTE: Ao interagir com animações, o recomendado é chamar a animação pelo nome (ex: linha 51) estava sempre ficando uma animação dura, mas ficou show. */
+
 main {
     background-color: #E6E6E6;
     display: flex;

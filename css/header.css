@@ -1,0 +1,106 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    height: 23vh;
+    background-image: url(../imagens/gerais/header-ok.svg);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 0 5vh;
+}
+
+/* 
+IMPORTANTE, AO COLOCAR/ANEXAR IMAGENS, AO VOLTAR, POR EXEMPLO NO CASO ACIMA, A UMA PASTA FORA OU ANTERIOR, USA DOIS PONTOS, DE FORMA NORMAL, UM PONTO SÓ (EM UMA PASTA, DOIS PONTOS, FORA DA PASTA, UM PONTO) */
+
+.logo{
+    display: flex;
+}
+
+#SENAI {
+    height: 100%;
+    max-height: 6vh;
+}
+
+#titulo {
+    font-size: 20pt;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-align: left;
+    padding-left: 2%;
+}
+
+#USER {
+    max-height: 6vh;
+    padding-top: 17vh;
+    padding-left: 5vh;
+    display: block;
+}
+
+#USER img {
+    max-height: 100%;
+    width: auto;
+}
+
+a {
+    display: block;
+}
+
+@media(max-width: 900px){
+    .logo {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center;
+    }
+    header {
+        height: auto; 
+        padding: 10px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #titulo {
+        padding: 10px 0;
+    }
+    #USER {
+        max-height: 6vh;
+        margin: 0 auto; 
+        padding: 10px 0; 
+        display: block;
+    }
+    #USER img {
+        max-height: 100%;
+        max-width: 100%; 
+        height: auto;
+        width: auto;
+    }
+    }
+
+/* 
+.logo {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+}
+header {
+    height: auto; 
+    padding: 10px; 
+}
+#titulo {
+    padding-left: 0; 
+}
+#USER {
+    max-height: 6vh;
+    padding: 10px 0 0 0; 
+    display: block;
+}
+#USER img {
+    max-height: 100%;
+    width: auto;
+} */

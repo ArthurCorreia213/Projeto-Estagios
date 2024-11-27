@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/css-empresa/empresa-main.css">
+    <link rel="stylesheet" href="../css/css-admin/admin-lista-vagas.css">
+
     <title>Estágios SENAI MOOCA</title>
 </head>
 <body>
@@ -17,25 +18,41 @@
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
         </div>
-        <a href="empresa-dados.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
     </header>
 
-    <main>
-        <div id="container">
-            <div class="botao">
-                <a href="empresa-adicionar-vaga.html">
-                    <img height="80px" src="../imagens/icones/aluno.svg" alt="">
-                    <h3>ADICIONAR VAGAS</h3>
-                </a>
-            </div>
-            <div class="botao">
-                <a href="empresa-vagas.html">
-                    <img height="80px" src="../imagens/icones/vagas.svg" alt="">
-                    <h3>VAGAS</h3>
-                </a>
-            </div>
+    <article>
+
+        <div class="container">
+                <div class="sub-header">
+                    <h3>Vagas em nosso sistema:</h3>
+                    <h4>Clique em uma para obter mais detalhes.</h4>
+                </div>
+
+                <div class="tabelas-empresa">
+                    <table>
+                        <tr>
+                          <th>Identificador</th>
+                          <th>Nome</th>
+                          <th>Ações</th>
+                        </tr>
+                        <tr>
+                          <td>001</td>
+                          <td>Vaga para DEV Padaria do Seu Zé</td>
+                          <td>
+                            <div class="acoes">
+                                <a href=""><button type="button"><img src="../imagens/icones/ADD-GREEN.svg" alt="" srcset=""></button></a>
+                                <a href=""><button type="button"><img src="../imagens/icones/trash-2 1.svg" alt="" srcset=""></button></a></div>
+                        </td>
+                        </tr>
+                      </table>
+                </div>
+
+                <div class="b-add">
+                    <a href="admin-adicionar-vagas.html"><button type="button">ADICIONAR</button></a>
+                </div>
         </div>
-    </main>
+
+    </article>
 
     <footer>
         <div id="texto">
@@ -87,4 +104,5 @@
     </footer>
 </body>
 </html>
+
 

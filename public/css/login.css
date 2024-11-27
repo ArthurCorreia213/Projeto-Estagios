@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #e6e6e6;
+}
+
+header{
+    background-color: #FFF;
+
+    height: 16.48vh;
+    margin-bottom: 7vh;
+}
+
+article{
+    padding-left: 20.8%;
+    padding-right: 20.8%;
+
+    & .SUB-HEADER{
+        & h1{
+                color: #CB0C0F;
+                font-size: 2.5em;
+                margin-bottom: 2vh;
+        }
+
+        & h2{
+            font-size: 2em;
+            margin-bottom: 2vh;
+        }
+
+        & hr{
+        width: 100%;
+        height: 19.05px;
+
+        background-color: #B91D32;
+
+        margin-bottom: 2vh;
+        }
+    }
+
+    & .ACESSO{
+
+        & p{
+            font-size: 1.55em;
+            margin-bottom: 2vh;
+        }
+
+        & .INFS-ACESSO{
+            & .EMAIL{
+                & h3{
+                    font-size: 1.6em;
+                    margin-bottom: 2vh;
+                }
+
+                & input{
+                    width: 100%;
+                    height: 4vh;
+        
+                    font-size: 2em;
+        
+                    margin-bottom: 2vh;
+                }
+            }
+
+            & .SENHA{
+                & h3{
+                    font-size: 1.6em;
+                    margin-bottom: 2vh;
+                }
+
+                & input{
+                    width: 100%;
+                    height: 4vh;
+        
+                    font-size: 2em;
+        
+                    margin-bottom: 2vh;
+                }
+            }
+
+            .LOGAR{
+                & .btn1{
+                    width: 20%;
+                    height: 4vh;
+            
+                    border: 1px solid #B91D32;
+            
+                    color: #fff;
+                    background-color: #B91D32;
+            
+                    font-size: 1.4em;
+            
+                    cursor: pointer;
+                }
+
+                & .btn2{
+                    width: 20%;
+                    height: 4vh;
+
+                    margin-left: 100%;
+                    transform: translate(-100%, -100%);
+            
+                    border: 1px solid #B91D32;
+            
+                    color: #B91D32;
+                    background-color: transparent;
+            
+                    font-size: 1.4em;
+            
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

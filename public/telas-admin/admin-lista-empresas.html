@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/css-admin/admin-lista-empresas.css">
+
     <title>Estágios SENAI MOOCA</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
                     <h4>Clique em uma para obter mais detalhes.</h4>
                 </div>
 
-                <div class="tabelas-empresa">
+                <!-- <div class="tabelas-empresa">
                     <table>
                         <tr>
                           <th>Identificador</th>
@@ -43,8 +44,29 @@
                                 <a href=""><button type="button"><img src="../imagens/icones/trash-2 1.svg" alt="" srcset=""></button></a></div>
                         </td>
                         </tr>
+                        <tbody>
+
+                        </tbody>
                       </table>
+                </div> -->
+
+                <div id="empresas-container">
+                    <h2>empresas Disponíveis</h2>
+                    <table id="empresas-table" border="1">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CNPJ</th>
+                                <th>Contato</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dados das empresas serão adicionados aqui -->
+                        </tbody>
+                    </table>
                 </div>
+
 
                 <div class="b-add">
                     <a href="admin-adicionar-empresa.html"><button type="button">ADICIONAR</button></a>
@@ -52,6 +74,41 @@
         </div>
 
     </article>
+
+    <script>
+        async function carregarempresas() {
+            try {
+                // Fazer a requisição GET para a API
+                const response = await fetch('/api/empresas');
+                if (!response.ok) throw new Error('Erro ao buscar empresas.');
+    
+                // Converter os dados recebidos para JSON
+                const empresas = await response.json();
+    
+                // Selecionar o corpo da tabela
+                const tbody = document.querySelector('#empresas-table tbody');
+                tbody.innerHTML = ''; // Limpar o conteúdo atual
+    
+                // Iterar sobre os dados recebidos e criar linhas na tabela
+                empresas.forEach(vaga => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${vaga.Nome}</td>
+                        <td>${vaga.CNPJ}</td>
+                        <td>${vaga.Contato}</td>
+                        <td>${vaga.Status_Cadastro}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao carregar as empresas. Tente novamente mais tarde.');
+            }
+        }
+    
+        // Chamar a função ao carregar a página
+        window.onload = carregarempresas;
+    </script>
 
     <footer>
         <div id="texto">

@@ -1,0 +1,199 @@
+body{
+    background-color: #e6e6e6;
+}
+
+.container{
+    padding-left: 30%;
+    padding-right: 30%;
+
+    & .row{
+        & .label{
+            font-size: 1.7em;
+        }
+
+        & .data{
+            display: flex;
+            align-items: center;
+
+            width: 100%;
+            height: 3em;
+
+            border-radius: 1.5em;
+
+            background-color: #d9d9d9;
+
+            padding-left: 3%;
+
+            margin-bottom: 3vh;
+        }
+    }
+
+    .alinhamento1{
+        width: 100%;
+
+        & .row1{
+            width: 100%;
+        display: flex;
+
+            & .rua{
+                width: 95%;
+                
+                margin-right: 10%;
+
+                & .label{
+                    font-size: 1.7em;
+                }
+        
+                & .data{
+                    display: flex;
+                    align-items: center;
+        
+                    width: 100%;
+                    height: 3em;
+        
+                    border-radius: 1.5em;
+        
+                    background-color: #d9d9d9;
+        
+                    padding-left: 3%;
+        
+                    margin-bottom: 3vh;
+                }
+            }
+
+            & .numero{
+                position: relative;
+                left: 0.3em;
+                /* width: 2em; */
+
+                & .label{
+                    font-size: 1.7em;
+                }
+        
+                & .data{
+                    display: flex;
+                    align-items: center;
+        
+                    width: 100%;
+                    height: 3em;
+        
+                    border-radius: 1.5em;
+        
+                    background-color: #d9d9d9;
+        
+                    padding-left: 15%;
+        
+                    margin-bottom: 3vh;
+                }
+            }
+        }
+    }
+
+    & .alinhamento2{
+        width: 100%;
+
+        & .row2{
+            width: 100%;
+            display: flex;
+
+            & .complemento{
+                margin-right: 5%;
+
+                width: 31%;
+                & .label{
+                    font-size: 1.7em;
+                }
+                & .data{
+                    display: flex;
+                    align-items: center;
+        
+                    width: 100%;
+                    height: 3em;
+        
+                    border-radius: 1.5em;
+        
+                    background-color: #d9d9d9;
+        
+                    padding-left: 10%;
+        
+                    margin-bottom: 3vh;
+                }
+            }
+
+            .cidade{
+                position: relative;
+                /* left: 1em; */
+
+                width: 31%;
+                margin-right: 5%;
+
+                & .label{
+                    font-size: 1.7em;
+                }
+                & .data{
+                    display: flex;
+                    align-items: center;
+        
+                    width: 100%;
+                    height: 3em;
+        
+                    border-radius: 1.5em;
+        
+                    background-color: #d9d9d9;
+        
+                    padding-left: 10%;
+        
+                    margin-bottom: 3vh;
+                }
+            }
+
+            & .estado{
+                position: relative;
+                /* left: 1em; */
+
+                width: 31%;
+
+                & .label{
+                    font-size: 1.7em;
+                }
+                & .data{
+                    display: flex;
+                    align-items: center;
+        
+                    width: 100%;
+                    height: 3em;
+        
+                    border-radius: 1.5em;
+        
+                    background-color: #d9d9d9;
+        
+                    padding-left: 10%;
+        
+                    margin-bottom: 3vh;
+                }
+            }
+        }
+    }
+
+    .button-container{
+        display: flex;
+        justify-content: end;
+
+        position: relative;
+        left: 1.3em;
+
+        margin-bottom: 20vh;
+        & button{
+            width: 25%;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+
+            font-size: 1.5em;
+
+            background-color: transparent;
+            color: #b91d32;
+
+            border: 2px solid #b91d32;
+        }
+    }
+}
