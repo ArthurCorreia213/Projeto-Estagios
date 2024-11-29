@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
+}
+
+.form-columns{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 5% 10%;
+}
+
+/* Estilo dos campos */
+.field {
+    margin-bottom: 15px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.field input, 
+.field select, 
+.field textarea {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+}
+
+/* Ajustando a linha de 3 negócio: Número, Cidade e Complemento */
+#row-cnc{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#row-cnc .field {
+    flex: 1;
+}
+
+/* Botões */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+button.save {
+    border: 2px solid #105F00;
+    background-color: #E6E6E6;
+    color: #105F00;
+}
+
+button.cancel {
+    border: 2px solid #B91D32;
+    color: #B91D32;
+    background-color: #E6E6E6;
+}
+
+button:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+    scale: 1.05;
+}
+
+.container span{
+    color: #B91D32;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .form-columns {
+        grid-template-columns: 1fr;
+        padding: 5% 10%;
+    }
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #row-cnc{
+        display: block;
+    }
+}

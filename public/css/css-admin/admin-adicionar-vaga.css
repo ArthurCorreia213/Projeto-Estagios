@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
+}
+
+#vagaForm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 5% 10%;
+}
+
+.row {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    flex-direction: column;
+}
+
+.row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.row input, 
+.row select, 
+.row textarea {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+}
+
+/* Ajustando o layout do horário */
+#horario-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#horario-row .h-infs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+#horario-row .horario-separador {
+    font-size: 16px;
+    color: #333;
+    padding: 0 10px;
+}
+
+input[type="time"] {
+    width: 50%; /* Ajusta a largura para os campos de hora */
+}
+/* 
+provavelmente tinha maneira mais fácil de corrigir o problema do horario, mas estava com pressa. */
+
+.row-tv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.coluna-2{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.coluna-2 button{
+    width: stretch;
+    margin: 10px;
+}
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+button.save {
+    border: 2px solid #105F00;
+    background-color: #E6E6E6;
+    color: #105F00;
+}
+
+button.cancel {
+    border: 2px solid #B91D32;
+    color: #B91D32;
+    background-color: #E6E6E6;
+}
+
+button:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+    scale: 1.05;
+}
+
+@media (max-width: 900px) {
+    #vagaForm{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding: 5% 10%;
+    }
+
+}

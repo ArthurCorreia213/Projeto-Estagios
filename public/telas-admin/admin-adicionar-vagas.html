@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/css-admin/admin-adicionar-vaga.css">
+
     <title>Estágios SENAI MOOCA</title>
 </head>
 <body>
@@ -19,67 +21,125 @@
     </header>
 
     <article>
-
         <div class="container">
             <form id="vagaForm">
-                <div class="row">
-                    <label class="label" for="salario">Salário:</label>
-                    <input class="input" type="text" id="salario" name="salario">
+                <div class="coluna-1">
+                    <div class="row">
+                        <label class="label" for="salario">Salário:</label>
+                        <input class="input" type="text" id="salario" name="salario">
+                    </div>
+                    <div class="row">
+                        <label class="label" for="data-inicio">Data de início:</label>
+                        <input class="input" type="date" id="data-inicio" name="data-inicio">
+                    </div>
+                    <div class="row">
+                        <label class="label" for="data-termino">Data de término:</label>
+                        <input class="input" type="date" id="data-termino" name="data-termino">
+                    </div>
+                    <div class="row" id="horario-row">
+                        <div class="h-trabalho-t">
+                            <label class="label" for="horario-inicio">Horário de trabalho:</label>
+                        </div>
+    
+                        <div class="h-infs">
+                            <input class="input" type="time" id="horario-inicio" name="horario-inicio">
+                            <span class="horario-separador">às</span>
+                            <input class="input" type="time" id="horario-fim" name="horario-fim">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="label" for="beneficios">Benefícios:</label>
+                        <textarea class="input" id="beneficios" name="beneficios" rows="3"></textarea>
+                    </div>
+                    <div class="row">
+                        <label class="label" for="localizacao">Localização:</label>
+                        <input class="input" type="text" id="localizacao-input" name="localizacao">
+                    </div>
+                    <!-- POR FAVOR, NÃO RETIRE O "-INPUT" -->
+                    <div class="row">
+                        <label class="label" for="cargo">Cargo:</label>
+                        <input class="input" type="text" id="cargo" name="cargo">
+                    </div>
+                    <div class="row-tv">
+                        <div class="row">
+                            <label class="label" for="tempo-contrato">Tempo de contrato:</label>
+                            <input class="input" type="text" id="tempo-contrato" name="tempo-contrato">
+                        </div>
+                        <div class="row">
+                            <label class="label" for="vagas">Vagas:</label>
+                            <input class="input" type="number" id="vagas" name="vagas" min="1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="label full-width" for="requisitos">Requisitos:</label>
+                        <textarea class="input full-width" id="requisitos" name="requisitos" rows="3"></textarea>
+                    </div>
+                    <div class="row">
+                        <label class="label full-width" for="detalhes">Detalhes:</label>
+                        <textarea class="input full-width" id="detalhes" name="detalhes" rows="4"></textarea>
+                    </div>
                 </div>
-                <div class="row">
-                    <label class="label" for="data-inicio">Data de início:</label>
-                    <input class="input" type="date" id="data-inicio" name="data-inicio">
+    
+                <div class="coluna-2">
+                    <div class="buttons">
+                        <button type="submit" class="save">SALVAR</button>
+                        <button type="reset" class="cancel">CANCELAR</button>
+                    </div>
                 </div>
-                <div class="row">
-                    <label class="label" for="data-termino">Data de término:</label>
-                    <input class="input" type="date" id="data-termino" name="data-termino">
-                </div>
-                <div class="row">
-                    <label class="label" for="horario-inicio">Horário de trabalho:</label>
-                    <input class="input" type="time" id="horario-inicio" name="horario-inicio">
-                    <span>às</span>
-                    <input class="input" type="time" id="horario-fim" name="horario-fim">
-                </div>
-                <div class="row">
-                    <label class="label full-width" for="beneficios">Benefícios:</label>
-                    <textarea class="input full-width" id="beneficios" name="beneficios" rows="3"></textarea>
-                </div>
-                <div class="row">
-                    <label class="label" for="localizacao">Localização:</label>
-                    <input class="input" type="text" id="localizacao" name="localizacao">
-                </div>
-                <div class="row">
-                    <label class="label" for="cargo">Cargo:</label>
-                    <input class="input" type="text" id="cargo" name="cargo">
-                </div>
-                <div class="row">
-                    <label class="label" for="tempo-contrato">Tempo de contrato:</label>
-                    <input class="input" type="text" id="tempo-contrato" name="tempo-contrato">
-                </div>
-                <div class="row">
-                    <label class="label" for="vagas">Vagas:</label>
-                    <input class="input" type="number" id="vagas" name="vagas" min="1">
-                </div>
-                <div class="row">
-                    <label class="label full-width" for="requisitos">Requisitos:</label>
-                    <textarea class="input full-width" id="requisitos" name="requisitos" rows="3"></textarea>
-                </div>
-                <div class="row">
-                    <label class="label full-width" for="detalhes">Detalhes:</label>
-                    <textarea class="input full-width" id="detalhes" name="detalhes" rows="4"></textarea>
-                </div>
-
-                <div class="buttons">
-                    <button type="submit" class="save">SALVAR</button>
-                    <button type="reset" class="cancel">CANCELAR</button>
-                </div>
-                
+    
             </form>
         </div>
     </article>
+    
+
 
     <footer>
-        
+        <div id="texto">
+            <a href="">FALE CONOSCO</a>
+            <a href="">TRABALHE CONOSCO</a>
+            <a href="">OUVIDORIA</a>
+            <a href="">POLITICA DE PRIVACIDADE</a>
+            <a href="">A LGPD NO SENAI-SP</a>
+        </div>
+
+        <div id="redes-sociais">
+            <img src="../imagens/icones/facebook.svg">
+            <img src="../imagens/icones/twitter.svg">
+            <img src="../imagens/icones/youtube.svg">
+            <img src="../imagens/icones/linkedin.svg">
+            <img src="../imagens/icones/instagram.svg">
+            <img src="../imagens/icones/whatsapp.svg">
+        </div>
+
+        <div id="informacoes">
+
+            <div id="localizacao">
+                <h3 id="localizacao-title">EDIFÍCIO SEDE FIESP</h3>
+                <p>Av. Paulista, 1313, São Paulo/SP</p>
+                <p>CEP 01311-923</p>
+            </div>
+
+            <div id="atendimento">
+                <div id="alinhamento">
+                    <h3 id="atendimento-title">CENTRAL DE RELACIONAMENTO</h3>
+                    <p>(11) 3322-0050 (Telefone/WhatsApp)</p>
+                    <p>0800-055-1000 (Interior de SP, somente telefone fixo</p>
+                </div>
+            </div>
+
+            <div id="informacoes-links">
+                <a href="">Unidades</a>
+                <a href="">O SENAI</a>
+                <a href="">Perguntas Frequentes</a>
+                <a href="">Fale Conosco</a>
+                <a href="">Transparência</a>
+                <a href="">Para a sua empresa</a>
+            </div>
+        </div>
+
+        <div id="copyright">
+            <p>Copyright 2024 © Todos os direitos reservados.</p>
+        </div>
     </footer>
 </body>
 </html>
