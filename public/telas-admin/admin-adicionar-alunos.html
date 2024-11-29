@@ -26,54 +26,54 @@
                     <!-- Primeira Coluna -->
                     <div class="form-column">
                         <div class="field">
-                            <label for="nome">Nome: </label>
-                            <input type="text" id="nome" name="nome">
+                            <label for="nome">Nome: <span>*</span></label>
+                            <input type="text" id="nome" name="nome" required>
                         </div>
                         <div class="field">
-                            <label for="cpf">CPF:</label>
-                            <input type="text" id="cpf" name="cpf">
+                            <label for="cpf">CPF: <span>*</span></label>
+                            <input type="text" id="cpf" name="cpf" required>
                         </div>
                         <div class="field">
-                            <label for="ra">R.A.:</label>
-                            <input type="text" id="ra" name="ra">
+                            <label for="ra">R.A.: <span>*</span></label>
+                            <input type="text" id="ra" name="ra" required>
                         </div>
                         <div class="field">
-                            <label for="data-nascimento">Data de nascimento:</label>
-                            <input type="date" id="data-nascimento" name="data-nascimento">
+                            <label for="data-nascimento">Data de nascimento: <span>*</span></label>
+                            <input type="date" id="data-nascimento" name="data-nascimento" required>
                         </div>
                         <div class="field">
-                            <label for="rua">Rua:</label>
-                            <input type="text" id="rua" name="rua">
+                            <label for="rua">Rua: <span>*</span></label>
+                            <input type="text" id="rua" name="rua" required>
                         </div>
                         <div class="field row" id="row-cnc">
                             <div class="sub-field">
-                                <label for="cidade">Cidade:</label>
-                                <input type="text" id="cidade" name="cidade">
+                                <label for="cidade">Cidade: <span>*</span></label>
+                                <input type="text" id="cidade" name="cidade" required>
                             </div>
                             <div class="sub-field">
-                                <label for="numero">Número:</label>
-                                <input type="text" id="numero" name="numero">
+                                <label for="numero">Número: <span>*</span></label>
+                                <input type="text" id="numero" name="numero" required>
                             </div>
                             <div class="sub-field">
-                                <label for="complemento">Complemento:</label>
-                                <input type="text" id="complemento" name="complemento">
+                                <label for="complemento">Complemento: <span>*</span></label>
+                                <input type="text" id="complemento" name="complemento" required>
                             </div>
                         </div>
                         <div class="field">
-                            <label for="cep">CEP:</label>
-                            <input type="text" id="cep" name="cep">
+                            <label for="cep">CEP: <span>*</span></label>
+                            <input type="text" id="cep" name="cep" required>
                         </div>
                         <div class="buttons">
                             <button type="submit" class="save">SALVAR</button>
                             <button type="reset" class="cancel">CANCELAR</button>
                         </div>
                     </div>
-
+    
                     <!-- Segunda Coluna -->
                     <div class="form-column">
                         <div class="field">
-                            <label for="curso">Curso Inscrito:</label>
-                            <select id="curso" name="curso">
+                            <label for="curso">Curso Inscrito: <span>*</span></label>
+                            <select id="curso" name="curso" required>
                                 <optgroup label="CURSOS TÉCNICOS:">
                                     <option value="ds-tarde">Desenvolvimento de Sistemas (TARDE)</option>
                                     <option value="ds-noite">Desenvolvimento de Sistemas (NOITE)</option>
@@ -89,17 +89,12 @@
                             </select>
                         </div>
                         <div class="field">
-                            <label for="data-inscricao">Data de Inscrição:</label>
-                            <input type="date" id="data-inscricao" name="data-inscricao">
+                            <label for="data-inscricao">Data de Inscrição: <span>*</span></label>
+                            <input type="date" id="data-inscricao" name="data-inscricao" required>
                         </div>
-                        <!-- Abaixo esta a verção antiga, coloquei uma nova por facilidade mais pra frente. -->
-                        <!-- <div class="field">
-                            <label for="escolaridade">Escolaridade:</label>
-                            <input type="text" id="escolaridade" name="escolaridade">
-                        </div> -->
                         <div class="field">
-                            <label for="escolaridade">Escolaridade:</label>
-                            <select id="escolaridade" name="escolaridade">
+                            <label for="escolaridade">Escolaridade: <span>*</span></label>
+                            <select id="escolaridade" name="escolaridade" required>
                                 <optgroup label="Ensino Básico">
                                     <option value="fundamental">Ensino Fundamental</option>
                                     <option value="medio">Ensino Médio</option>
@@ -114,22 +109,22 @@
                                 </optgroup>
                             </select>
                         </div>
-                        
+    
                         <div class="field">
                             <label for="preferencias">Preferências:</label>
                             <textarea id="preferencias" name="preferencias" rows="2"></textarea>
                         </div>
                         <div class="field">
-                            <label for="email-senai">Email - SENAI:</label>
-                            <input type="email" id="email-senai" name="email-senai">
+                            <label for="email-senai">Email - SENAI: <span>*</span></label>
+                            <input type="email" id="email-senai" name="email-senai" required>
                         </div>
                         <div class="field">
-                            <label for="email-pessoal">Email - Pessoal:</label>
-                            <input type="email" id="email-pessoal" name="email-pessoal">
+                            <label for="email-pessoal">Email - Pessoal: <span>*</span></label>
+                            <input type="email" id="email-pessoal" name="email-pessoal" required>
                         </div>
                         <div class="field">
-                            <label for="celular">Celular:</label>
-                            <input type="tel" id="celular" name="celular">
+                            <label for="celular">Celular: <span>*</span></label>
+                            <input type="tel" id="celular" name="celular" required>
                         </div>
                         <div class="field">
                             <label for="telefone">Telefone:</label>
@@ -144,6 +139,7 @@
             </form>
         </div>
     </article>
+    
 
 
     <footer>
