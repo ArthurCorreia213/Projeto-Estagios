@@ -40,40 +40,66 @@
                         <div class="h-trabalho-t">
                             <label class="label" for="horario-inicio">Horário de trabalho:</label>
                         </div>
-    
                         <div class="h-infs">
                             <input class="input" type="time" id="horario-inicio" name="horario-inicio">
                             <span class="horario-separador">às</span>
                             <input class="input" type="time" id="horario-fim" name="horario-fim">
                         </div>
                     </div>
+    
+                    <!-- Benefícios - Checkbox -->
                     <div class="row">
-                        <label class="label" for="beneficios">Benefícios:</label>
-                        <textarea class="input" id="beneficios" name="beneficios" rows="3"></textarea>
+                        <label class="label">Benefícios:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="beneficios" value="vale-alimentacao"> Vale-Alimentação</label><br>
+                            <label><input type="checkbox" name="beneficios" value="vale-refeicao"> Vale-Refeição</label><br>
+                            <label><input type="checkbox" name="beneficios" value="plano-saude"> Plano de Saúde</label><br>
+                            <label><input type="checkbox" name="beneficios" value="plano-odontologico"> Plano Odontológico</label><br>
+                            <label><input type="checkbox" name="beneficios" value="vale-combustivel"> Vale-Combustível</label><br>
+                            <label><input type="checkbox" name="beneficios" value="jornada-flexivel"> Jornada de Trabalho Flexível</label><br>
+                            <label><input type="checkbox" name="beneficios" value="auxilio-creche"> Auxílio-Creche</label><br>
+                            <label><input type="checkbox" name="beneficios" value="auxilio-educacao"> Auxílio-Educação</label><br>
+                            <label><input type="checkbox" name="beneficios" value="vale-cultura"> Vale-Cultura</label><br>
+                            <label><input type="checkbox" name="beneficios" value="vale-academia"> Vale-Academia</label>
+                        </div>
                     </div>
+    
+                    <!-- Localização -->
                     <div class="row">
                         <label class="label" for="localizacao">Localização:</label>
                         <input class="input" type="text" id="localizacao-input" name="localizacao">
                     </div>
-                    <!-- POR FAVOR, NÃO RETIRE O "-INPUT" -->
+    
+                    <!-- Cargo - Dropdown -->
                     <div class="row">
                         <label class="label" for="cargo">Cargo:</label>
-                        <input class="input" type="text" id="cargo" name="cargo">
+                        <select class="input" id="cargo" name="cargo">
+                            <option value="gerente">Gerente</option>
+                            <option value="analista">Analista</option>
+                            <option value="desenvolvedor">Desenvolvedor</option>
+                            <option value="assistente">Assistente</option>
+                            <option value="coordenador">Coordenador</option>
+                            <option value="estagiario">Estagiário</option>
+                        </select>
                     </div>
-                    <div class="row-tv">
-                        <div class="row">
-                            <label class="label" for="tempo-contrato">Tempo de contrato:</label>
-                            <input class="input" type="text" id="tempo-contrato" name="tempo-contrato">
-                        </div>
-                        <div class="row">
-                            <label class="label" for="vagas">Vagas:</label>
-                            <input class="input" type="number" id="vagas" name="vagas" min="1">
-                        </div>
-                    </div>
+    
+                    <!-- Requisitos - Checkbox -->
                     <div class="row">
-                        <label class="label full-width" for="requisitos">Requisitos:</label>
-                        <textarea class="input full-width" id="requisitos" name="requisitos" rows="3"></textarea>
+                        <label class="label">Requisitos:</label>
+                        <div id="requisitos" class="checkbox-group">
+                            <label><input type="checkbox" name="requisitos" value="experiencia"> Experiência em área relacionada</label><br>
+                            <label><input type="checkbox" name="requisitos" value="ingles"> Inglês Intermediário ou Avançado</label><br>
+                            <label><input type="checkbox" name="requisitos" value="formacao-superior"> Formação Superior Completa</label><br>
+                            <label><input type="checkbox" name="requisitos" value="comunicacao"> Boa Comunicação</label><br>
+                            <label><input type="checkbox" name="requisitos" value="trabalho-equipe"> Trabalho em Equipe</label><br>
+                            <!-- <label><input type="checkbox" name="requisitos" value="proatividade"> Proatividade</label><br> -->
+                            <label><input type="checkbox" name="requisitos" value="facilidade-aprendizado"> Facilidade de Aprendizado</label><br>
+                            <label><input type="checkbox" name="requisitos" value="cursando-dev"> Cursando/Concluído Técnico em desenvolvimento de sistemas</label><br>
+                            <label><input type="checkbox" name="requisitos" value="cursando-log"> Cursando/Concluído Técnico em Logística</label>
+                        </div>
                     </div>
+    
+                    <!-- Detalhes -->
                     <div class="row">
                         <label class="label full-width" for="detalhes">Detalhes:</label>
                         <textarea class="input full-width" id="detalhes" name="detalhes" rows="4"></textarea>

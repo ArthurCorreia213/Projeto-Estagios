@@ -115,3 +115,122 @@ button:hover {
     }
 
 }
+
+/* css dos checkbox: */
+/* 
+ideia 01: */
+/* .checkbox-group{
+    background-color: #d8d7d7;
+    margin: 10px;
+}
+
+.checkbox-group label{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #c0c0c0;
+    text-align: left;
+    height: 70px;
+}
+
+.checkbox-group label input{
+    background-color: #B91D32;
+    width: 25%;
+    height: 20px;
+} */
+
+
+
+/* checkboxs */
+.checkbox-group {
+    background-color: #f5f5f5; 
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #e4e4e4; 
+    text-align: left;
+    height: 50px;
+    border-radius: 6px;
+    padding: 0 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+.checkbox-group label:hover {
+    background-color: #b91d32; 
+    color: #fff; 
+    transform: scale(1.02); 
+}
+
+/* inputis */
+.checkbox-group label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    accent-color: #b91d32; /* cor da checkbox! muito doido */
+    cursor: pointer;
+}
+
+.checkbox-group label input[type="checkbox"]:hover {
+    filter: brightness(1.2); 
+}
+
+
+.checkbox-group label input[type="checkbox"]:checked {
+    outline: 2px solid #b91d32;
+    outline-offset: 2px;
+}
+/* 
+ANIMAÇÕES: */
+/* RESET: */
+.checkbox-group label input[type="checkbox"] {
+    appearance: none; /* Remove o estilo padrão */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #b91d32;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.checkbox-group label input[type="checkbox"]:checked {
+    background-color: #b91d32;
+    transform: scale(1.01); /* Aumenta levemente */
+    animation: bounce 0.3s ease-in-out;
+}
+
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 
+ANOTAÇÕES: 
+O QUE É O TRECO QUE APARECE DE VEZ EM QUANDO, POR EXEMPLO "INPUT[TYPE="CHECKBOX"]"
+É muito top, se chama seletor de atributos css,
+documentação dele: https://developer.mozilla.org/pt-BR/docs/Web/CSS/Attribute_selectors
+em resumo, é uma forma de pegar elementos especificos, sem mecher muito no html, EXEMPLO:
+tipo, imagine que voce tenha 10 links, (a), e voce quer que o ultimo seja azul, voce poderia usar um id, maaaas, voce tambem pode só chamar pelo link dele!
+a[href="https://example.org"]
+{
+  color: green;
+}
+muito doido*/
