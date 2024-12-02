@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
+}
+button{
+    transition: all ease-in-out 100ms;
+}
+
+button:hover{
+    cursor:pointer;
+    scale: 1.05;
+    transition: all ease-in-out 100ms;
+}
+.SUB-HEADER{
+    padding-left: 10%;
+
+    display: flex;
+    align-items: center;
+
+    & h3{
+        font-size: 2em;
+    }
+
+    & .botao{
+        margin-left: 5%;
+
+        & button{
+            width: 11em;
+            height: 2em;
+
+            background-color: #105f00;
+
+            border: transparent;
+
+            color: #D9D9D9;
+
+            font-size: 1.4em;
+            font-weight: 800;
+        }
+    }
+
+}

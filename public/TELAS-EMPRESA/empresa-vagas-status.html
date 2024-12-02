@@ -20,7 +20,9 @@
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
         </div>
-        <a href="empresa-dados.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
+        <div class="link-header">
+            <a href="empresa-dados.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
+        </div>
     </header>
 
     <main>
@@ -42,10 +44,30 @@
                 </div>
 
                 <div id="vagas-botoes">
-                    <a class="vagas-b" href="http://" id="btn-todos-candidatos">Todos os candidatos</a>
-                    <a class="vagas-b" href="http://" id="btn-melhores-candidatos">Melhores candidatos</a>
+                    <button class="vagas-b" popovertarget="popover-todoscand-1" id="btn-todos-candidatos">Todos os candidatos</button>
+                    <!-- <a class="vagas-b" href="http://" id="btn-melhores-candidatos">Melhores candidatos</a> -->
                 </div>
             </div>
+
+<div popover id="popover-todoscand-1" class="popover-candidatos">
+    <h3>TODOS OS CANDIDATOS:</h3>
+    <div class="tabelas-alunos">
+        <table>
+            <tr>
+              <th>Identificador</th>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Celular</th>
+            </tr>
+            <tr>
+              <td>001</td>
+              <td>Roberto Carlos</td>
+              <td>robertin184@email.com</td>
+              <td>11 12345-1234</td>
+            </tr>
+          </table>
+    </div>
+</div>
 
             <div id="vagas-cards">
                 <div id="vagas-info">

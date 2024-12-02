@@ -35,9 +35,14 @@ IMPORTANTE, AO COLOCAR/ANEXAR IMAGENS, AO VOLTAR, POR EXEMPLO NO CASO ACIMA, A U
 
 #USER {
     max-height: 6vh;
-    padding-top: 17vh;
-    padding-left: 5vh;
+    /* padding-top: 17vh;
+    padding-left: 5vh; */
+
+    /* position: relative;
+    top: 8.5vh; */
+
     display: block;
+    }
 }
 
 #USER img {
@@ -47,6 +52,14 @@ IMPORTANTE, AO COLOCAR/ANEXAR IMAGENS, AO VOLTAR, POR EXEMPLO NO CASO ACIMA, A U
 
 a {
     display: block;
+}
+
+.link-header{
+
+    & a{
+        position: relative;
+        top: 8.5vh;
+    }
 }
 
 @media(max-width: 900px){

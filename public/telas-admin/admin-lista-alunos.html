@@ -69,6 +69,41 @@
 
     </article>
 
+    <script>
+        async function carregarcandidatos() {
+            try {
+                // Fazer a requisição GET para a API
+                const response = await fetch('/api/candidatos');
+                if (!response.ok) throw new Error('Erro ao buscar empresas.');
+    
+                // Converter os dados recebidos para JSON
+                const empresas = await response.json();
+    
+                // Selecionar o corpo da tabela
+                const tbody = document.querySelector('#empresas-table tbody');
+                tbody.innerHTML = ''; // Limpar o conteúdo atual
+    
+                // Iterar sobre os dados recebidos e criar linhas na tabela
+                empresas.forEach(vaga => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${vaga.Nome}</td>
+                        <td>${vaga.CNPJ}</td>
+                        <td>${vaga.Contato}</td>
+                        <td>${vaga.Status_Cadastro}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao carregar as empresas. Tente novamente mais tarde.');
+            }
+        }
+    
+        // Chamar a função ao carregar a página
+        window.onload = carregarempresas;
+    </script>
+
     <footer>
         <div id="texto">
             <a href="">FALE CONOSCO</a>

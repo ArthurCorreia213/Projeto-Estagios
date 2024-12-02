@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/css-empresa/adicionar-vaga.css">
     <link rel="stylesheet" href="../css/area-nav-empresa.css">
     <title>Estágios SENAI MOOCA</title>
@@ -17,7 +18,9 @@
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
         </div>
-        <a href=""><img src="./imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
+        <div class="link-header">
+            <a href="empresa-dados.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
+        </div>
     </header>
     
         <div class="area-nav">
@@ -31,41 +34,36 @@
             </div>
         </div>
 
-    <article>
+    <!-- <article>
 
         <div class="container">
-            <form id="vagaForm">
+            <form action="/add_vaga" method="POST"  id="vagaForm">
                 <div class="row">
-                    <label class="label" for="salario">Salário:</label>
-                    <input class="input" type="text" id="salario" name="salario">
-                </div>
-                <!-- <div class="row">
-                    <label class="label" for="data-inicio">Data de início:</label>
-                    <input class="input" type="date" id="data-inicio" name="data-inicio">
+                    <label class="label" for="cargo">Cargo:</label>
+                    <input class="input" type="text" id="cargo" name="cargo">
                 </div>
                 <div class="row">
-                    <label class="label" for="data-termino">Data de término:</label>
-                    <input class="input" type="date" id="data-termino" name="data-termino">
-                </div> -->
+                    <label class="label" for="cargo">Horario:</label>
+                    <input class="input" type="text" id="horario" name="cargo" placeholder="xx:xx-xx:xx">
+                </div>
+                TESTE:
                 <div class="row1">
                     <label class="label" for="h<link rel="stylesheet" href="../css/footer.css">Horário de trabalho:</label>
-                    <div class="correcao">
+                    <input class="input" type="text" id="cargo" name="horario" placeholder="xx:xx-xx:xx">
+                     <div class="correcao">
                         <input class="input" type="time" id="horario-inicio" name="horario-inicio">
                         <span>às</span>
                         <input class="input" type="time" id="horario-fim" name="horario-fim">
                     </div>
                 </div>
-                <div class="row">
-                    <label class="label full-width" for="beneficios">Benefícios:</label>
-                    <textarea class="input full-width" id="beneficios" name="beneficios" rows="3"></textarea>
-                </div>
+                :TESTE
                 <div class="row">
                     <label class="label" for="localizacao">Localização:</label>
                     <input class="input" type="text" id="localizacao" name="localizacao">
                 </div>
                 <div class="row">
-                    <label class="label" for="cargo">Cargo:</label>
-                    <input class="input" type="text" id="cargo" name="cargo">
+                    <label class="label" for="salario">Salário:</label>
+                    <input class="input" type="text" id="salario" name="salario">
                 </div>
                 <div class="row">
                     <label class="label" for="tempo-contrato">Tempo de contrato:</label>
@@ -76,12 +74,20 @@
                     <input class="input" type="number" id="vagas" name="vagas" min="1">
                 </div>
                 <div class="row">
+                    <label class="label full-width" for="beneficios">Benefícios:</label>
+                    <textarea class="input full-width" id="beneficios" name="beneficios" rows="3"></textarea>
+                </div>
+                <div class="row">
                     <label class="label full-width" for="requisitos">Requisitos:</label>
                     <textarea class="input full-width" id="requisitos" name="requisitos" rows="3"></textarea>
                 </div>
                 <div class="row">
                     <label class="label full-width" for="detalhes">Detalhes:</label>
                     <textarea class="input full-width" id="detalhes" name="detalhes" rows="4"></textarea>
+                </div>
+                <div class="row">
+                    <label class="label" for="cargo">Contato:</label>
+                    <input class="input" type="text" id="contato" name="contato">
                 </div>
 
                 <div class="button-container">
@@ -90,7 +96,200 @@
                 
             </form>
         </div>
+    </article> -->
+<!-- 
+Forma de adicionar vaga 2:
+que é a mesma da tela do adm -->
+
+    <article>
+        <div class="container">
+            <form id="vagaForm">
+                <div class="coluna-1">
+                    <!-- <div class="row">
+                        <label class="label" for="nome-v">Nome da vaga:</label>
+                        <input class="input" type="text" id="nome-v" name="nome-v">
+                    </div> -->
+                    <div class="row">
+                        <label class="label" for="salario">Salário:</label>
+                        <input class="input" type="text" id="salario" name="salario">
+                    </div>
+                    <div class="row">
+                        <label class="label" for="data-inicio">Data de início:</label>
+                        <input class="input" type="date" id="data-inicio" name="data-inicio">
+                    </div>
+                    <div class="row">
+                        <label class="label" for="data-termino">Data de término:</label>
+                        <input class="input" type="date" id="data-termino" name="data-termino">
+                    </div>
+                    <div class="row" id="horario-row">
+                        <div class="h-trabalho-t">
+                            <label class="label" for="horario-inicio">Horário de trabalho:</label>
+                        </div>
+                        <div class="h-infs">
+                            <input class="input" type="time" id="horario-inicio" name="horario-inicio">
+                            <span class="horario-separador">às</span>
+                            <input class="input" type="time" id="horario-fim" name="horario-fim">
+                        </div>
+                    </div>
+    
+                    <!-- Benefícios - Checkbox -->
+                    <div class="row">
+                        <label class="label">Benefícios:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="beneficios" value="vale-alimentacao"> Vale-Alimentação</label><br>
+                            <label><input type="checkbox" name="beneficios" value="vale-refeicao"> Vale-Refeição</label><br>
+                            <label><input type="checkbox" name="beneficios" value="plano-saude"> Plano de Saúde</label><br>
+                            <label><input type="checkbox" name="beneficios" value="plano-odontologico"> Plano Odontológico</label><br>
+                            <label><input type="checkbox" name="beneficios" value="vale-combustivel"> Vale-Combustível</label><br>
+                            <label><input type="checkbox" name="beneficios" value="jornada-flexivel"> Jornada de Trabalho Flexível</label><br>
+                            <label><input type="checkbox" name="beneficios" value="auxilio-creche"> Auxílio-Creche</label><br>
+                            <label><input type="checkbox" name="beneficios" value="auxilio-educacao"> Auxílio-Educação</label><br>
+                            <label><input type="checkbox" name="beneficios" value="vale-cultura"> Vale-Cultura</label><br>
+                            <label><input type="checkbox" name="beneficios" value="vale-academia"> Vale-Academia</label>
+                        </div>
+                    </div>
+    
+                    <!-- Localização -->
+                    <div class="row">
+                        <label class="label" for="localizacao">Localização:</label>
+                        <input class="input" type="text" id="localizacao-input" name="localizacao">
+                    </div>
+    
+                    <!-- Cargo - Dropdown -->
+                    <div class="row">
+                        <label class="label" for="cargo">Cargo:</label>
+                        <select class="input" id="cargo" name="cargo">
+                            <option value="gerente">Gerente</option>
+                            <option value="analista">Analista</option>
+                            <option value="desenvolvedor">Desenvolvedor</option>
+                            <option value="assistente">Assistente</option>
+                            <option value="coordenador">Coordenador</option>
+                            <option value="estagiario">Estagiário</option>
+                        </select>
+                    </div>
+    
+                    <!-- Requisitos - Checkbox -->
+                    <div class="row">
+                        <label class="label">Requisitos:</label>
+                        <div id="requisitos" class="checkbox-group">
+                            <label><input type="checkbox" name="requisitos" value="experiencia"> Experiência em área relacionada</label><br>
+                            <label><input type="checkbox" name="requisitos" value="ingles"> Inglês Intermediário ou Avançado</label><br>
+                            <label><input type="checkbox" name="requisitos" value="formacao-superior"> Formação Superior Completa</label><br>
+                            <label><input type="checkbox" name="requisitos" value="comunicacao"> Boa Comunicação</label><br>
+                            <label><input type="checkbox" name="requisitos" value="trabalho-equipe"> Trabalho em Equipe</label><br>
+                            <!-- <label><input type="checkbox" name="requisitos" value="proatividade"> Proatividade</label><br> -->
+                            <label><input type="checkbox" name="requisitos" value="facilidade-aprendizado"> Facilidade de Aprendizado</label><br>
+                            <label><input type="checkbox" name="requisitos" value="cursando-dev"> Cursando/Concluído Técnico em desenvolvimento de sistemas</label><br>
+                            <label><input type="checkbox" name="requisitos" value="cursando-log"> Cursando/Concluído Técnico em Logística</label>
+                        </div>
+                    </div>
+    
+                    <!-- Detalhes -->
+                    <div class="row">
+                        <label class="label full-width" for="detalhes">Detalhes:</label>
+                        <textarea class="input full-width" id="detalhes" name="detalhes" rows="4"></textarea>
+                    </div>
+                </div>
+    
+                <div class="coluna-2">
+                    <div class="buttons">
+                        <button type="submit" class="save">SALVAR</button>
+                        <button type="reset" class="cancel">CANCELAR</button>
+                    </div>
+                </div>
+    
+            </form>
+        </div>
     </article>
+
+    
+    <footer>
+        <div id="texto">
+            <a href="">FALE CONOSCO</a>
+            <a href="">TRABALHE CONOSCO</a>
+            <a href="">OUVIDORIA</a>
+            <a href="">POLITICA DE PRIVACIDADE</a>
+            <a href="">A LGPD NO SENAI-SP</a>
+        </div>
+
+        <div id="redes-sociais">
+            <img src="../imagens/icones/facebook.svg">
+            <img src="../imagens/icones/twitter.svg">
+            <img src="../imagens/icones/youtube.svg">
+            <img src="../imagens/icones/linkedin.svg">
+            <img src="../imagens/icones/instagram.svg">
+            <img src="../imagens/icones/whatsapp.svg">
+        </div>
+
+        <div id="informacoes">
+
+            <div id="localizacao">
+                <h3 id="localizacao-title">EDIFÍCIO SEDE FIESP</h3>
+                <p>Av. Paulista, 1313, São Paulo/SP</p>
+                <p>CEP 01311-923</p>
+            </div>
+
+            <div id="atendimento">
+                <div id="alinhamento">
+                    <h3 id="atendimento-title">CENTRAL DE RELACIONAMENTO</h3>
+                    <p>(11) 3322-0050 (Telefone/WhatsApp)</p>
+                    <p>0800-055-1000 (Interior de SP, somente telefone fixo</p>
+                </div>
+            </div>
+
+            <div id="informacoes-links">
+                <a href="">Unidades</a>
+                <a href="">O SENAI</a>
+                <a href="">Perguntas Frequentes</a>
+                <a href="">Fale Conosco</a>
+                <a href="">Transparência</a>
+                <a href="">Para a sua empresa</a>
+            </div>
+        </div>
+
+        <div id="copyright">
+            <p>Copyright 2024 © Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('container').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const vaga = {
+                salario: document.getElementById('salario').value,
+                datainicio: document.getElementById('data-inicio').value,
+                datatermino: document.getElementById('data-termino').value,
+                horainicio: document.getElementById('horario-inicio').value,
+                horatermino: document.getElementById('horario-termino').value,
+                beneficios: document.querySelectorAll('input[name="beneficios"]:checked').value,
+                localizacao: document.getElementById('localizacao-input').value,
+                cargo: document.getElementById('cargo').value,
+                requisitos: document.querySelectorAll('input[name="requisitos"]:checked').value,
+                detalhes: document.getElementById('detalhes').value
+                // nome: document.getElementById('cargo').value,
+                // contato: document.getElementById('contato').value,
+                // vagas: document.getElementById('vagas').value,
+
+                // tempo_de_contrato: document.getElementById('tempo_de_contrato').value,
+                // horario: document.getElementById('horario').value,
+                // beneficios: document.getElementById('beneficios').value,
+                // requisitos: document.getElementById('requisitos').value
+            };
+
+            try {
+                const response = await fetch('/add_vaga', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(vaga)
+                });
+                const message = await response.text();
+                alert(message);
+            } catch (error) {
+                alert('Erro ao enviar dados: ' + error.message);
+            }
+        });
+    </script>
 
     <footer>
         

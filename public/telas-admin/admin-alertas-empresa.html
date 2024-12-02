@@ -55,6 +55,72 @@
         </div>
     </div>
 
+    <div id="teste">
+
+
+    </div>
+
+    <script>
+        async function carregarempresas() {
+            try {
+                // Fazer a requisição GET para a API
+                const response = await fetch('/api/empresas-pendentes');
+                if (!response.ok) throw new Error('Erro ao buscar empresas.');
+    
+                // Converter os dados recebidos para JSON
+                const empresas = await response.json();
+    
+                // Selecionar o corpo da tabela
+                const tbody = document.getElementById('teste');
+                tbody.innerHTML = ''; // Limpar o conteúdo atual
+    
+                // Iterar sobre os dados recebidos e criar linhas na tabela
+                empresas.forEach(empresa => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.ID_Empresa}</p>
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.Nome}</p>
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.CNPJ}</p>
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.Contato}</p>
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.Status_Cadastro}</p>
+
+                            <div style="display: flex;margin-top: 15%;">
+                                <img src="../imagens/icones/trash-2 1.svg">
+                                <button style="background-color: #827D7E; color: #FFF; margin-left: 10%;">Ver detalhes</button>
+                                <img src="../imagens/icones/send 1.svg" style="margin-left: 15%;">
+                            </div>
+                        </div>
+                    `;
+                    tbody.appendChild(div);
+                });
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao carregar as empresas. Tente novamente mais tarde.'+ error.message);
+            }
+        }
+
+        async function aprovarRegistro(id) {
+            try {
+            const response = await fetch(`/api/aprovar/${id}`, {
+                method: 'PUT',
+            });
+            const result = await response.json();
+            if (response.ok) {
+                alert(`Registro ${id} alterado para: ${result.status}`);
+            } else {
+                alert(`Erro: ${result.message}`);
+            }
+            } catch (error) {
+            console.error('Erro ao aprovar registro:', error);
+            alert('Erro ao aprovar registro. Veja o console para mais detalhes.');
+            }
+        }
+    
+        // Chamar a função ao carregar a página
+        window.onload = carregarempresas;
+    </script>
+
     </article>
 
     <footer>

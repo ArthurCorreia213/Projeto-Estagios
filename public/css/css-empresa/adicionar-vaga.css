@@ -1,3 +1,228 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
+}
+
+#vagaForm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 5% 10%;
+}
+
+.row {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    flex-direction: column;
+}
+
+.row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.row input, 
+.row select, 
+.row textarea {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+}
+
+/* Ajustando o layout do horário */
+#horario-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#horario-row .h-infs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+#horario-row .horario-separador {
+    font-size: 16px;
+    color: #333;
+    padding: 0 10px;
+}
+
+input[type="time"] {
+    width: 50%; /* Ajusta a largura para os campos de hora */
+}
+/* 
+provavelmente tinha maneira mais fácil de corrigir o problema do horario, mas estava com pressa. */
+
+.row-tv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.coluna-2{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.coluna-2 button{
+    width: stretch;
+    margin: 10px;
+}
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+button.save {
+    border: 2px solid #105F00;
+    background-color: #E6E6E6;
+    color: #105F00;
+}
+
+button.cancel {
+    border: 2px solid #B91D32;
+    color: #B91D32;
+    background-color: #E6E6E6;
+}
+
+button:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+    scale: 1.05;
+}
+
+@media (max-width: 900px) {
+    #vagaForm{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding: 5% 10%;
+    }
+
+}
+
+/* css dos checkbox: */
+/* 
+ideia 01: */
+/* .checkbox-group{
+    background-color: #d8d7d7;
+    margin: 10px;
+}
+
+.checkbox-group label{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #c0c0c0;
+    text-align: left;
+    height: 70px;
+}
+
+.checkbox-group label input{
+    background-color: #B91D32;
+    width: 25%;
+    height: 20px;
+} */
+
+
+
+/* checkboxs */
+.checkbox-group {
+    background-color: #f5f5f5; 
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: #e4e4e4; 
+    text-align: left;
+    height: 50px;
+    border-radius: 6px;
+    padding: 0 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+.checkbox-group label:hover {
+    background-color: #b91d32; 
+    color: #fff; 
+    transform: scale(1.02); 
+}
+
+/* inputis */
+.checkbox-group label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    accent-color: #b91d32; /* cor da checkbox! muito doido */
+    cursor: pointer;
+}
+
+.checkbox-group label input[type="checkbox"]:hover {
+    filter: brightness(1.2); 
+}
+
+
+.checkbox-group label input[type="checkbox"]:checked {
+    outline: 2px solid #b91d32;
+    outline-offset: 2px;
+}
+/* 
+ANIMAÇÕES: */
+/* RESET: */
+.checkbox-group label input[type="checkbox"] {
+    appearance: none; /* Remove o estilo padrão */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #b91d32;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.checkbox-group label input[type="checkbox"]:checked {
+    background-color: #b91d32;
+    transform: scale(1.01); /* Aumenta levemente */
+    animation: bounce 0.3s ease-in-out;
+}
+
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 
 body{
     background-color: #e6e6e6;
 }
@@ -27,7 +252,7 @@ article{
                 border-radius: 20px;
                 border: transparent;
 
-                font-size: 3em;
+                font-size: 2em;
 
                 background-color: #d2d2d2;
 
@@ -36,7 +261,7 @@ article{
 
             & textarea{
                 width: 40%;
-                /* height: 48px; */
+
 
                 padding: 4px;
                 padding-left: 10px;
@@ -47,7 +272,7 @@ article{
                 border-radius: 20px;
                 border: transparent;
 
-                font-size: 3em;
+                font-size: 2em;
 
                 background-color: #d2d2d2;
                 margin-bottom: 2vh;
@@ -111,4 +336,4 @@ article{
             }
         }
     }
-}
+} */
