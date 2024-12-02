@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
 
-    <link rel="stylesheet" href="../css/admin-alertas.css">
+    <!-- <link rel="stylesheet" href="../css/admin-alertas.css"> -->
+	<link rel="stylesheet" href="../css/css-admin/navegacao-alertas.css">
+	
+	<link rel="stylesheet" href="../css/css-admin/area-nav-adm.css">
     <title>Estágios SENAI MOOCA</title>
 </head>
 <body>
@@ -20,25 +23,37 @@
         </div>
         <!-- <a href="empresa-dados.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a> -->
     </header>
+	
+	
+	<div id="admin-navbar">
+        <a href="admin-alertas-vagas.html" class="botao-navbar" id="botao-notificacoes"><img src="../imagens/icones/icone-notificacao.svg" id="icone-notificacoes"></a>
+        <div class="juncao">
+            <div class="tamanho-home">    
+                <a href="admin-main.html" class="botao-navbar" id="botao-home"><img src="../imagens/icones/icone-home.svg" id="icone-home"></a>
+            </div>
+            <a href="admin-lista-empresas.html" class="botao-navbar nav1"><b>Empresa</b></a>
+        </div>
+        <a href="admin-lista-alunos.html" class="botao-navbar nav" id="botao-alunos"><b>Alunos</b></a>
+        <a href="admin-vagas.html" class="botao-navbar nav"><b>Vagas</b></a>
+    </div>
 
     <article>
 
-        <div class="container">
-                <div class="sub-header">
-                    <h3>PAINEL DE ALERTAS</h3>
-                    <p>Aqui obtemos informações sobre as solicitações de entrada em nosso banco de dados e outras informações:</p>
-                </div>
-
-                <div class="alertas">
-                    <a href="admin-alertas-vagas.html" class="botao-alertas">VAGAS</a>
-                    <a href="admin-alertas-empresa.html" class="botao-alertas selected">EMPRESAS</a>
-                    <a href="admin-alertas-status.html" class="botao-alertas">STATUS</a>
-                </div>
-
-                <div class="cards">
-                    
-                </div>
+	<div class="container">
+        <div class="sub-header">
+            <div class="alert-circle">
+                <h3>PAINEL DE ALERTAS</h3>
+                <img src="../imagens/icones/alert-circle 1.svg" alt="">
+            </div>
+            <p>Aqui obtemos informações sobre as solicitações de entrada em nosso banco de dados e outras informações:</p>
         </div>
+
+        <div class="alertas">
+            <a href="admin-alertas-vagas.html" class="botao-alertas selected">VAGAS</a>
+            <a href="admin-alertas-empresa.html" class="botao-alertas empresa">EMPRESAS</a>
+            <a href="admin-alertas-status.html" class="botao-alertas status">STATUS</a>
+        </div>
+    </div>
 
     </article>
 

@@ -1,0 +1,58 @@
+.container{
+    padding-left: 20%;
+    padding-right: 20%;
+
+    & .sub-header{
+        & h3{
+            font-size: 2.3em;
+        }
+
+        & P{
+            font-size: 1.3em;
+        }
+
+        & .alert-circle{
+            display: flex;
+
+            & img{
+                margin-left: 2%;
+            }
+        }
+    }
+
+    & .alertas{
+        display: flex;
+
+        margin-top: 5vh;
+
+        & a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: #d9d9d9; /* (#b91d32) quando selecionado*/
+            color: #000; /* (#fff negrito) quando selecionado */
+
+            width: 8%;
+            height: 3em;
+
+            text-decoration: none;
+
+            font-size: 1em;
+
+            border-radius: 0.5em;
+        }
+
+        & a:not(:last-child){
+            margin-right: 5%;
+        }
+
+        & .empresa{
+            width: 11%;
+        }
+
+        & .status{
+            width: 9%;
+        }
+    }
+}

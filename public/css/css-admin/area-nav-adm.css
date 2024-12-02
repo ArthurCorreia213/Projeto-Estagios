@@ -1,0 +1,100 @@
+#admin-navbar{
+    display: flex;
+    
+    padding-left: 23.35%;
+
+    background-color: #616161;
+
+    height: 5.5vh;
+
+    & a{
+        text-decoration: none;
+    }
+
+    & #botao-notificacoes{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: #c9c9c9;
+
+        width: 4.5%;
+
+        & img{
+            height: 85%;
+        }
+    }
+
+    & .nav{
+        width: 18%;
+        
+        background-color: #d9d9d9;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: #333333;
+
+        font-size: 1.9em;
+    }
+
+    & .nav:not(:last-child){
+        border-right: 1px solid #000;
+    }
+
+    & .juncao{
+        width: 18%;
+
+        display: flex;
+        align-items: center;
+
+        background-color: #d9d9d9;
+
+        border-right: 1px solid #000;
+
+        & .tamanho-home{
+            width: 30%;
+            height: 100%;
+            
+            z-index: 1;
+
+            display: flex;
+            align-items: center;
+
+            & a{
+                width: 100%;
+                height: 100%;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+
+        & a{
+            text-decoration: none;
+
+            & .botao-navbar{
+                width: 2em;
+            }
+
+        }
+
+        & .nav1{
+            width: 100%;
+
+            color: #333333;
+
+            font-size: 1.9em;
+
+            & b{
+                width: 90%;
+
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
