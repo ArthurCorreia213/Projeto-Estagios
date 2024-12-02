@@ -1,72 +1,126 @@
-/* *{border: 1px solid red;} */
 
-body{margin: 0;}
+body {margin: 0;}
 
-/* footer{
-    display: flex;
-} */
-
-/* a{
-    color: #000;
-    text-decoration: none;
-} */
-
-#texto{
+footer {
     width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
-#texto a{
-    margin: 10px;
-    color: #000;
-    text-decoration: none;
-}
-
-#redes-sociais{
-    background-color: #7D7D7D;
-    display: flex;
-    justify-content: center;
-}
-
-#redes-sociais img{
-    margin: 10px;
-}
-
-#informacoes{
-    background-color: #A5A5A5;
-    color: #FFF;
-    height: 250px;
+#texto {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 10px 0;
 }
 
-#informacoes a{
-    color: #FFF;
+#texto a {
+    margin: 5px 15px;
+    color: #000;
     text-decoration: none;
+    font-size: 14px;
 }
 
-#informacoes-links{
-    justify-self: center;
+#redes-sociais {
+    background-color: #7D7D7D;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 15px 0;
+}
+
+#redes-sociais img {
+    margin: 10px;
+    width: 30px; 
+    height: 30px;
+}
+
+#informacoes {
+    background-color: #A5A5A5;
+    color: #FFF;
     display: flex;
     justify-content: space-evenly;
-    width: 60%;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    text-align: center;
 }
 
-#copyright{
+#informacoes a {
+    color: #FFF;
+    text-decoration: none;
+    margin: 5px;
+    font-size: 14px;
+}
+
+#informacoes-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+}
+
+#localizacao, #atendimento {
+    width: 30%;
+    margin: 10px;
+}
+
+#localizacao h3, #atendimento h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+#localizacao p, #atendimento p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+#copyright {
     background-color: #5F5F5F;
     display: flex;
     justify-content: center;
+    align-items: center;
     color: #FFF;
+    padding: 10px 0;
+    font-size: 12px;
 }
 
-#localizacao{
-    width: 20%;
+@media (max-width: 768px) {
+    #localizacao, #atendimento {
+        width: 100%; 
+        text-align: center;
+    }
+
+    #informacoes-links {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    #informacoes a {
+        font-size: 12px;
+    }
+
+    #redes-sociais img {
+        width: 25px;
+        height: 25px;
+    }
 }
 
-#atendimento{
-    width: 30%;
-    display: flex;
-    justify-content: center;
+@media (max-width: 480px) {
+    #texto a {
+        font-size: 12px; 
+    }
+
+    #redes-sociais img {
+        width: 20px;
+        height: 20px;
+    }
+
+    #informacoes {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    #localizacao, #atendimento {
+        width: 100%;
+        margin-bottom: 15px;
+    }
 }
