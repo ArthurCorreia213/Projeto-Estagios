@@ -8,19 +8,25 @@ button{
     transition: all ease-in-out 100ms;
 }
 
+.CARDS{
+    width: 80%;
+    margin-left: 20%;
+}
+
 button:hover{
     cursor:pointer;
     scale: 1.05;
     transition: all ease-in-out 100ms;
 }
+
 .SUB-HEADER{
     padding-left: 10%;
-
+    font-size: 1.2em;
     display: flex;
     align-items: center;
 
     & h3{
-        font-size: 2em;
+        font-size: 1.2em;
     }
 
     & .botao{
@@ -36,9 +42,59 @@ button:hover{
 
             color: #D9D9D9;
 
-            font-size: 1.4em;
             font-weight: 800;
         }
     }
 
+}
+
+
+.popover{
+    background-color: #E6E6E6;
+    border: none;
+    border-left: 2px solid #000;
+    padding: 20px;
+    width: 50%;
+    margin-bottom: -11%;
+    margin-left: 40%;
+    position: absolute;
+    top: auto;
+}
+
+#vagas-cards button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+@media (max-width: 1500px) {
+    .popover {
+        background-color: #E6E6E6;
+        border: none;
+        padding: 20px;
+        width: 65%;
+        margin-bottom: -11%;
+        margin-left: 15%;
+        position: absolute;
+        top: auto;
+    }
+}
+
+#vagas-cards{
+    width: 20%;
+    margin-top: 80px;
+}
+
+#vagas-info{
+    padding: 5%;
+    width: 40%;
+    margin-top: 50px;
+}
+
+#vagas-disponiveis{
+    font-size: 36px;
+    margin:50px
+}
+
+#container{
+    background-color: red;
 }
