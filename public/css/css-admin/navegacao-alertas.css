@@ -1,3 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6E6;
+    font-family: "Montserrat", sans-serif;
+}
+
 .container{
     padding-left: 20%;
     padding-right: 20%;
@@ -55,4 +62,119 @@
             width: 9%;
         }
     }
+}
+
+
+.cards-vagas-s{
+    width: 70%;
+    padding-left: 20%;
+    /* text-align: center; */
+}
+
+#cabecalho-title{
+    font-size: 24px;
+}
+
+#cabecalho-text{
+    font-size: 20px;
+}
+
+#vagas-cards{
+    display: flex;
+
+    background-color: #FFF;
+    height: 40%;
+    align-items: center;
+    padding-left: 10%;
+    margin-top: 3%;
+    flex-wrap: wrap;
+}
+
+#vagas-botoes{
+    justify-content: space-between;
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 65%;
+}
+
+.vagas-info-p{
+    font-size: 18px;
+    margin-top: 24px;
+}
+
+#vagas-titulo{
+    font-size: 24px;
+    width: 200px;
+}
+
+#vagas-botoes{
+    margin-left: 12%;
+}
+
+#btn-todos-candidatos{
+    border: none;
+    background-color: #4D4D4D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E5E9EA;
+    width: 300px;
+    height: 100px;
+    font-size: 24px;
+    transition: transform 0.2s;
+}
+
+#btn-melhores-candidatos{
+    border: none;
+    background-color: #105F00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F4F6FF;
+    width: 300px;
+    height: 100px;
+    font-size: 24px;
+    transition: transform 0.2s;
+}
+
+.vagas-b:hover{
+    transform: scale(1.05); 
+    cursor: pointer;
+}
+
+.vagas-b{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* 
+TRECO PARA NÃO ESQUECER: CRIE BOTÕES, TAG DO BOTÃO É COMPLICADA... */
+/* 
+configurando popup: */
+
+.popover-candidatos{
+    padding: 30px;
+    width: 80%;
+    border: solid 1px slategrey;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse; 
+    margin: 20px 0; 
+}
+
+th, td {
+    border: 1px solid #4D4D4D; 
+    padding: 8px; 
+    text-align: left;
+}
+
+th {
+    background-color: #AFAFAF;  
+    font-weight: bold; 
 }

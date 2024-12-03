@@ -43,7 +43,170 @@
             </div>
         </div>
 
-        <div class="VAGAS-EMPRESA"></div>
+        <div class="VAGAS-EMPRESA">
+            
+        <div class="CARDS">
+            <div id="vagas-cards" >
+                <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
+                    <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
+            
+                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
+                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
+                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
+                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
+            
+                        <button popovertarget="my-popover" type="button" style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
+
+                        <div class="popover" popover id="my-popover">
+                            <p id="cargo">
+                                Cargo: Desenvolvimento de Sistemas
+                            </p>
+
+                            <p id="empresa">
+                                Seu Zé INC.
+                            </p>
+
+                            <p id="localizacao">
+                                Localização: Rua do Oratório, 215, Mooca, SP
+                            </p>
+
+                            <p id="vagas">
+                                Vagas: 20
+                            </p>
+
+                            <p id="tempo-contrato">Tempo de contrato: 1 ano</p>
+
+                            <p id="horario">
+                                Horário: 9:00 às 16:00
+                            </p>
+
+                            <p id="beneficios">
+                                Benefícios:
+                                <ul>
+                                    <li>Vale refeição;</li>
+                                    <li>Vale Transporte;</li>
+                                    <li>Possibilidade de efetivação ao fim do contrato;</li>
+                                </ul>
+                            </p>
+
+                            <p id="requisitos">
+                                Requisitos:
+                                <ul>
+                                    <li>Cursar Técnico/Superior em Desenvolvimento de Sistemas;</li>
+                                    <li>Conclusão: 2º semestre 2025 / 2º semestre 2026;</li>
+                                    <li>Morar em SP</li>
+                                </ul>
+                            </p>
+
+                            <p id="detalhes">
+                                Detalhes da vaga:
+                                <ul>
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quibusdam praesentium suscipit officiis maiores quos error, facilis obcaecati asperiores. Ullam tempora sequi ducimus doloremque dicta nobis ad, at nisi. Dicta!
+                                </ul>
+                            </p>
+
+                            <button type="button" popovertarget="my-popover2" style="background-color: #333333;
+                            border: none;
+                            border-radius: 3px;
+                            padding: 1px 10px;
+                            color: #E5E9EA;
+                            "><h3>CANDIDATAR-SE</h3></button>
+                                <div popover id="my-popover2"  style="padding: 10px 20px; border: none; background-color: #333333; color: #E5E9EA;"><p>DESEJA SE CANDIDATAR A VAGA?</p>
+                                    <div class="b-escolha-2" style="display: flex; justify-content: space-between; padding: 10px 20px;">
+                                        <button type="button" style="background-color: #333333; border: 1px solid #B91D32; color: #B91D32; padding: 5px 10px ; border-radius: 5px;" popovertarget="my-popover2">CANCELAR</button>
+                                            <button type="button" style="background-color: #333333; border: 1px solid #105F00; color: #105F00; padding: 5px 10px; border-radius: 5px;" popovertarget="my-popover3">SIM</button>
+
+                                                <div popover id="my-popover3" style="border: none; background-color: #333333; color: #E5E9EA;"><h3>CANDIDATURA ENVIADA</h3>
+                                                    <div class="last-choice" style="display: flex; justify-content: center; align-items: center;">
+                                                        <button popovertarget="my-popover3" type="button" style="border: #E5E9EA 1px solid; color: #DCDCDC; background-color: #333333; border-radius: 5px;"><p>FECHAR</p></button>
+                                                    </div>
+
+                                                </div>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+                
+                <br><br>
+            </div>
+<!-- 
+Está uma bagunça esses popover, mas esta legal, o problema é que tem que configurar algumas classes, pois ta tipo somente um popover! (configurar no js?) -->
+
+            <div id="vagas-cards" >
+                <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
+                    <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
+            
+                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
+                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
+                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
+                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
+            
+                        <button popovertarget="my-popover" type="button" style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
+
+                        <div popover id="my-popover">
+                            <p id="cargo">
+                                Cargo: Desenvolvimento de Sistemas
+                            </p>
+
+                            <p id="empresa">
+                                Seu Zé INC.
+                            </p>
+
+                            <p id="localizacao">
+                                Localização: Rua do Oratório, 215, Mooca, SP
+                            </p>
+
+                            <p id="vagas">
+                                Vagas: 20
+                            </p>
+
+                            <p id="tempo-contrato">Tempo de contrato: 1 ano</p>
+
+                            <p id="horario">
+                                Horário: 9:00 às 16:00
+                            </p>
+
+                            <p id="beneficios">
+                                Benefícios:
+                                <ul>
+                                    <li>Vale refeição;</li>
+                                    <li>Vale Transporte;</li>
+                                    <li>Possibilidade de efetivação ao fim do contrato;</li>
+                                </ul>
+                            </p>
+
+                            <p id="requisitos">
+                                Requisitos:
+                                <ul>
+                                    <li>Cursar Técnico/Superior em Desenvolvimento de Sistemas;</li>
+                                    <li>Conclusão: 2º semestre 2025 / 2º semestre 2026;</li>
+                                    <li>Morar em SP</li>
+                                </ul>
+                            </p>
+
+                            <p id="detalhes">
+                                Detalhes da vaga:
+                                <ul>
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quibusdam praesentium suscipit officiis maiores quos error, facilis obcaecati asperiores. Ullam tempora sequi ducimus doloremque dicta nobis ad, at nisi. Dicta!
+                                </ul>
+                            </p>
+
+                            <button class="b-candidatar" type="button" popovertarget="my-popover2"><h3>CANDIDATAR-SE</h3></button>
+                                <div popover id="my-popover2"><p>DESEJA SE CANDIDATAR A VAGA?</p>
+                                    <button type="button" popovertarget="my-popover2">CANCELAR</button>
+                                        <button type="button" popovertarget="my-popover3">SIM</button>
+                                            <div popover id="my-popover3"><h3>CANDIDATURA ENVIADA</h3>
+                                            <button popovertarget="my-popover3" type="button" ><p>FECHAR</p></button>
+                                            </div>
+                                </div>
+                        </div>
+                </div>
+                
+                <br><br>
+            </div>
+        </main>
+        </div>
+        </div>
 
     </article>
 

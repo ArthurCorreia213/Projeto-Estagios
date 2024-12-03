@@ -100,3 +100,28 @@ article{
 
 /* 
 TRECO PARA NÃO ESQUECER: CRIE BOTÕES, TAG DO BOTÃO É COMPLICADA... */
+/* 
+configurando popup: */
+
+.popover-candidatos{
+    padding: 30px;
+    width: 80%;
+    border: solid 1px slategrey;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse; 
+    margin: 20px 0; 
+}
+
+th, td {
+    border: 1px solid #4D4D4D; 
+    padding: 8px; 
+    text-align: left;
+}
+
+th {
+    background-color: #AFAFAF;  
+    font-weight: bold; 
+}
