@@ -45,100 +45,153 @@
 
     <article>
         <div class="container">
-            <form id="InscricaoForm">
+            <form action="/add_candidato" method="POST" id="InscricaoForm">
                 <div class="form-columns">
                     <!-- Primeira Coluna -->
+
                     <div class="form-column">
+
+                        <!-- 
+                    NOME: -->
                         <div class="field">
                             <label for="nome">Nome: <span>*</span></label>
                             <input type="text" id="nome" name="nome" required>
                         </div>
+<!-- 
+                        TELEFONE: -->
                         <div class="field">
+                            <label for="telefone">Telefone:</label>
+                            <input type="tel" id="telefone" name="telefone">
+                        </div>
+                        <div class="field">
+                            <label for="cpf">CPF:</label>
+                            <input type="number" id="cpf" name="cpf">
+                        </div>
+
+                        <!-- <div class="field">
                             <label for="cpf">CPF: <span>*</span></label>
                             <input type="text" id="cpf" name="cpf" required>
-                        </div>
-                        <div class="field">
+                        </div> -->
+                        <!-- <div class="field">
                             <label for="ra">R.A.: <span>*</span></label>
                             <input type="text" id="ra" name="ra" required>
-                        </div>
+                        </div> -->
+<!-- 
+                        NASCIMENTO: -->
                         <div class="field">
                             <label for="data-nascimento">Data de nascimento: <span>*</span></label>
                             <input type="date" id="data-nascimento" name="data-nascimento" required>
                         </div>
+<!-- 
+                        Escolaridade: -->
                         <div class="field">
-                            <label for="rua">Rua: <span>*</span></label>
-                            <input type="text" id="rua" name="rua" required>
+                            <label for="escolaridade">Escolaridade: <span>*</span></label>
+                            <select id="escolaridade" name="escolaridade" required>
+                                <optgroup label="Ensino Básico">
+                                    <option value="Ensino Fundamental Incompleto">Ensino Fundamental Incompleto</option>
+                                    <option value="Ensino Médio Incompleto">Ensino Médio Incompleto</option>
+                                    <option value="Ensino Fundamental Completo">Ensino Fundamental Completo</option>
+                                    <option value="Ensino Médio Completo">Ensino Médio Completo</option>
+                                </optgroup>
+                                <optgroup label="Ensino Superior">
+                                    <option value="Tecnólogo">Tecnólogo</option>
+                                    <option value="Bacharelado">Bacharelado</option>
+                                    <option value="Licenciatura">Licenciatura</option>
+                                    <option value="Pós-Graduação">Pós-Graduação</option>
+                                    <option value="Mestrado">Mestrado</option>
+                                    <option value="Doutorado">Doutorado</option>
+                                </optgroup>
+                            </select>
                         </div>
-                        <div class="field row" id="row-cnc">
-                            <div class="sub-field">
-                                <label for="cidade">Cidade: <span>*</span></label>
-                                <input type="text" id="cidade" name="cidade" required>
-                            </div>
-                            <div class="sub-field">
-                                <label for="numero">Número: <span>*</span></label>
-                                <input type="text" id="numero" name="numero" required>
-                            </div>
-                            <div class="sub-field">
-                                <label for="complemento">Complemento: <span>*</span></label>
-                                <input type="text" id="complemento" name="complemento" required>
-                            </div>
-                        </div>
+<!-- 
+                        INSCRIÇAO NO CRUSO: -->
+
                         <div class="field">
-                            <label for="cep">CEP: <span>*</span></label>
-                            <input type="text" id="cep" name="cep" required>
+                            <label for="data_de_inicio">Data de Inscrição: <span>*</span></label>
+                            <input type="date" id="data_de_inicio" name="data_de_inicio" required>
                         </div>
-                        <div class="buttons">
-                            <button type="submit" class="save">SALVAR</button>
-                            <button type="reset" class="cancel">CANCELAR</button>
+<!-- 
+                        ENDEREÇO: -->
+
+                        <div class="field">
+                            <label class="label" for="rua">Rua:</label>
+                            <input class="input" type="text" id="rua" name="localizacao">
+                            <label class="label" for="numero">Numero:</label>
+                            <input class="input" type="text" id="numero" name="localizacao">
+                            <label class="label" for="bairro">Bairro:</label>
+                            <input class="input" type="text" id="bairro" name="localizacao">
+                            <label class="label" for="estado">Estado:</label>
+                            <input class="input" type="text" id="estado" name="localizacao"> 
+                            <label class="label" for="cidade">Cidade:</label>
+                            <input class="input" type="text" id="cidade" name="localizacao"> 
                         </div>
+        
+
                     </div>
     
                     <!-- Segunda Coluna -->
+<!-- 
+                    CURSO: -->
                     <div class="form-column">
                         <div class="field">
                             <label for="curso">Curso Inscrito: <span>*</span></label>
                             <select id="curso" name="curso" required>
                                 <optgroup label="CURSOS TÉCNICOS:">
-                                    <option value="ds-tarde">Desenvolvimento de Sistemas (TARDE)</option>
-                                    <option value="ds-noite">Desenvolvimento de Sistemas (NOITE)</option>
-                                    <option value="logistica-tarde">Técnico em Logística (TARDE)</option>
-                                    <option value="logistica-noite">Técnico em Logística (NOITE)</option>
+                                    <option value="Desenvolvimento de Sistemas">Desenvolvimento de Sistemas</option>
+                                    <option value="Técnico em Logística">Técnico em Logística</option>
                                 </optgroup>
                                 <optgroup label="APRENDIZ SENAI:">
-                                    <option value="assistente-adm">Assistente Administrativo</option>
-                                    <option value="assistente-log">Assistente de Logística</option>
-                                    <option value="mecanico-usinagem">Mecânico de Usinagem</option>
-                                    <option value="operador-log">Operador de Processos Logísticos</option>
+                                    <option value="Assistente Administrativo">Assistente Administrativo</option>
+                                    <option value="Assistente de Logística">Assistente de Logística</option>
+                                    <option value="Mecânico de Usinagem">Mecânico de Usinagem</option>
+                                    <option value="Operador de Processos Logísticos">Operador de Processos Logísticos</option>
                                 </optgroup>
                             </select>
                         </div>
+<!-- 
+                        HORARIO DO CURSO: -->
                         <div class="field">
-                            <label for="data-inscricao">Data de Inscrição: <span>*</span></label>
-                            <input type="date" id="data-inscricao" name="data-inscricao" required>
-                        </div>
-                        <div class="field">
-                            <label for="escolaridade">Escolaridade: <span>*</span></label>
-                            <select id="escolaridade" name="escolaridade" required>
-                                <optgroup label="Ensino Básico">
-                                    <option value="fundamental">Ensino Fundamental</option>
-                                    <option value="medio">Ensino Médio</option>
-                                </optgroup>
-                                <optgroup label="Ensino Superior">
-                                    <option value="tecnologo">Tecnólogo</option>
-                                    <option value="bacharel">Bacharelado</option>
-                                    <option value="licenciatura">Licenciatura</option>
-                                    <option value="pos-graduacao">Pós-Graduação</option>
-                                    <option value="mestrado">Mestrado</option>
-                                    <option value="doutorado">Doutorado</option>
+                            <label for="horario">Horário do curso: <span>*</span></label>
+                            <select id="horario" name="horario" required>
+                                <optgroup label="horario">
+                                    <option value="Manhã">MANHÃ</option>
+                                    <option value="Tarde">TARDE</option>
+                                    <option value="Noite">NOITE</option>
                                 </optgroup>
                             </select>
                         </div>
+<!-- 
+                        SEMESTRE DO CURSO: -->
+
+                        <div class="field">
+                            <label for="semestre">Semestre atual: <span>*</span></label>
+                            <input type="number" name="semestre" id="semestre">
+                        </div>
+<!-- 
+                        CRIANDO LOGIN: -->
+
+                        <div class="field">
+                            <label for="email">Email: <span>*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="senha">Crie uma Senha: <span>*</span></label>
+                            <input type="text" id="senha" name="senha" required>
+                        </div>
+
+                        <div class="buttons">
+                            <input type="submit" class="save" value="SALVAR">
+                            <button type="reset" class="cancel">CANCELAR</button>
+                        </div>
+
+
     
-                        <div class="field">
+                        <!-- <div class="field">
                             <label for="preferencias">Preferências:</label>
                             <textarea id="preferencias" name="preferencias" rows="2"></textarea>
-                        </div>
-                        <div class="field">
+                        </div> -->
+                        <!-- <div class="field">
                             <label for="email-senai">Email - SENAI: <span>*</span></label>
                             <input type="email" id="email-senai" name="email-senai" required>
                         </div>
@@ -151,20 +204,50 @@
                             <input type="tel" id="celular" name="celular" required>
                         </div>
                         <div class="field">
-                            <label for="telefone">Telefone:</label>
-                            <input type="tel" id="telefone" name="telefone">
-                        </div>
-                        <div class="field">
                             <label for="recado">Recado:</label>
                             <textarea id="recado" name="recado" rows="2"></textarea>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </form>
         </div>
     </article>
     
+    <script>
 
+        document.getElementById('InscricaoForm').addEventListener('submit', async (event) => { 
+        event.preventDefault(); 
+
+        const vaga = { 
+            nome: document.getElementById('nome').value, 
+            telefone: document.getElementById('telefone').value, 
+            data_nascimento: document.getElementById('data-nascimento'), 
+            escolaridade: document.getElementById('escolaridade').value, 
+            data_de_inicio: document.getElementById('data_de_inicio').value, 
+            horario: document.getElementById('horario').value, 
+            cpf: document.getElementById('cpf').value,
+            // ra: document.getElementById('ra').value, 
+
+            rua: document.getElementById('rua').value, 
+            numero: document.getElementById('numero').value, 
+            bairro: document.getElementById('bairro').value,
+            estado: document.getElementById('estado').value, 
+            cidade: document.getElementById('cidade').value
+        };
+
+        try { 
+            const response = await fetch('/add_candidato', { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(vaga) 
+            }); 
+            const message = await response.text(); 
+            alert(message); 
+        } catch (error) { 
+            alert('Erro ao enviar dados: ' + error.message); 
+        } 
+    }); 
+    </script>
 
     <footer>
         <div id="texto">

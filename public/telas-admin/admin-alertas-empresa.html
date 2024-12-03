@@ -90,11 +90,11 @@
                             <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.CNPJ}</p>
                             <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.Contato}</p>
                             <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.Status_Cadastro}</p>
-
+    
                             <div style="display: flex;margin-top: 15%;">
                                 <img src="../imagens/icones/trash-2 1.svg">
                                 <button style="background-color: #827D7E; color: #FFF; margin-left: 10%;">Ver detalhes</button>
-                                <img src="../imagens/icones/send 1.svg" style="margin-left: 15%; onclick='aprovarRegistro(${empresa.ID_Empresa})'">
+                                <img src="../imagens/icones/send 1.svg" style="margin-left: 15%; cursor: pointer;" onclick="aprovarRegistro(${empresa.ID_Empresa})">
                             </div>
                         </div>
                     `;
@@ -102,30 +102,33 @@
                 });
             } catch (error) {
                 console.error(error);
-                alert('Erro ao carregar as empresas. Tente novamente mais tarde.'+ error.message);
-            }
-        }
-
-        async function aprovarRegistro(id) {
-            try {
-            const response = await fetch(`/api/aprovar/${id}`, {
-                method: 'PUT',
-            });
-            const result = await response.json();
-            if (response.ok) {
-                alert(`Registro ${id} alterado para: ${result.status}`);
-            } else {
-                alert(`Erro: ${result.message}`);
-            }
-            } catch (error) {
-            console.error('Erro ao aprovar registro:', error);
-            alert('Erro ao aprovar registro. Veja o console para mais detalhes.');
+                alert('Erro ao carregar as empresas. Tente novamente mais tarde.' + error.message);
             }
         }
     
-        // Chamar a função ao carregar a página
+        async function aprovarRegistro(id) {
+            try {
+                const response = await fetch(`/api/aprovar/${id}`, {
+                    method: 'PUT',
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(`Registro ${id} alterado para: ${result.status}`);
+                    // Atualizar a lista de empresas
+                    await carregarempresas();
+                } else {
+                    alert(`Erro: ${result.message}`);
+                }
+            } catch (error) {
+                console.error('Erro ao aprovar registro:', error);
+                alert('Erro ao aprovar registro. Veja o console para mais detalhes.');
+            }
+        }
+    
+        // Chamar a função ao carregar a página para listar as empresas, sem aprovar nenhum registro
         window.onload = carregarempresas;
     </script>
+    
 
     </article>
 

@@ -37,7 +37,7 @@
     <!-- <article>
 
         <div class="container">
-            <form action="/add_vaga" method="POST"  id="vagaForm">
+            <form action="/add_vaga_endereco" method="POST"  id="vagaForm">
                 <div class="row">
                     <label class="label" for="cargo">Cargo:</label>
                     <input class="input" type="text" id="cargo" name="cargo">
@@ -103,7 +103,7 @@ que é a mesma da tela do adm -->
 
     <article>
         <div class="container">
-            <form action="/add_vaga" method="POST"  id="vagaForm">
+            <form action="/add_vaga_endereco" method="POST" id="vagaForm">
                 <div class="coluna-1">
                     <div class="row">
                         <label class="label" for="cargo">Cargo:</label>
@@ -113,14 +113,14 @@ que é a mesma da tela do adm -->
                         <label class="label" for="salario">Salário:</label>
                         <input class="input" type="text" id="salario" name="salario">
                     </div>
-                    <!-- <div class="row"> -->
-                        <!-- <label class="label" for="data-inicio">Data de início:</label> -->
-                        <!-- <input class="input" type="date" id="data-inicio" name="data-inicio"> -->
-                    <!-- </div> -->
-                    <!-- <div class="row"> -->
-                        <!-- <label class="label" for="data-termino">Data de término:</label> -->
-                        <!-- <input class="input" type="date" id="data-termino" name="data-termino"> -->
-                    <!-- </div> -->
+                    <div class="row">
+                        <label class="label" for="salario">Número de vagas:</label>
+                        <input class="input" type="text" id="vagas" name="vagas">
+                    </div>
+                    <div class="row">
+                        <label class="label" for="tempo">Tempo de Contrato:</label>
+                        <input class="input" type="text" id="tempo" name="tempo">
+                    </div>
                     <div class="row" id="horario-row">
                         <div class="h-trabalho-t">
                             <label class="label" for="horario-inicio">Horário de trabalho:</label>
@@ -151,22 +151,17 @@ que é a mesma da tela do adm -->
     
                     <!-- Localização -->
                     <div class="row">
-                        <label class="label" for="localizacao">Localização:</label>
-                        <input class="input" type="text" id="localizacao-input" name="localizacao">
+                        <label class="label" for="rua">Rua:</label>
+                        <input class="input" type="text" id="rua" name="localizacao">
+                        <label class="label" for="rua">Numero:</label>
+                        <input class="input" type="text" id="numero" name="localizacao">
+                        <label class="label" for="bairro">Bairro:</label>
+                        <input class="input" type="text" id="bairro" name="localizacao">
+                        <label class="label" for="estado">Estado:</label>
+                        <input class="input" type="text" id="estado" name="localizacao"> 
+                        <label class="label" for="cidade">Cidade:</label>
+                        <input class="input" type="text" id="cidade" name="localizacao"> 
                     </div>
-    
-                    <!-- Cargo - Dropdown -->
-                    <!-- <div class="row"> -->
-                        <!-- <label class="label" for="cargo">Cargo:</label> -->
-                        <!-- <select class="input" id="cargo" name="cargo"> -->
-                            <!-- <option value="gerente">Gerente</option> -->
-                            <!-- <option value="analista">Analista</option> -->
-                            <!-- <option value="desenvolvedor">Desenvolvedor</option> -->
-                            <!-- <option value="assistente">Assistente</option> -->
-                            <!-- <option value="coordenador">Coordenador</option> -->
-                            <!-- <option value="estagiario">Estagiário</option> -->
-                        <!-- </select> -->
-                    <!-- </div> -->
     
                     <!-- Requisitos - Checkbox -->
                     <div class="row">
@@ -264,9 +259,6 @@ que é a mesma da tela do adm -->
     
     // Mapeia os valores dos elementos selecionados
     const valores = Array.from(selecionados).map(checkbox => checkbox.value);
-    
-    // Exibe os valores em um alerta
-    <!-- alert(valores.join(", ")); -->
 	
 	return valores.join(", ")
 	}
@@ -277,9 +269,6 @@ que é a mesma da tela do adm -->
     
     // Mapeia os valores dos elementos selecionados
     const valores = Array.from(selecionados).map(checkbox => checkbox.value);
-    
-    // Exibe os valores em um alerta
-    <!-- alert(valores.join(", ")); -->
 	
 	return valores.join(", ")
 	}
@@ -288,44 +277,41 @@ que é a mesma da tela do adm -->
 		return document.querySelector('#horario-inicio').value+ '-' +document.querySelector('#horario-fim').value
 	}
 	
-        <!-- document.getElementById('vagaForm').addEventListener('submit', async (event) => { -->
-            <!-- event.preventDefault(); -->
+        document.getElementById('vagaForm').addEventListener('submit', async (event) => { 
+            event.preventDefault(); 
 
-            <!-- const vaga = { -->
-				<!-- cargo: document.getElementById('cargo').value, -->
-                <!-- salario: document.getElementById('salario').value, -->
-                <!-- horario: horario(), -->
-                <!-- beneficios: ben_valor(), -->
-                <!-- localizacao: document.getElementById('localizacao-input').value, -->
-                <!-- requisitos: req_valor(), -->
-                <!-- detalhes: document.getElementById('detalhes').value -->
-                <!-- // nome: document.getElementById('cargo').value, -->
-                <!-- // contato: document.getElementById('contato').value, -->
-                <!-- // vagas: document.getElementById('vagas').value, -->
+            const vaga = { 
+				cargo: document.getElementById('cargo').value, 
+                salario: document.getElementById('salario').value, 
+                horario: horario(), 
+                beneficios: ben_valor(),
+                requisitos: req_valor(), 
+                detalhes: document.getElementById('detalhes').value, 
+                contato: document.getElementById('contato').value, 
+                vagas: document.getElementById('vagas').value, 
+                tempo_de_contrato: document.getElementById('tempo').value,
 
-                <!-- // tempo_de_contrato: document.getElementById('tempo_de_contrato').value, -->
-                <!-- // horario: document.getElementById('horario').value, -->
-                <!-- // beneficios: document.getElementById('beneficios').value, -->
-                <!-- // requisitos: document.getElementById('requisitos').value -->
-            <!-- }; -->
+                rua: document.getElementById('rua').value, 
+                numero: document.getElementById('numero').value, 
+                bairro: document.getElementById('bairro').value,
+                estado: document.getElementById('estado').value, 
+                cidade: document.getElementById('cidade').value
+            };
 
-            <!-- try { -->
-                <!-- const response = await fetch('/add_vaga', { -->
-                    <!-- method: 'POST', -->
-                    <!-- headers: { 'Content-Type': 'application/json' }, -->
-                    <!-- body: JSON.stringify(vaga) -->
-                <!-- }); -->
-                <!-- const message = await response.text(); -->
-                <!-- alert(message); -->
-            <!-- } catch (error) { -->
-                <!-- alert('Erro ao enviar dados: ' + error.message); -->
-            <!-- } -->
-        <!-- }); -->
+            try { 
+                const response = await fetch('/add_vaga_endereco', { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify(vaga) 
+                }); 
+                const message = await response.text(); 
+                alert(message); 
+            } catch (error) { 
+                alert('Erro ao enviar dados: ' + error.message); 
+            } 
+        }); 
     </script>
 
-    <footer>
-        
-    </footer>
 </body>
 </html>
 

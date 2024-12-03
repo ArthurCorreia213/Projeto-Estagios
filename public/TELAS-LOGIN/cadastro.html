@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/header-senai.css">
+    
     <link rel="stylesheet" href="../css/cadastro.css">
     <link rel="stylesheet" href="../css/footer.css">
 </head>
@@ -47,7 +48,7 @@
 
 
 
-    <div>
+    <div class="container">
         <div class="titulo">
             <H1>Pedido para cadastro</H1>
             <h3>SOU EMPRESA</h3>
@@ -70,21 +71,21 @@
             
             <div class="input2">
                 <p>CNPJ: </p>
-                <input type="text" name="cnpj" id="cnpj">
+                <input type="text" name="cnpj" id="cnpj" maxlength="18" oninput="formatarCNPJ(this)">
             </div>
             
             <div class="input3">
                 <p>DIGITE SEU E-MAIL: </p>
-                <input type="email" name="contato" id="contato">
+                <input type="email" name="email" id="email">
             </div>
         
-            <!-- <div class="input4">
-                <p>CRIE UMA SENHA: </p>
-                <input type="password" name="" id="">
-            </div> -->
+            <div class="input4">
+                <p> DIGITE SEU TELEFONE: </p>
+                <input type="text" name="telefone" id="telefone">
+            </div>
             
 
-            <input type="submit" value="Pedir permissão">
+            <input class="estilizacao" type="submit" value="Pedir permissão">
         </form>
     </div>
 
@@ -97,7 +98,8 @@
             const produto = {
                 nome: document.getElementById('nome').value,
                 cnpj: document.getElementById('cnpj').value,
-                contato: document.getElementById('contato').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
                 status_cadastro: 'Pendente'
             };
 
@@ -113,6 +115,17 @@
                 alert('Erro ao enviar dados: ' + error.message);
             }
         });
+
+        function formatarCNPJ(campo){
+            let cnpj = campo.value.replace(/\D/g, "");
+
+            cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
+            cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
+
+            campo.value = cnpj;
+        }
     </script>
 
     <footer>

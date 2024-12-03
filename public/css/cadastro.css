@@ -111,9 +111,9 @@
         }
     }
 
-    & button{
+    & .estilizacao{
         width: 20%;
-        height: 6%;
+        height: 5vh;
 
         margin-left: 50%;
 
@@ -125,5 +125,7 @@
         background-color: #B91D32;
 
         font-size: 1.4em;
+
+        cursor: pointer;
     }
 }

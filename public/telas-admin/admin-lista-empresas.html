@@ -71,13 +71,14 @@
                 </div> -->
 
                 <div id="empresas-container">
-                    <h2>empresas Disponíveis</h2>
+                    <!-- <h2>Empresas Disponíveis</h2> -->
                     <table id="empresas-table" border="1">
                         <thead>
                             <tr>
                                 <th>Nome</th>
                                 <th>CNPJ</th>
-                                <th>Contato</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -99,7 +100,7 @@
         async function carregarempresas() {
             try {
                 // Fazer a requisição GET para a API
-                const response = await fetch('/api/empresas');
+                const response = await fetch('/api/empresas-aprovadas');
                 if (!response.ok) throw new Error('Erro ao buscar empresas.');
     
                 // Converter os dados recebidos para JSON
@@ -110,13 +111,14 @@
                 tbody.innerHTML = ''; // Limpar o conteúdo atual
     
                 // Iterar sobre os dados recebidos e criar linhas na tabela
-                empresas.forEach(vaga => {
+                empresas.forEach(empresa => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td>${vaga.Nome}</td>
-                        <td>${vaga.CNPJ}</td>
-                        <td>${vaga.Contato}</td>
-                        <td>${vaga.Status_Cadastro}</td>
+                        <td>${empresa.Nome}</td>
+                        <td>${empresa.CNPJ}</td>
+                        <td>${empresa.Email}</td>
+                        <td>${empresa.Telefone}</td>
+                        <td>${empresa.Status_Cadastro}</td>
                     `;
                     tbody.appendChild(tr);
                 });
