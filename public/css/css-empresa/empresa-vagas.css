@@ -4,6 +4,7 @@ body {
     background-color: #E6E6E6;
     font-family: "Montserrat", sans-serif;
 }
+
 button{
     transition: all ease-in-out 100ms;
 }
@@ -95,6 +96,6 @@ button:hover{
     margin:50px
 }
 
-#container{
+/* #container{
     background-color: red;
-}
+} */
