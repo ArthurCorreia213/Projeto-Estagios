@@ -77,7 +77,7 @@ provavelmente tinha maneira mais fácil de corrigir o problema do horario, mas e
     width: stretch;
     margin: 10px;
 }
-button {
+button, input[type="submit"] {
     padding: 10px 20px;
     margin: 10px;
     font-size: 14px;
@@ -88,7 +88,7 @@ button {
     transition: all 0.3s ease;
 }
 
-button.save {
+input.save {
     border: 2px solid #105F00;
     background-color: #E6E6E6;
     color: #105F00;
@@ -100,7 +100,7 @@ button.cancel {
     background-color: #E6E6E6;
 }
 
-button:hover {
+button:hover,  input[type="submit"]:hover {
     cursor: pointer;
     filter: brightness(0.9);
     scale: 1.05;
