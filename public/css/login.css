@@ -84,6 +84,7 @@ article{
                 justify-content: space-between;
                 flex-wrap: wrap;
                 gap: 2vh;
+
                 & .btn1{
                     width: 300px;
                     height: 4vh;
@@ -93,7 +94,7 @@ article{
                     color: #fff;
                     background-color: #B91D32;
             
-                    font-size: 1.4em;
+                    font-size: 1.2em;
             
                     cursor: pointer;
 
@@ -108,7 +109,7 @@ article{
                     color: #B91D32;
                     background-color: transparent;
             
-                    font-size: 1.4em;
+                    font-size: 1.2em;
             
                     cursor: pointer;
                 }

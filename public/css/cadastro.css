@@ -4,11 +4,14 @@ body{
     font-family: "Montserrat", sans-serif;
 }
 
+
 .container {
     flex: 1; /* Faz o container principal ocupar o espaço restante */
     background-color: #e6e6e6;
-    padding: 20px 10%;
+    padding: 5% 20%;
 }
+
+ /* Este flex é daora, pois ele é a maneira, como poço dizer, sofisticada de usar 100%, só qe sem ferrar os outros elementos */
 
 .titulo h1 {
     color: #CB0C0F;
@@ -22,8 +25,8 @@ body{
 }
 
 .divisoria_vermelha {
-    width: 100%;
-    height: 5px;
+    flex-grow: 1;
+    height: 2vh;
     background-color: #B91D32;
     margin-bottom: 1em;
 }
@@ -53,7 +56,6 @@ input[type="email"] {
     background-color: #B91D32;
     color: #fff;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     font-size: 1.2em;
 }

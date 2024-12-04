@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/header-senai.css">
+    
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+
+<!-- Header -->
+    <div class="linha-vermelha-superior">
+        <p class="espacamento"><a href="https://www.fiesp.com.br/">FIESP</a></p>
+        <p class="espacamento"><a href="https://www.ciesp.com.br/">CIESP</a></p>
+        <p class="espacamento"><a href="https://www.sesisp.org.br/">SESI</a></p>
+        <p class="espacamento"><a href="https://www.sp.senai.br/">SENAI</a></p>
+        <p class="espacamento1"><a href="https://www.fiesp.com.br/instituto-roberto-simonsen-irs/">IRS</a></p>
+
+        <div class="facebook  top"><img src="../imagens/icones/facebook.svg" alt=""></div>
+        <div class="twitter  top"><img src="../imagens/icones/twitter.svg" alt=""></div>
+        <div class="YouTube  top"><img src="../imagens/icones/youtube.svg" alt=""></div>
+        <div class="linkedin  top"><img src="../imagens/icones/linkedin.svg" alt=""></div>
+        <div class="instagram  top"><img src="../imagens/icones/instagram.svg" alt=""></div>
+        <div class="whatsapp top"><img src="../imagens/icones/whatsapp.svg" alt=""></div>
+    </div>
+
+    <div class="header-inf">
+        <img src="../imagens/gerais/LOGO.svg" alt="">
+        
+        <div class="texto-header-inf">
+            <p>Cursos</p>
+            <p>Processo Seletivo</p>
+            <p>O SENAI</p>
+            <p>Para a sua empresa</p>
+            <p>Unidades</p>
+            <p>Transparência</p>
+            <p>Fale conosco</p>
+
+            <div class="sou-aluno">
+                <p>SOU ALUNO</p>
+            </div>
+        </div>
+    </div>
+<!-- End Header -->
+
+
+
+    <div class="container">
+        <div class="titulo">
+            <H1>Pedido para cadastro</H1>
+            <h3>SOU ALUNO</h3>
+        </div>
+            
+        
+        <div class="divisoria_vermelha"></div>
+        
+        
+        <div class="texto1">
+            <p>Peça permissão para cadastrar uma conta e desbloqueie a função de cadastrar vagas de estágio em nosso site.</p>
+        </div>
+        
+
+        <form action="/cadastro" method="POST" id="container">
+            <div class="input1">   
+                <p>DIGITE SEU NOME: </p>
+                <input type="text" name="nome" id="nome">
+            </div>
+            
+            <div class="input3">
+                <p>DIGITE SEU E-MAIL: </p>
+                <input type="email" name="email" id="email">
+            </div>
+        
+            <div class="input4">
+                <p> DIGITE SEU TELEFONE: </p>
+                <input type="text" name="telefone" id="telefone">
+            </div>
+            
+
+            <input class="estilizacao" type="submit" value="Pedir permissão">
+        </form>
+    </div>
+
+    
+
+    <script>
+        document.getElementById('container').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const produto = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                status_cadastro: 'Pendente'
+            };
+
+            try {
+                const response = await fetch('/cadastro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(produto)
+                });
+                const message = await response.text();
+                alert(message);
+            } catch (error) {
+                alert('Erro ao enviar dados: ' + error.message);
+            }
+        });
+
+    </script>
+
+    <footer>
+        <div id="texto">
+            <a href="">FALE CONOSCO</a>
+            <a href="">TRABALHE CONOSCO</a>
+            <a href="">OUVIDORIA</a>
+            <a href="">POLITICA DE PRIVACIDADE</a>
+            <a href="">A LGPD NO SENAI-SP</a>
+        </div>
+
+        <div id="redes-sociais">
+            <img src="../imagens/icones/facebook.svg">
+            <img src="../imagens/icones/twitter.svg">
+            <img src="../imagens/icones/youtube.svg">
+            <img src="../imagens/icones/linkedin.svg">
+            <img src="../imagens/icones/instagram.svg">
+            <img src="../imagens/icones/whatsapp.svg">
+        </div>
+
+        <div id="informacoes">
+
+            <div id="localizacao">
+                <h3 id="localizacao-title">EDIFÍCIO SEDE FIESP</h3>
+                <p>Av. Paulista, 1313, São Paulo/SP</p>
+                <p>CEP 01311-923</p>
+            </div>
+
+            <div id="atendimento">
+                <div id="alinhamento">
+                    <h3 id="atendimento-title">CENTRAL DE RELACIONAMENTO</h3>
+                    <p>(11) 3322-0050 (Telefone/WhatsApp)</p>
+                    <p>0800-055-1000 (Interior de SP, somente telefone fixo</p>
+                </div>
+            </div>
+
+            <div id="informacoes-links">
+                <a href="">Unidades</a>
+                <a href="">O SENAI</a>
+                <a href="">Perguntas Frequentes</a>
+                <a href="">Fale Conosco</a>
+                <a href="">Transparência</a>
+                <a href="">Para a sua empresa</a>
+            </div>
+        </div>
+
+        <div id="copyright">
+            <p>Copyright 2024 © Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
