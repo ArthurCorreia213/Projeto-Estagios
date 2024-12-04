@@ -1,131 +1,59 @@
-*{
+body{
     margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
 }
 
-.container{
-    height: 80vh;
-
+.container {
+    flex: 1; /* Faz o container principal ocupar o espaço restante */
     background-color: #e6e6e6;
+    padding: 20px 10%;
+}
 
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
+.titulo h1 {
+    color: #CB0C0F;
+    font-size: 2.5em;
+    margin-bottom: 1em;
+}
 
+.titulo h3 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
 
-    padding-left: 21%;
-    padding-right: 21%;
-    padding-top: 3%;
+.divisoria_vermelha {
+    width: 100%;
+    height: 5px;
+    background-color: #B91D32;
+    margin-bottom: 1em;
+}
 
-    & .titulo{
+.texto1 p {
+    font-size: 1.5em;
+    color: #3f3f3f;
+    margin-bottom: 1em;
+}
 
-        & h1{
-            color: #CB0C0F;
-            font-size: 2.5em;
-            margin-bottom: 2vh;
-        }
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-        & h3{
-            font-size: 2em;
-            margin-bottom: 2vh;
-        }
-    }
-    
-    & .divisoria_vermelha{
-        width: 100%;
-        height: 2.5%;
-
-        background-color: #B91D32;
-
-        margin-bottom: 2vh;
-    }
-
-    & .texto1 {
-        margin-bottom: 2vh;
-
-        & p{
-            font-size: 1.55em;
-        }
-    }
-
-    & .input1{
-        & p{
-            font-size: 1.6em;
-            margin-bottom: 2vh;
-        }
-
-        & input{
-            width: 100%;
-            height: 4vh;
-
-            font-size: 2em;
-
-            margin-bottom: 2vh;
-        }
-    }
-
-    & .input2{
-        & p{
-            font-size: 1.6em;
-            margin-bottom: 2vh;
-        }
-
-        & input{
-            width: 100%;
-            height: 4vh;
-
-            font-size: 2em;
-
-            margin-bottom: 2vh;
-        }
-    }
-
-    & .input3{
-        & p{
-            font-size: 1.6em;
-            margin-bottom: 2vh;
-        }
-
-        & input{
-            width: 100%;
-            height: 4vh;
-
-            font-size: 2em;
-
-            margin-bottom: 2vh;
-        }
-    }
-
-    & .input4{
-        & p{
-            font-size: 1.6em;
-            margin-bottom: 2vh;
-        }
-
-        & input{
-            width: 100%;
-            height: 4vh;
-
-            font-size: 2em;
-
-            margin-bottom: 2vh;
-        }
-    }
-
-    & .estilizacao{
-        width: 20%;
-        height: 5vh;
-
-        margin-left: 50%;
-
-        transform: translateX(-50%);
-
-        border: 1px solid #B91D32;
-
-        color: #fff;
-        background-color: #B91D32;
-
-        font-size: 1.4em;
-
-        cursor: pointer;
-    }
+.estilizacao {
+    display: block;
+    width: auto;
+    height: 50px;
+    padding: 10px 20px;
+    background-color: #B91D32;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
 }
