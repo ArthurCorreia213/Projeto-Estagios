@@ -48,7 +48,7 @@
                     <h4>Clique em uma para obter mais detalhes.</h4>
                 </div>
 
-                <div class="tabelas-empresa">
+                <!-- <div class="tabelas-empresa">
                     <table>
                         <tr>
                           <th>Identificador</th>
@@ -65,6 +65,22 @@
                         </td>
                         </tr>
                       </table>
+                </div> -->
+
+                <div id="empresas-container">
+                    <!-- <h2>Empresas Disponíveis</h2> -->
+                    <table id="empresas-table" border="1">
+                        <thead>
+                            <tr>
+                                <th>Cargo</th>
+                                <th>Vagas</th>
+                                <th>Contato</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dados das empresas serão adicionados aqui -->
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="b-add">
@@ -73,6 +89,40 @@
         </div>
 
     </article>
+
+    <script>
+        async function carregarempresas() {
+            try {
+                // Fazer a requisição GET para a API
+                const response = await fetch('/api/vagas');
+                if (!response.ok) throw new Error('Erro ao buscar vagas.');
+    
+                // Converter os dados recebidos para JSON
+                const empresas = await response.json();
+    
+                // Selecionar o corpo da tabela
+                const tbody = document.querySelector('#empresas-table tbody');
+                tbody.innerHTML = ''; // Limpar o conteúdo atual
+    
+                // Iterar sobre os dados recebidos e criar linhas na tabela
+                empresas.forEach(vagas => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${vagas.Cargo}</td>
+                        <td>${vagas.Vagas}</td>
+                        <td>${vagas.Contato}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao carregar as empresas. Tente novamente mais tarde.' + error.message);
+            }
+        }
+    
+        // Chamar a função ao carregar a página
+        window.onload = carregarempresas;
+    </script>
 
     <footer>
         <div id="texto">

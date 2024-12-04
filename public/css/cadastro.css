@@ -4,6 +4,9 @@ body{
     font-family: "Montserrat", sans-serif;
 }
 
+.texto-header-inf p{
+    font-size: 0.9em;
+}
 
 .container {
     flex: 1; /* Faz o container principal ocupar o espaço restante */

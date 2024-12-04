@@ -32,15 +32,25 @@ body {
 
         margin-top: 5vh;
 
+        flex-wrap: wrap;
+
+        justify-content: space-between;
+
+        margin-right: 60%;
+
+        gap: 10px;
+
         & a{
             display: flex;
             justify-content: center;
             align-items: center;
+            width: auto;
+            padding: 2px 10px;
+
 
             background-color: #d9d9d9; /* (#b91d32) quando selecionado*/
             color: #000; /* (#fff negrito) quando selecionado */
 
-            width: 8%;
             height: 3em;
 
             text-decoration: none;
@@ -50,17 +60,6 @@ body {
             border-radius: 0.5em;
         }
 
-        & a:not(:last-child){
-            margin-right: 5%;
-        }
-
-        & .empresa{
-            width: 11%;
-        }
-
-        & .status{
-            width: 9%;
-        }
     }
 }
 
@@ -69,6 +68,10 @@ body {
     padding-left: 20%;
 } */
 
+.alertas{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .cards-vagas-s{
     width: 70%;
@@ -182,4 +185,17 @@ th, td {
 th {
     background-color: #AFAFAF;  
     font-weight: bold; 
+}
+
+
+/* CONFIGURANDO POSIÇÃO DOS CARDS: */
+
+#teste{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+#teste #container{
+    margin: 3% 0;
 }

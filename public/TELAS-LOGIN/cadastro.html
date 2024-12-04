@@ -8,6 +8,7 @@
     
     <link rel="stylesheet" href="../css/cadastro.css">
     <link rel="stylesheet" href="../css/footer.css">
+    
 </head>
 <body>
 
@@ -73,17 +74,20 @@
                 <p>CNPJ: </p>
                 <input type="text" name="cnpj" id="cnpj" maxlength="18" oninput="formatarCNPJ(this)">
             </div>
-            
+                    
+            <div class="input4">
+                <p> DIGITE SEU TELEFONE: </p>
+                <input type="text" name="telefone" id="telefone" maxlength="15" oninput="formatarTELEFONE(this)">
+            </div>
+
             <div class="input3">
                 <p>DIGITE SEU E-MAIL: </p>
                 <input type="email" name="email" id="email">
             </div>
-        
-            <div class="input4">
-                <p> DIGITE SEU TELEFONE: </p>
-                <input type="text" name="telefone" id="telefone">
+            <div class="input3">
+                <p>CRIE UMA SENHA: </p>
+                <input type="password" name="senha" id="senha">
             </div>
-            
 
             <input class="estilizacao" type="submit" value="Pedir permissão">
         </form>
@@ -96,6 +100,9 @@
             event.preventDefault();
 
             const produto = {
+                senha: document.getElementById('senha').value, 
+                categoria_login: 'PendenteEmpresa', 
+
                 nome: document.getElementById('nome').value,
                 cnpj: document.getElementById('cnpj').value,
                 email: document.getElementById('email').value,
@@ -125,6 +132,17 @@
             cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
 
             campo.value = cnpj;
+        }
+
+        function formatarTELEFONE(tel) {
+            let telefone = tel.value.replace(/\D/g, "");
+
+            // Formatação do telefone com DDD e número
+            telefone = telefone.replace(/^(\d{2})(\d)/, "($1) $2");
+            telefone = telefone.replace(/^(\d{2}) (\d{5})(\d)/, "($1) $2-$3");
+            telefone = telefone.replace(/ (\d{5})(\d)/, " $1-$2")
+
+            tel.value = telefone; 
         }
     </script>
 

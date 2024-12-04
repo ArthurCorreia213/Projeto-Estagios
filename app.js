@@ -56,6 +56,17 @@ app.get('/api/vagas', async (req, res) => {
         res.json(result.recordset); // Retorna os alunos no formato JSON
     } catch (err) {
         console.error(err);
+        res.status(500).send('Erro ao buscar vagas.' + err.message);
+    }
+})
+
+app.get('/api/emails-registrados', async (req, res) => {
+    try {
+        const pool = await sql.connect(dbConfig);
+        const result = await pool.request().query('SELECT Email FROM Login');
+        res.json(result.recordset); // Retorna os alunos no formato JSON
+    } catch (err) {
+        console.error(err);
         res.status(500).send('Erro ao buscar vagas.');
     }
 })
@@ -79,12 +90,31 @@ sql.connect(dbConfig)
 
 app.post('/cadastro', async (req, res) => {
     const { nome, cnpj, email, telefone, status_cadastro } = req.body;
+    const { senha, categoria_login } = req.body
 
     try {
+        // Conectar ao banco de dados
+        const pool = await sql.connect(dbConfig);
+
+        // Iniciar uma transação
+        const transaction = new sql.Transaction(pool);
+        await transaction.begin();
+
+        const resultLogin = await transaction.request()
+        .input('email', sql.VarChar, email)
+        .input('senha', sql.VarChar, senha)
+        .input('categoria_login', sql.VarChar, categoria_login)
+        .query(`INSERT INTO Login (Email, Senha, Categoria_Login) 
+                OUTPUT INSERTED.ID_Login
+                VALUES (@email, @senha, @categoria_login)`);
+
+        const ID_Login = resultLogin.recordset[0].ID_Login;
+
+
         await sql.connect(dbConfig);
         const query = `
-            INSERT INTO Empresas (Nome, CNPJ, Email, Telefone, Status_Cadastro)
-            VALUES (@Nome, @CNPJ, @Email, @Telefone, @Status_Cadastro)
+            INSERT INTO Empresas (Nome, CNPJ, Email, Telefone, Status_Cadastro, ID_Login)
+            VALUES (@Nome, @CNPJ, @Email, @Telefone, @Status_Cadastro, @ID_Login)
         `;
 
         const request = new sql.Request();
@@ -92,6 +122,7 @@ app.post('/cadastro', async (req, res) => {
         request.input('cnpj', sql.NVarChar, cnpj);
         request.input('email', sql.NVarChar, email);
         request.input('telefone', sql.NVarChar, telefone);
+        request.input('ID_Login', sql.Int, ID_Login);
         request.input('status_cadastro', sql.NVarChar, status_cadastro);
         await request.query(query);
 
@@ -104,7 +135,7 @@ app.post('/cadastro', async (req, res) => {
 
 app.post('/add_vaga_endereco', async (req, res) => {
     const { cargo, contato, vagas, salario, tempo_de_contrato, horario, beneficios, requisitos } = req.body;
-    const { rua, bairro, cidade, estado, numero } = req.body;
+    const { rua, cidade, estado, numero, complemento } = req.body;
 
     try {
         // Conectar ao banco de dados
@@ -117,13 +148,13 @@ app.post('/add_vaga_endereco', async (req, res) => {
         // Inserir o endereço e obter o ID gerado
         const resultEndereco = await transaction.request()
             .input('rua', sql.VarChar, rua)
-            .input('bairro', sql.VarChar, bairro)
             .input('cidade', sql.VarChar, cidade)
             .input('estado', sql.VarChar, estado)
             .input('numero', sql.VarChar, numero)
-            .query(`INSERT INTO Endereco (rua, bairro, cidade, estado, numero) 
+            .input('complemento', sql.VarChar, complemento)
+            .query(`INSERT INTO Endereco (rua, cidade, estado, numero, complemento) 
                     OUTPUT INSERTED.ID_Endereco
-                    VALUES (@rua, @bairro, @cidade, @estado, @numero)`);
+                    VALUES (@rua, @cidade, @estado, @numero, @complemento)`);
 
         const ID_Endereco = resultEndereco.recordset[0].ID_Endereco;
 
@@ -159,8 +190,9 @@ app.post('/add_vaga_endereco', async (req, res) => {
 });
 
 app.post('/add_candidato', async (req, res) => {
-    const { nome, telefone, data_nascimento, escolaridade, data_de_inicio, horario, cpf, ra } = req.body;
-    const { rua, bairro, cidade, estado, numero } = req.body;
+    const { nome, telefone, data_nascimento, escolaridade, data_de_inicio, cpf } = req.body;
+    const { rua, cidade, estado, numero, complemento } = req.body;
+    const { email, senha, categoria_login } = req.body
 
     try {
         // Conectar ao banco de dados
@@ -170,16 +202,26 @@ app.post('/add_candidato', async (req, res) => {
         const transaction = new sql.Transaction(pool);
         await transaction.begin();
 
+        const resultLogin = await transaction.request()
+        .input('email', sql.VarChar, email)
+        .input('senha', sql.VarChar, senha)
+        .input('categoria_login', sql.VarChar, categoria_login)
+        .query(`INSERT INTO Login (Email, Senha, Categoria_Login) 
+                OUTPUT INSERTED.ID_Login
+                VALUES (@email, @senha, @categoria_login)`);
+
+        const ID_Login = resultLogin.recordset[0].ID_Login;
+
         // Inserir o endereço e obter o ID gerado
         const resultEndereco = await transaction.request()
             .input('rua', sql.VarChar, rua)
-            .input('bairro', sql.VarChar, bairro)
             .input('cidade', sql.VarChar, cidade)
             .input('estado', sql.VarChar, estado)
             .input('numero', sql.VarChar, numero)
-            .query(`INSERT INTO Endereco (rua, bairro, cidade, estado, numero) 
+            .input('complemento', sql.VarChar, complemento)
+            .query(`INSERT INTO Endereco (rua, cidade, estado, numero, complemento) 
                     OUTPUT INSERTED.ID_Endereco
-                    VALUES (@rua, @bairro, @cidade, @estado, @numero)`);
+                    VALUES (@rua, @cidade, @estado, @numero, @complemento)`);
 
         const ID_Endereco = resultEndereco.recordset[0].ID_Endereco;
 
@@ -190,12 +232,11 @@ app.post('/add_candidato', async (req, res) => {
             .input('data_nascimento', sql.DateTime, data_nascimento)
             .input('escolaridade', sql.NVarChar, escolaridade)
             .input('data_de_inicio', sql.Date, data_de_inicio)
-            .input('horario', sql.Time, horario)
             .input('cpf', sql.NVarChar, cpf)
-            .input('ra', sql.NVarChar, ra)
             .input('ID_Endereco', sql.Int, ID_Endereco)
-            .query(`INSERT INTO Vagas (Nome, Telefone, Data_Nascimento, Escolaridade, Data_De_Inicio, Horario, CPF, RA, ID_Endereco)
-                    VALUES (@Nome, @Telefone, @Data_Nascimento, @Escolaridade, @Data_De_Inicio, @Horario, @CPF, @RA, @ID_Endereco)`);
+            .input('ID_Login', sql.Int, ID_Login)
+            .query(`INSERT INTO Candidatos (Nome, Telefone, Data_Nascimento, Escolaridade, Data_De_Inicio, CPF, ID_Endereco, ID_Login)
+                    VALUES (@Nome, @Telefone, @Data_Nascimento, @Escolaridade, @Data_De_Inicio, @CPF, @ID_Endereco, @ID_Login)`);
 
         // Confirmar a transação
         await transaction.commit();

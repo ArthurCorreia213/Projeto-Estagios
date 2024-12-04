@@ -59,12 +59,14 @@
             <a href="admin-alertas-empresa.html" style="background-color: #B91D32; color: #DCDCDC; font-weight: 800;" class="botao-alertas empresa">EMPRESAS</a>
             <a href="admin-alertas-status.html" class="botao-alertas status">STATUS</a>
         </div>
+
+        <div id="teste">
+
+
+        </div>
     </div>
 
-    <div id="teste">
 
-
-    </div>
 
     <script>
         async function carregarempresas() {
@@ -85,15 +87,15 @@
                     const div = document.createElement('div');
                     div.innerHTML = `
                         <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.ID_Empresa}</p>
-                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.Nome}</p>
-                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.CNPJ}</p>
-                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.Contato}</p>
-                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">${empresa.Status_Cadastro}</p>
+                            <h3 id="card-info" style="font-size: 20px; padding-top: 6px;">Nom<strong> ${empresa.Nome} </strong></h3>
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">ID: ${empresa.ID_Empresa}</p>
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">CNPJ: ${empresa.CNPJ}</p>
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">E-mail: ${empresa.Contato}</p>
+                            
+                            <p id="card-info" style="font-size: 16px; padding-top: 6px;">Status: ${empresa.Status_Cadastro}</p>
     
                             <div style="display: flex;margin-top: 15%;">
                                 <img src="../imagens/icones/trash-2 1.svg">
-                                <button style="background-color: #827D7E; color: #FFF; margin-left: 10%;">Ver detalhes</button>
                                 <img src="../imagens/icones/send 1.svg" style="margin-left: 15%; cursor: pointer;" onclick="aprovarRegistro(${empresa.ID_Empresa})">
                             </div>
                         </div>

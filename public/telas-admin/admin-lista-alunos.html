@@ -49,7 +49,7 @@
                     <h4>Clique em um para obter mais detalhes.</h4>
                 </div>
 
-                <div class="tabelas-alunos">
+                <!-- <div class="tabelas-alunos">
                     <table>
                         <tr>
                           <th>Identificador</th>
@@ -66,7 +66,24 @@
                         </td>
                         </tr>
                       </table>
+                </div> -->
+
+                <div id="empresas-container">
+                    <!-- <h2>Empresas Disponíveis</h2> -->
+                    <table id="empresas-table" border="1">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Escolaridade</th>
+                                <th>Contato</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dados das empresas serão adicionados aqui -->
+                        </tbody>
+                    </table>
                 </div>
+
 
                 <div class="b-add">
                     <a href="admin-adicionar-alunos.html"><button type="button">ADICIONAR</button></a>
@@ -90,13 +107,12 @@
                 tbody.innerHTML = ''; // Limpar o conteúdo atual
     
                 // Iterar sobre os dados recebidos e criar linhas na tabela
-                empresas.forEach(vaga => {
+                empresas.forEach(candidato => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td>${vaga.Nome}</td>
-                        <td>${vaga.CNPJ}</td>
-                        <td>${vaga.Contato}</td>
-                        <td>${vaga.Status_Cadastro}</td>
+                        <td>${candidato.Nome}</td>
+                        <td>${candidato.Escolaridade}</td>
+                        <td>${candidato.Telefone}</td>
                     `;
                     tbody.appendChild(tr);
                 });
@@ -107,7 +123,7 @@
         }
     
         // Chamar a função ao carregar a página
-        window.onload = carregarempresas;
+        window.onload = carregarcandidatos;
     </script>
 
     <footer>

@@ -1,3 +1,12 @@
+header{
+    background-color: white;
+
+    height: 15vh;
+    width: 100vw;
+
+    font-size: 0.9em;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -36,7 +45,7 @@ body {
 }
 
 .field select{
-    width: 105%;
+    width: 102.8%;
     height: 34px;
 }
 
@@ -86,6 +95,9 @@ button.cancel {
     border: 2px solid #B91D32;
     color: #B91D32;
     background-color: #E6E6E6;
+
+    position: relative;
+    left: 1.6em;
 }
 
 button:hover {
@@ -116,7 +128,6 @@ button:hover {
     filter: brightness(0.9);
     scale: 1.05;
 }
-
 
 .container span{
     color: #B91D32;

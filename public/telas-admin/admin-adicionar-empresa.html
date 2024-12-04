@@ -45,14 +45,14 @@
     <article>
 
         <div class="container">
-            <form id="EmpresaForm">
+            <form action="/cadastro" method="POST" id="EmpresaForm">
                 <div class="row">
                     <label for="empresa">Empresa:</label>
                     <input type="text"  id="empresa" name="empresa">
                 </div>
                 <div class="row">
                     <label for="cnpj">CNPJ:</label>
-                    <input type="text" id="cnpj" name="cnpj">
+                    <input type="text" id="cnpj" name="cnpj" maxlength="18" oninput="formatarCNPJ(this)">
                 </div>
                 <!-- <div class="row" id="row1">
                     <div class="row1-s">                    <label for="rua">Rua:</label>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="row">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone">
+                    <input type="tel" id="telefone" name="telefone" maxlength="15" oninput="formatarTELEFONE(this)">
                 </div>
                 <div class="buttons">
                     <button type="submit" class="save">SALVAR</button>
@@ -92,6 +92,56 @@
             </form>
         </div>
     </article>
+
+    <script>
+
+        document.getElementById('EmpresaForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const produto = {
+                nome: document.getElementById('empresa').value,
+                cnpj: document.getElementById('cnpj').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                status_cadastro: 'Pendente'
+            };
+
+            try {
+                const response = await fetch('/cadastro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(produto)
+                });
+                const message = await response.text();
+                alert(message);
+            } catch (error) {
+                alert('Erro ao enviar dados: ' + error.message);
+            }
+        });
+
+        function formatarCNPJ(campo){
+            let cnpj = campo.value.replace(/\D/g, "");
+
+            cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
+            cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
+
+            campo.value = cnpj;
+        }
+
+        function formatarTELEFONE(tel) {
+            let telefone = tel.value.replace(/\D/g, "");
+
+            // Formatação do telefone com DDD e número
+            telefone = telefone.replace(/^(\d{2})(\d)/, "($1) $2");
+            telefone = telefone.replace(/^(\d{2}) (\d{5})(\d)/, "($1) $2-$3");
+            telefone = telefone.replace(/ (\d{5})(\d)/, " $1-$2")
+
+            tel.value = telefone; 
+        }
+            
+    </script>
 
     <footer>
         <div id="texto">
