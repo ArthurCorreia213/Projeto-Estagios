@@ -7,7 +7,13 @@ body{
     font-family: "Montserrat", sans-serif;
 }
 
-main{
+#vagas-geral{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.teste{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -68,12 +74,34 @@ article{
     margin-top: 80px;
 }
 
-#vagas-info{
+#vagas-info-container{
     padding: 5%;
     width: 40%;
     margin-top: 50px;
+	position: relative;
+	/* flex: 1; */
 }
 
 .card{
 	margin-bottom: 6%;
 }
+
+    /* #vagas-info { */
+        /* position: absolute; /* Define a posição inicial */ */
+        /* right: 0; */
+        /* top: auto; /* Posição inicial fora da área fixa */ */
+    /* } */
+
+    /* #vagas-info.fixed { */
+        /* position: fixed; /* Torna a div fixa quando necessário */ */
+        /* top: 0; */
+        /* right: 0; */
+    /* } */
+
+#vagas-info {
+    position: absolute;
+	top: auto;
+    right: 0;
+    transition: all 0.3s ease; /* Para suavizar as mudanças de posição */
+}
+

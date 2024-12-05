@@ -3,7 +3,7 @@
             // const response = await fetch('/api/vagas');
             // const vagas = await response.json();
 			
-			const vagas = [1, 2]
+			const vagas = [1, 2, 3, 4, 5]
 
             const container = document.getElementById('vagas-container');
             container.innerHTML = ''; // Limpa o container antes de renderizar

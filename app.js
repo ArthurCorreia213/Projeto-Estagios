@@ -99,6 +99,42 @@ app.post('/cadastro', async (req, res) => {
         // Iniciar uma transação
         const transaction = new sql.Transaction(pool);
         await transaction.begin();
+		
+		
+		//                    TESTE CHECAR SE EMAIL JA FOI REGISTRADO
+		
+		
+		// async function isEmailRegistered(email) {
+			// try {
+				// const pool = await sql.connect(yourDbConfig);
+				// const result = await pool.request()
+					// .input('email', sql.VarChar, email)
+					// .query('SELECT COUNT(*) AS count FROM Login WHERE email = @email');
+        
+			// return result.recordset[0].count > 0;
+			// } catch (error) {
+			// console.error('Erro ao verificar o email no banco de dados:', error);
+			// throw error;
+			// }
+		// }
+		
+		// try {
+			// // const emailExists = await isEmailRegistered(email);
+
+				// const result = await pool.request()
+					// .input('email', sql.VarChar, email)
+					// .query('SELECT COUNT(*) AS count FROM Login WHERE email = @email');
+        
+			// const emailExists = result.recordset[0].count > 0;
+
+			// if (emailExists) {
+				// return res.status(200).json({ exists: true, message: 'Email já registrado.' });
+			// }
+		// } catch (error) {
+			// return res.status(500).json({ error: 'Erro ao verificar o email.' });
+		// }
+	
+		//
 
         const resultLogin = await transaction.request()
         .input('email', sql.VarChar, email)
@@ -111,27 +147,40 @@ app.post('/cadastro', async (req, res) => {
         const ID_Login = resultLogin.recordset[0].ID_Login;
 
 
-        await sql.connect(dbConfig);
-        const query = `
-            INSERT INTO Empresas (Nome, CNPJ, Email, Telefone, Status_Cadastro, ID_Login)
-            VALUES (@Nome, @CNPJ, @Email, @Telefone, @Status_Cadastro, @ID_Login)
-        `;
+        // await sql.connect(dbConfig);
+        // const query = `
+            // INSERT INTO Empresas (Nome, CNPJ, Email, Telefone, Status_Cadastro, ID_Login)
+            // VALUES (@Nome, @CNPJ, @Email, @Telefone, @Status_Cadastro, @ID_Login)
+        // `;
 
-        const request = new sql.Request();
-        request.input('nome', sql.NVarChar, nome);
-        request.input('cnpj', sql.NVarChar, cnpj);
-        request.input('email', sql.NVarChar, email);
-        request.input('telefone', sql.NVarChar, telefone);
-        request.input('ID_Login', sql.Int, ID_Login);
-        request.input('status_cadastro', sql.NVarChar, status_cadastro);
-        await request.query(query);
+        // const request = new sql.Request();
+        // request.input('nome', sql.NVarChar, nome);
+        // request.input('cnpj', sql.NVarChar, cnpj);
+        // request.input('email', sql.NVarChar, email);
+        // request.input('telefone', sql.NVarChar, telefone);
+        // request.input('ID_Login', sql.Int, ID_Login);
+        // request.input('status_cadastro', sql.NVarChar, status_cadastro);
+        // await request.query(query);
+		
+		        // Inserir o cliente com o ID do endereço
+        await transaction.request()
+            .input('nome', sql.NVarChar, nome)
+            .input('cnpj', sql.NVarChar, cnpj)
+            .input('email', sql.DateTime, email)
+            .input('telefone', sql.NVarChar, telefone)
+            .input('ID_Login', sql.Int, ID_Login)
+            .input('status_cadastro', sql.NVarChar, status_cadastro)
+            .query(`INSERT INTO Candidatos (Nome, CNPJ, Email, Telefone, ID_Login, Status_Cadastro)
+                    VALUES (@Nome, @CNPJ, @Email, @Telefone, @ID_Login, @Status_Cadastro)`);
+
+        // Confirmar a transação
+        await transaction.commit();
 
         res.send('Produto adicionado com sucesso!');
     } catch (error) {
         res.status(500).send('Erro ao adicionar produto: ' + error.message);
     }
 });
-
 
 app.post('/add_vaga_endereco', async (req, res) => {
     const { cargo, contato, vagas, salario, tempo_de_contrato, horario, beneficios, requisitos } = req.body;
@@ -281,3 +330,47 @@ app.put('/api/aprovar/:id', async (req, res) => {
       sql.close();
     }
   });
+  
+  // Rota de login
+app.post('/login', async (req, res) => {
+    const { email, senha } = req.body;
+
+    if (!email || !senha) {
+        return res.status(400).json({ message: 'Email e senha são obrigatórios' });
+    }
+
+    try {
+        // Conectar ao banco de dados
+        const pool = await sql.connect(dbConfig);
+
+        // Consultar o usuário no banco
+        const result = await pool.request()
+            .input('email', sql.VarChar, email)
+            .query('SELECT ID_Login, Email, Senha FROM Login WHERE Email = @email');
+
+        const user = result.recordset[0];
+
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado' });
+        }
+
+        // Verificar a senha
+        // const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+		const isPasswordValid = await (senha==user.Senha;
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: 'Credenciais inválidas' });
+        }
+
+        // Gerar o JWT
+        // const token = jwt.sign(
+            // { id: user.id, email: user.email, nome: user.nome },
+            // JWT_SECRET,
+            // { expiresIn: '1h' } // Tempo de expiração do token
+        // );
+
+        return res.status(200).json({ token });
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        return res.status(500).json({ message: 'Erro interno no servidor' });
+    }
+});
