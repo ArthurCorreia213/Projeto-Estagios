@@ -46,9 +46,12 @@
         </div>
 		</div id="teste">
 		<div id="vagas-geral">
+
         <div id="vagas-container">
 
         </div>
+
+
 
         <div id="vagas-info-container">
 			<div id="vagas-info">
@@ -73,7 +76,10 @@
 
             <hr>
         </article>
+
 		</div class = "teste">
+
+        
 		
 		<script>
 			carregarVagas()
@@ -128,8 +134,51 @@
 			//document.getElementById('vagas-container').addEventListener("scroll", function(){
 			//document.getElementById('vagas-info').style.position= "fixed"
 			//});
+
+
+            //CONFIGURANDO VAGAS:
+
+            async function carregarempresas() {
+    try {
+        const response = await fetch('/api/vagas');
+        if (!response.ok) throw new Error('Erro ao buscar empresas.');
+
+        const empresas = await response.json();
+        console.log(empresas); // Verifique os dados aqui
+        
+        const tbody = document.getElementById('teste');
+        tbody.innerHTML = ''; // Limpar o conteúdo atual
+        empresas.forEach(vagas => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+    <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
+        <p id="card-titulo" style="font-size: 22px;">${vagas.Cargo}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">R$${vagas.Salario}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Contato}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Vagas}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Estado}</p>
+
+        <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%; cursor: pointer;" onclick="carregarInfo('${vagas.Cargo}', '${vagas.Rua}', '${vagas.Numero}', '${vagas.Bairro}', '${vagas.Cidade}', ${vagas.Vagas})">Ver detalhes</button>
+    </div>
+            `;
+            tbody.appendChild(div);
+        });
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao carregar as empresas. Tente novamente mais tarde.' + error.message);
+    }
+}
+
+
+
+        window.onload = carregarempresas;
 		</script>
     </main>
+
+    <div id="teste">
+
+
+    </div>
 
     <footer>
         <div id="texto">

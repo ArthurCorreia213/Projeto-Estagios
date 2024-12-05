@@ -32,7 +32,7 @@
         }
     }
 	
-	    async function carregarInfo() {
+	    async function carregarInfo(cargo, rua, numero, bairro, cidade, estado, vagas) {
         try {
             // const response = await fetch('/api/vagas');
             // const vagas = await response.json();
@@ -47,25 +47,21 @@
 
             card.innerHTML = `
             <p id="cargo">
-                Cargo: Desenvolvimento de Sistemas
-            </p>
-
-            <p id="empresa">
-                Seu Zé INC.
+                ${cargo}
             </p>
 
             <p id="localizacao">
-                Localização: Rua do Oratório, 215, Mooca, SP
+                Localização: ${rua}, ${numero}, ${bairro}, ${cidade}, ${estado}
             </p>
 
             <p id="vagas">
-                Vagas: 20
+                Vagas: ${vagas}
             </p>
 
-            <p id="tempo-contrato">Tempo de contrato: 1 ano</p>
+            <p id="tempo-contrato">Tempo de contrato: </p>
 
             <p id="horario">
-                Horário: 9:00 às 16:00
+              
             </p>
 
             <p id="beneficios">

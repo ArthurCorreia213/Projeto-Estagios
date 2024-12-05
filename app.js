@@ -2,7 +2,10 @@ const express = require('express');
 const sql = require('mssql');
 const cors = require('cors');
 const app = express();
+const jwt = require('jsonwebtoken');
 const port = 3000;
+
+const JWT_SECRET = 'senha'
 
 const dbConfig = {
     user: 'usuario',
@@ -52,7 +55,7 @@ app.get('/api/candidatos', async (req, res) => {
 app.get('/api/vagas', async (req, res) => {
     try {
         const pool = await sql.connect(dbConfig);
-        const result = await pool.request().query('SELECT * FROM Vagas');
+        const result = await pool.request().query('SELECT * FROM Vagas JOIN Endereco on vagas.ID_Endereco = Endereco.ID_Endereco');
         res.json(result.recordset); // Retorna os alunos no formato JSON
     } catch (err) {
         console.error(err);
@@ -166,11 +169,11 @@ app.post('/cadastro', async (req, res) => {
         await transaction.request()
             .input('nome', sql.NVarChar, nome)
             .input('cnpj', sql.NVarChar, cnpj)
-            .input('email', sql.DateTime, email)
+            .input('email', sql.NVarChar, email)
             .input('telefone', sql.NVarChar, telefone)
             .input('ID_Login', sql.Int, ID_Login)
             .input('status_cadastro', sql.NVarChar, status_cadastro)
-            .query(`INSERT INTO Candidatos (Nome, CNPJ, Email, Telefone, ID_Login, Status_Cadastro)
+            .query(`INSERT INTO Empresas (Nome, CNPJ, Email, Telefone, ID_Login, Status_Cadastro)
                     VALUES (@Nome, @CNPJ, @Email, @Telefone, @ID_Login, @Status_Cadastro)`);
 
         // Confirmar a transação
@@ -309,27 +312,49 @@ app.put('/api/aprovar/:id', async (req, res) => {
     const { id } = req.params;
   
     try {
-      // Conectar ao banco de dados
-      const pool = await sql.connect(dbConfig);
-  
-      // Executar a query de atualização
-      const result = await pool
-        .request()
-        .input('id', sql.Int, id)
-        .query("UPDATE Empresas SET Status_Cadastro = 'Aprovado' WHERE ID_Empresa = @id");
-  
-      if (result.rowsAffected[0] > 0) {
-        res.status(200).json({ message: 'Registro atualizado com sucesso', status: 'Aprovado' });
-      } else {
-        res.status(404).json({ message: 'Registro não encontrado' });
+        // Conectar ao banco de dados
+        const pool = await sql.connect(dbConfig);
+    
+        // Atualizar a tabela Empresas e retornar o ID_Login relacionado
+        const updateEmpresas = await pool
+          .request()
+          .input('id', sql.Int, id)
+          .query(
+            "UPDATE Empresas SET Status_Cadastro = 'Aprovado' OUTPUT INSERTED.ID_Login WHERE ID_Empresa = @id"
+          );
+    
+        // Garantir que o registro foi encontrado
+        if (updateEmpresas.recordset.length === 0) {
+          return res.status(404).json({ message: 'Empresa não encontrada.' });
+        }
+    
+        const ID_Login = updateEmpresas.recordset[0].ID_Login;
+    
+        // Atualizar a tabela Login com o ID_Login obtido
+        const updateLogin = await pool
+          .request()
+          .input('idLogin', sql.Int, ID_Login)
+          .query(
+            "UPDATE Login SET Categoria_Login = 'Empresa' WHERE ID_Login = @idLogin"
+          );
+    
+        if (updateLogin.rowsAffected[0] > 0) {
+          res.status(200).json({
+            message: 'Registro atualizado com sucesso',
+            status: 'Aprovado',
+          });
+        } else {
+          res.status(404).json({
+            message: 'Login relacionado não encontrado.',
+          });
+        }
+      } catch (error) {
+        console.error('Erro ao atualizar registro:', error);
+        res.status(500).json({ message: 'Erro ao atualizar registro: ' + error });
+      } finally {
+        sql.close();
       }
-    } catch (error) {
-      console.error('Erro ao atualizar registro:', error.message);
-      res.status(500).json({ message: 'Erro ao atualizar registro' });
-    } finally {
-      sql.close();
-    }
-  });
+    });
   
   // Rota de login
 app.post('/login', async (req, res) => {
@@ -346,7 +371,7 @@ app.post('/login', async (req, res) => {
         // Consultar o usuário no banco
         const result = await pool.request()
             .input('email', sql.VarChar, email)
-            .query('SELECT ID_Login, Email, Senha FROM Login WHERE Email = @email');
+            .query('SELECT Login.*, Empresas.*, Candidatos.* FROM Login LEFT JOIN Empresas ON Login.ID_Login = Empresas.ID_Login LEFT JOIN Candidatos ON Login.ID_Login = Candidatos.ID_Login WHERE Login.Email = @email AND (Empresas.ID_Login IS NOT NULL OR Candidatos.ID_Login IS NOT NULL);');
 
         const user = result.recordset[0];
 
@@ -356,19 +381,26 @@ app.post('/login', async (req, res) => {
 
         // Verificar a senha
         // const isPasswordValid = await bcrypt.compare(password, user.password_hash);
-		const isPasswordValid = await (senha==user.Senha;
+		const isPasswordValid = (senha==user.Senha);
         if (!isPasswordValid) {
-            return res.status(401).json({ message: 'Credenciais inválidas' });
+            return res.status(401).json({ message: 'Credenciais inválidas'});
         }
 
-        // Gerar o JWT
-        // const token = jwt.sign(
-            // { id: user.id, email: user.email, nome: user.nome },
-            // JWT_SECRET,
-            // { expiresIn: '1h' } // Tempo de expiração do token
-        // );
+        if(user.Categoria_Login == "Pendente/Empresa") {
+            return res.status(401).json({ message: 'Seu cadastro ainda não foi aprovado'});
+        }
 
-        return res.status(200).json({ token });
+
+        // Gerar o JWT
+        const token = jwt.sign(
+            { user },
+            JWT_SECRET,
+            // { expiresIn: '1h' } // Tempo de expiração do token
+        );
+
+        var decoded = jwt.verify(token, JWT_SECRET)
+
+        return res.status(200).json({ message: 'Login aprovado', decoded });
     } catch (error) {
         console.error('Erro ao fazer login:', error);
         return res.status(500).json({ message: 'Erro interno no servidor' });

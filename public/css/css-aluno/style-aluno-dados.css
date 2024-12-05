@@ -43,6 +43,8 @@ body{
 configurando o botão de ajuda: */
 
 #v1{
+    position: absolute;
+    right: 10.35%;
     background-color: #E6E6E6;
     border: 1px solid #B91D32;
     color: #B91D32;
