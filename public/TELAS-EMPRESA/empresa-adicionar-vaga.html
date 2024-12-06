@@ -283,6 +283,14 @@ que é a mesma da tela do adm -->
 	
         document.getElementById('vagaForm').addEventListener('submit', async (event) => { 
             event.preventDefault(); 
+			
+		const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Token não encontrado. Faça login para continuar.');
+            window.location.href = '/login'; // Redirecionar para login se necessário
+            return;
+        }
+		const decoded = jwt_decode(token)
 
             const vaga = { 
 				cargo: document.getElementById('cargo').value, 
@@ -294,6 +302,7 @@ que é a mesma da tela do adm -->
                 contato: document.getElementById('contato').value, 
                 vagas: document.getElementById('vagas').value, 
                 tempo_de_contrato: document.getElementById('tempo').value,
+				empresa: decoded.user.ID_Empresa
 
                 rua: document.getElementById('rua').value, 
                 numero: document.getElementById('numero').value, 

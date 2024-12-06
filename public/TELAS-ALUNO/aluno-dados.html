@@ -35,10 +35,6 @@
                     <div class="value" id="cpf">---</div>
                 </div>
                 <div class="row">
-                    <div class="label">R.A.:</div>
-                    <div class="value" id="ra">---</div>
-                </div>
-                <div class="row">
                     <div class="label">Data de nascimento:</div>
                     <div class="value" id="data-nascimento">---</div>
                 </div>
@@ -55,6 +51,10 @@
                     <div class="row">
                         <div class="label">Cidade:</div>
                         <div class="value" id="cidade">---</div>
+                    </div>
+					<div class="row">
+                        <div class="label">Estado:</div>
+                        <div class="value" id="estado">---</div>
                     </div>
                     <div class="row">
                         <div class="label">Complemento:</div>
@@ -104,9 +104,13 @@
                 </div>
                 <div class="row">
                     <div class="label">Telefone:</div>
-                    <div class="value" id="telefone">---</div>
+                    <input type="text" value="TELEFONE RECEBIDO DO BD" disabled class="value" id="telefone">---</div>
                 </div>
                 <button id="v1"  type="button" popovertarget="my-popover">Algo de errado</button>
+				<div class="row">
+                    <input type="text" value="Telefone" class="label"></div>
+                    <div class="value" id="telefone-teste">---</div>
+                </div>
                 
                 
                 <div popover id="my-popover">
@@ -122,7 +126,10 @@
             </div>
         </div>
     </article>
-  
+	<script>
+		function teste(){ document.getElementById('telefone-teste').innerHTML = 'funcionou' }
+		window.onload = teste()
+	</script>
     <footer>
         <div id="texto">
             <a href="">FALE CONOSCO</a>

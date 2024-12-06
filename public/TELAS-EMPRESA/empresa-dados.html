@@ -73,6 +73,37 @@
 
     </article>
     
+<script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+<script>
+    function preencherFormularioComToken() {
+        // Recuperar o token do localStorage
+        const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Token não encontrado. Faça login para continuar.');
+            window.location.href = '/login'; // Redirecionar para login se necessário
+            return;
+        }
+
+        try {
+            // Decodificar o token
+            const decoded = jwt_decode(token);
+
+            // Preencher os campos do formulário com os dados do token
+            document.getElementById('empresa').innerHTML = decoded.user.nome || '';
+            document.getElementById('cnpj').innerHTML = decoded.user.telefone || '';
+            document.getElementById('email').innerHTML = decoded.user.email || '';
+            document.getElementById('telefone').innerHTML = decoded.user.cpf || '';
+        } catch (error) {
+            console.error('Erro ao decodificar o token:', error);
+            alert('Erro ao processar os dados do token. Tente novamente.');
+        }
+    }
+
+    // Chamar a função ao carregar a página
+    window.onload = preencherFormularioComToken;
+</script>
+
+	
     <footer>
         <div id="texto">
             <a href="">FALE CONOSCO</a>

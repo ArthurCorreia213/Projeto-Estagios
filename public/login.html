@@ -91,8 +91,23 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(produto)
                 });
+				
+			const data = await response.json();
+			if (data.token) {
+				// Armazenar o token no localStorage
+				localStorage.setItem('token', data.token);
+				alert('Login realizado com sucesso!');
+				window.location.href = '/dashboard'; // Redireciona para a página principal
+			}
+			if(data.categoria_login){
+				if (categoria_login == 'Aluno'){window.location.href = "../TELAS-ALUNO/aluno-main"}
+				else if (categoria_login == 'Empresa'){window.location.href = "../TELAS-EMPRESA/empresa-main"}
+				else if (categoria_login == 'Admin'){window.location.href = "../telas-admin/admin-main"}
+				else(alert('Erro ao redirecionar. Categoria_Login = '+categoria_login))
+			
                 const message = await response.text();
                 alert(message);
+				
             } catch (error) {
                 alert('Erro ao enviar dados: ' + error.message);
             }

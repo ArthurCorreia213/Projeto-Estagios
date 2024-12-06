@@ -3,6 +3,7 @@ const sql = require('mssql');
 const cors = require('cors');
 const app = express();
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const port = 3000;
 
 const JWT_SECRET = 'senha'
@@ -16,6 +17,19 @@ const dbConfig = {
         encrypt: true,
         trustServerCertificate: true
     }
+};
+
+const autenticarToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; // Extrai o token do cabeçalho
+
+    if (!token) return res.status(401).json({ message: 'Acesso negado. Token não fornecido.' });
+
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ message: 'Token inválido ou expirado.' });
+        req.user = user; // Armazena o payload decodificado para uso posterior
+        next();
+    });
 };
 
 // Rota para buscar empresas
@@ -121,31 +135,40 @@ app.post('/cadastro', async (req, res) => {
 			// }
 		// }
 		
-		// try {
-			// // const emailExists = await isEmailRegistered(email);
+		try {
+			// const emailExists = await isEmailRegistered(email);
 
-				// const result = await pool.request()
-					// .input('email', sql.VarChar, email)
-					// .query('SELECT COUNT(*) AS count FROM Login WHERE email = @email');
+				const result = await pool.request()
+					.input('email', sql.VarChar, email)
+					.query('SELECT COUNT(*) AS count FROM Login WHERE email = @email');
         
-			// const emailExists = result.recordset[0].count > 0;
+			const emailExists = result.recordset[0].count > 0;
 
-			// if (emailExists) {
-				// return res.status(200).json({ exists: true, message: 'Email já registrado.' });
-			// }
-		// } catch (error) {
-			// return res.status(500).json({ error: 'Erro ao verificar o email.' });
-		// }
+			if (emailExists) {
+				return res.status(200).json({ exists: true, message: 'Email já registrado.' });
+				return
+			}
+		} catch (error) {
+			return res.status(500).json({ error: 'Erro ao verificar o email.' });
+		}
 	
 		//
+		
+		async function hash_senha(senha) {
+		const saltRounds = 10; // Número de rounds para aumentar a complexidade
+		const senha_hash = await bcrypt.hash(senha, saltRounds);
+		return senha_hash;
+		}
+
+		const senha_com_hash = await hash_senha(senha);
 
         const resultLogin = await transaction.request()
         .input('email', sql.VarChar, email)
-        .input('senha', sql.VarChar, senha)
+        .input('senha_com_hash', sql.VarChar, senha_com_hash)
         .input('categoria_login', sql.VarChar, categoria_login)
         .query(`INSERT INTO Login (Email, Senha, Categoria_Login) 
                 OUTPUT INSERTED.ID_Login
-                VALUES (@email, @senha, @categoria_login)`);
+                VALUES (@email, @senha_com_hash, @categoria_login)`);
 
         const ID_Login = resultLogin.recordset[0].ID_Login;
 
@@ -186,8 +209,19 @@ app.post('/cadastro', async (req, res) => {
 });
 
 app.post('/add_vaga_endereco', async (req, res) => {
-    const { cargo, contato, vagas, salario, tempo_de_contrato, horario, beneficios, requisitos } = req.body;
+    const { cargo, contato, vagas, salario, tempo_de_contrato, horario, beneficios, requisitos, empresa } = req.body;
     const { rua, cidade, estado, numero, complemento } = req.body;
+	
+	const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; // Extrai o token do cabeçalho
+
+    if (!token) return res.status(401).json({ message: 'Acesso negado. Token não fornecido.' });
+
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+        if (err) return res.status(403).json({ message: 'Token inválido ou expirado.' });
+        req.user = user; // Armazena o payload decodificado para uso posterior
+        next();
+    });
 
     try {
         // Conectar ao banco de dados
@@ -221,8 +255,9 @@ app.post('/add_vaga_endereco', async (req, res) => {
             .input('beneficios', sql.NVarChar, beneficios)
             .input('requisitos', sql.NVarChar, requisitos)
             .input('ID_Endereco', sql.Int, ID_Endereco)
-            .query(`INSERT INTO Vagas (Cargo, Contato, Vagas, Salario, Tempo_De_Contrato, Horario, Beneficios, Requisitos, ID_Endereco)
-                    VALUES (@Cargo, @Contato, @Vagas, @Salario, @Tempo_De_Contrato, @Horario, @Beneficios, @Requisitos, @ID_Endereco)`);
+			.input('empresa', sql.Int, empresa)
+            .query(`INSERT INTO Vagas (Cargo, Contato, Vagas, Salario, Tempo_De_Contrato, Horario, Beneficios, Requisitos, ID_Endereco, empresa)
+                    VALUES (@Cargo, @Contato, @Vagas, @Salario, @Tempo_De_Contrato, @Horario, @Beneficios, @Requisitos, @ID_Endereco, @empresa)`);
 
         // Confirmar a transação
         await transaction.commit();
@@ -253,14 +288,39 @@ app.post('/add_candidato', async (req, res) => {
         // Iniciar uma transação
         const transaction = new sql.Transaction(pool);
         await transaction.begin();
+		
+		async function hash_senha(senha) {
+		const saltRounds = 10; // Número de rounds para aumentar a complexidade
+		const senha_hash = await bcrypt.hash(senha, saltRounds);
+		return senha_hash;
+		}
+
+		const senha_com_hash = await hash_senha(senha);
+		
+		try {
+			// const emailExists = await isEmailRegistered(email);
+
+				const result = await pool.request()
+					.input('email', sql.VarChar, email)
+					.query('SELECT COUNT(*) AS count FROM Login WHERE email = @email');
+        
+			const emailExists = result.recordset[0].count > 0;
+
+			if (emailExists) {
+				return res.status(200).json({ exists: true, message: 'Email já registrado.' });
+				return
+			}
+		} catch (error) {
+			return res.status(500).json({ error: 'Erro ao verificar o email.' });
+		}		
 
         const resultLogin = await transaction.request()
         .input('email', sql.VarChar, email)
-        .input('senha', sql.VarChar, senha)
+        .input('senha_com_hash', sql.VarChar, senha_com_hash)
         .input('categoria_login', sql.VarChar, categoria_login)
         .query(`INSERT INTO Login (Email, Senha, Categoria_Login) 
                 OUTPUT INSERTED.ID_Login
-                VALUES (@email, @senha, @categoria_login)`);
+                VALUES (@email, @senha_com_hash, @categoria_login)`);
 
         const ID_Login = resultLogin.recordset[0].ID_Login;
 
@@ -380,8 +440,8 @@ app.post('/login', async (req, res) => {
         }
 
         // Verificar a senha
-        // const isPasswordValid = await bcrypt.compare(password, user.password_hash);
-		const isPasswordValid = (senha==user.Senha);
+        const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+		// const isPasswordValid = (senha==user.Senha);
         if (!isPasswordValid) {
             return res.status(401).json({ message: 'Credenciais inválidas'});
         }
@@ -395,14 +455,81 @@ app.post('/login', async (req, res) => {
         const token = jwt.sign(
             { user },
             JWT_SECRET,
-            // { expiresIn: '1h' } // Tempo de expiração do token
+             expiresIn: '1h' } // Tempo de expiração do token
         );
 
         var decoded = jwt.verify(token, JWT_SECRET)
 
-        return res.status(200).json({ message: 'Login aprovado', decoded });
+        return res.status(200).json({ message: 'Login aprovado', decoded, token, categoria_login: decoded.user.Categoria_Login });
     } catch (error) {
         console.error('Erro ao fazer login:', error);
         return res.status(500).json({ message: 'Erro interno no servidor' });
+    }
+});
+
+app.post('/add_curriculo', async (req, res) => {
+    const { habilidades, experiencia, sobre_mim, id } = req.body;
+
+    try {
+        // Conectar ao banco de dados
+        const pool = await sql.connect(dbConfig);
+
+        // Consultar o usuário no banco
+        const result = await pool.request()
+			.input('habilidades', sql.NVarChar(300), habilidades)
+			.input('experiencia', sql.NVarChar(300), experiencia)
+			.input('sobre_mim', sql.NVarChar(300), sobre_mim)
+			.input('id', sql.Int, id)
+			.query('UPDATE Candidatos SET Habilidades = @habilidades, Experiencia = @experiencia, Sobre_mim = @sobre_mim WHERE ID_Candidato = @id')
+
+        return res.status(200).json({ message: 'Alterações salvas', decoded, token });
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        return res.status(500).json({ message: 'Erro interno no servidor' });
+    }
+});
+
+app.post('/logout', (req, res) => {
+    // Remove o cookie que armazena o token
+    localStorage.removeItem('token');
+	window.location.href = '/'
+    return res.status(200).json({ message: 'Logout realizado com sucesso' });
+});
+
+
+
+                         // CRIAR COLUNAS EXPERIENCIA< HABILIDADES E SOBRE MIM COM VARCHAR(300) NA TABELA candidatos
+						 // CRIAR TABELA DE HISTORICO/CANDIDATURAS QUE RECEBE ID_VAGA, ID_Candidato E ID_Empresa COMO CHAVES ESTRANGEIRAS
+						 
+						 
+						 
+// app.get('/api/vagas-empresa-selecionada', (req, res) => {
+    // const id = req.query.id; // Busca o ID nos query params
+    // // Consulta ao banco
+    // db.query('SELECT * FROM items WHERE id = ?', [id], (err, result) => {
+        // if (err) return res.status(500).send(err);
+        // res.status(200).json(result);
+    // });
+// });
+
+app.get('/api/', (req, res) => {
+    const token = req.headers.authorization?.split(' ')[1]; // Extrai o token do cabeçalho
+
+    if (!token) {
+        return res.status(401).send('Token não fornecido.');
+    }
+
+    try {
+        // Verifica e decodifica o token
+        const payload = jwt.verify(token, 'sua-chave-secreta'); // Substitua pela chave secreta do JWT
+        const id = payload.ID_Empresa;
+
+        // Consulta ao banco de dados
+        db.query('SELECT * FROM items WHERE id = @id', (err, result) => {
+            if (err) return res.status(500).send('Erro ao consultar o banco de dados.');
+            res.json(result);
+        });
+    } catch (err) {
+        return res.status(401).send('Token inválido.');
     }
 });
