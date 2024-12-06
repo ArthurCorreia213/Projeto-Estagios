@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/css-empresa/adicionar-vaga.css">
     <link rel="stylesheet" href="../css/css-empresa/area-nav-e.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    
     <title>Estágios SENAI MOOCA</title>
 </head>
 <body>
@@ -291,6 +294,7 @@ que é a mesma da tela do adm -->
             return;
         }
 		const decoded = jwt_decode(token)
+        alert(decoded.ID_Empresa)
 
             const vaga = { 
 				cargo: document.getElementById('cargo').value, 
@@ -302,7 +306,7 @@ que é a mesma da tela do adm -->
                 contato: document.getElementById('contato').value, 
                 vagas: document.getElementById('vagas').value, 
                 tempo_de_contrato: document.getElementById('tempo').value,
-				empresa: decoded.user.ID_Empresa
+				empresa: decoded.user.ID_Empresa,
 
                 rua: document.getElementById('rua').value, 
                 numero: document.getElementById('numero').value, 
@@ -314,7 +318,7 @@ que é a mesma da tela do adm -->
             try { 
                 const response = await fetch('/add_vaga_endereco', { 
                     method: 'POST', 
-                    headers: { 'Content-Type': 'application/json' }, 
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`  }, 
                     body: JSON.stringify(vaga) 
                 }); 
                 const message = await response.text(); 

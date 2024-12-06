@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/card-alert.css">
+</head>
+<body>
+
+    <div class="container" id="escurecer">
+        <button id="salvar">salvar</button>
+    </div>
+
+    <div class="card">
+        <div class="logo-senai">
+            <!-- <img src="../imagens/gerais/LOGO.svg" alt="logo_senai"> -->
+            <img src="imagens/gerais/card-logo.svg" alt="">
+        </div>
+
+
+        <div class="informacoes-direita">
+            <img src="../imagens/icones/carta-confirmar.svg" alt="">
+
+            <p class="texto-adicionar">Aluno adicionado</p>
+
+            <div class="botoes-card">
+                <button id="continuar-btn">Continuar</button>
+                <button id="voltar-btn">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('salvar').addEventListener('click', function(){
+            const salvar = document.getElementsByClassName("card")[0]
+            salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none'
+            
+            const escurecer = document.getElementById('escurecer');
+            
+            // Alterna o filtro de brilho para o container com o id escurecer
+            if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
+                escurecer.style.filter = 'brightness(80%)';
+            } else {
+                escurecer.style.filter = 'brightness(100%)';
+            }
+        })
+    </script>
+</body>
+</html>

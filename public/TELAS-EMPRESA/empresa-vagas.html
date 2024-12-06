@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../css/css-empresa/area-nav-e.css">
     <link rel="stylesheet" href="../css/css-empresa/empresa-vagas.css">
     <link rel="stylesheet" href="../css/footer.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+
     <title>Estágios SENAI MOOCA</title>
 </head>
 <body>
@@ -47,172 +50,114 @@
             </div>
         </div>
 
-        <div class="VAGAS-EMPRESA">
+        <div id="VAGAS-EMPRESA">
             
         <div class="CARDS">
-            <div id="vagas-cards" >
-                <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-                    <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
             
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
-            
-                        <button popovertarget="my-popover" type="button" style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
 
-                        <div class="popover" popover id="my-popover">
-                            <p id="cargo">
-                                Cargo: Desenvolvimento de Sistemas
-                            </p>
 
-                            <p id="empresa">
-                                Seu Zé INC.
-                            </p>
-
-                            <p id="localizacao">
-                                Localização: Rua do Oratório, 215, Mooca, SP
-                            </p>
-
-                            <p id="vagas">
-                                Vagas: 20
-                            </p>
-
-                            <p id="tempo-contrato">Tempo de contrato: 1 ano</p>
-
-                            <p id="horario">
-                                Horário: 9:00 às 16:00
-                            </p>
-
-                            <p id="beneficios">
-                                Benefícios:
-                                <ul>
-                                    <li>Vale refeição;</li>
-                                    <li>Vale Transporte;</li>
-                                    <li>Possibilidade de efetivação ao fim do contrato;</li>
-                                </ul>
-                            </p>
-
-                            <p id="requisitos">
-                                Requisitos:
-                                <ul>
-                                    <li>Cursar Técnico/Superior em Desenvolvimento de Sistemas;</li>
-                                    <li>Conclusão: 2º semestre 2025 / 2º semestre 2026;</li>
-                                    <li>Morar em SP</li>
-                                </ul>
-                            </p>
-
-                            <p id="detalhes">
-                                Detalhes da vaga:
-                                <ul>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quibusdam praesentium suscipit officiis maiores quos error, facilis obcaecati asperiores. Ullam tempora sequi ducimus doloremque dicta nobis ad, at nisi. Dicta!
-                                </ul>
-                            </p>
-
-                            <button type="button" popovertarget="my-popover2" style="background-color: #333333;
-                            border: none;
-                            border-radius: 3px;
-                            padding: 1px 10px;
-                            color: #E5E9EA;
-                            "><h3>CANDIDATAR-SE</h3></button>
-                                <div popover id="my-popover2"  style="padding: 10px 20px; border: none; background-color: #333333; color: #E5E9EA;"><p>DESEJA SE CANDIDATAR A VAGA?</p>
-                                    <div class="b-escolha-2" style="display: flex; justify-content: space-between; padding: 10px 20px;">
-                                        <button type="button" style="background-color: #333333; border: 1px solid #B91D32; color: #B91D32; padding: 5px 10px ; border-radius: 5px;" popovertarget="my-popover2">CANCELAR</button>
-                                            <button type="button" style="background-color: #333333; border: 1px solid #105F00; color: #105F00; padding: 5px 10px; border-radius: 5px;" popovertarget="my-popover3">SIM</button>
-
-                                                <div popover id="my-popover3" style="border: none; background-color: #333333; color: #E5E9EA;"><h3>CANDIDATURA ENVIADA</h3>
-                                                    <div class="last-choice" style="display: flex; justify-content: center; align-items: center;">
-                                                        <button popovertarget="my-popover3" type="button" style="border: #E5E9EA 1px solid; color: #DCDCDC; background-color: #333333; border-radius: 5px;"><p>FECHAR</p></button>
-                                                    </div>
-
-                                                </div>
-                                    </div>
-                                </div>
-                        </div>
-                </div>
-                
-                <br><br>
-            </div>
-<!-- 
-Está uma bagunça esses popover, mas esta legal, o problema é que tem que configurar algumas classes, pois ta tipo somente um popover! (configurar no js?) -->
-
-            <div id="vagas-cards" >
-                <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-                    <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
-            
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
-            
-                        <button popovertarget="my-popover" type="button" style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
-
-                        <div popover id="my-popover">
-                            <p id="cargo">
-                                Cargo: Desenvolvimento de Sistemas
-                            </p>
-
-                            <p id="empresa">
-                                Seu Zé INC.
-                            </p>
-
-                            <p id="localizacao">
-                                Localização: Rua do Oratório, 215, Mooca, SP
-                            </p>
-
-                            <p id="vagas">
-                                Vagas: 20
-                            </p>
-
-                            <p id="tempo-contrato">Tempo de contrato: 1 ano</p>
-
-                            <p id="horario">
-                                Horário: 9:00 às 16:00
-                            </p>
-
-                            <p id="beneficios">
-                                Benefícios:
-                                <ul>
-                                    <li>Vale refeição;</li>
-                                    <li>Vale Transporte;</li>
-                                    <li>Possibilidade de efetivação ao fim do contrato;</li>
-                                </ul>
-                            </p>
-
-                            <p id="requisitos">
-                                Requisitos:
-                                <ul>
-                                    <li>Cursar Técnico/Superior em Desenvolvimento de Sistemas;</li>
-                                    <li>Conclusão: 2º semestre 2025 / 2º semestre 2026;</li>
-                                    <li>Morar em SP</li>
-                                </ul>
-                            </p>
-
-                            <p id="detalhes">
-                                Detalhes da vaga:
-                                <ul>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quibusdam praesentium suscipit officiis maiores quos error, facilis obcaecati asperiores. Ullam tempora sequi ducimus doloremque dicta nobis ad, at nisi. Dicta!
-                                </ul>
-                            </p>
-
-                            <button class="b-candidatar" type="button" popovertarget="my-popover2"><h3>CANDIDATAR-SE</h3></button>
-                                <div popover id="my-popover2"><p>DESEJA SE CANDIDATAR A VAGA?</p>
-                                    <button type="button" popovertarget="my-popover2">CANCELAR</button>
-                                        <button type="button" popovertarget="my-popover3">SIM</button>
-                                            <div popover id="my-popover3"><h3>CANDIDATURA ENVIADA</h3>
-                                            <button popovertarget="my-popover3" type="button" ><p>FECHAR</p></button>
-                                            </div>
-                                </div>
-                        </div>
-                </div>
-                
-                <br><br>
-            </div>
         </main>
         </div>
         </div>
 
     </article>
+
+
+
+
+    <script>
+
+        
+        async function fetchDataOnLoad() {
+            try {
+                // Recuperar o JWT do localStorage
+                // const token = localStorage.getItem('token'); // Supondo que o token está armazenado como 'jwt'
+                
+                // if (!token) {
+                //     throw new Error('Token não encontrado no localStorage.');
+                // }
+
+                // // Decodificar o JWT (apenas o payload base64 para pegar o ID)
+                // const base64Payload = token.split('.')[1]; // O payload está na segunda parte do JWT
+                // const payload = JSON.parse(atob(base64Payload)); // Decodifica o payload
+                // const id = payload.id; // Supondo que o ID está no payload
+
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    alert('Token não encontrado. Faça login para continuar.');
+                    window.location.href = '../login.html'; // Redirecionar para login se necessário
+                    return;
+                }
+                // Decodificar o token
+                const decoded = jwt_decode(token);  
+                const id = decoded.user.ID_Empresa  
+                alert(id)            
+
+                if (!id) {
+                    throw new Error('ID não encontrado no payload do JWT.');
+                }
+
+                // Enviar requisição para o backend com o ID
+                const response = await fetch(`/api/vagas-empresa-selecionada?id=${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`, // Envia o token se necessário para autenticação
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro na requisição: ' + response.status);
+                }
+
+                const data = await response.json();
+
+
+                alert(JSON.stringify(data))
+                // Renderizar os dados na página
+                // const resultContainer = document.getElementById('result');
+                // resultContainer.textContent = JSON.stringify(data, null, 2); // Formata os dados
+
+            // const response = await fetch('/api/vagas');
+            // const vagas = await response.json();
+
+
+            const container = document.getElementById('VAGAS-EMPRESA');
+            container.innerHTML = ''; // Limpa o container antes de renderizar
+
+            data.forEach(vaga => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                card.innerHTML = `
+                <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
+                <p id="card-titulo" style="font-size: 22px;">${vaga.Cargo}</p>
+        
+                <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Nome}</p>
+                <p id="card-info" style="font-size: 16px; padding-top: 6px;">R$${vaga.Salario}</p>
+                <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Cidade}, ${vaga.Estado}</p>
+                <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: ${vaga.Vagas}</p>
+        
+                <button onclick="carregarInfo()" style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
+				</div>
+                `;
+
+                container.appendChild(card);
+            });
+    
+            } catch (error) {
+                console.error('Erro:', error.message);
+                document.getElementById('result').textContent = `Erro: ${error.message}`;
+            }
+        }
+    
+        // Executa a função quando a página carregar
+        window.onload = fetchDataOnLoad;
+    </script>
+
+
+
+
+
 
     <footer>
         <div id="texto">

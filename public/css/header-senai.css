@@ -201,3 +201,8 @@ a{
         font-size: 1em;
     }
 }
+
+
+.texto-header-inf > p{
+    font-size: 0.9em;
+}

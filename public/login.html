@@ -97,17 +97,17 @@
 				// Armazenar o token no localStorage
 				localStorage.setItem('token', data.token);
 				alert('Login realizado com sucesso!');
-				window.location.href = '/dashboard'; // Redireciona para a página principal
 			}
-			if(data.categoria_login){
-				if (categoria_login == 'Aluno'){window.location.href = "../TELAS-ALUNO/aluno-main"}
-				else if (categoria_login == 'Empresa'){window.location.href = "../TELAS-EMPRESA/empresa-main"}
-				else if (categoria_login == 'Admin'){window.location.href = "../telas-admin/admin-main"}
-				else(alert('Erro ao redirecionar. Categoria_Login = '+categoria_login))
+            alert(data.decoded.user.Categoria_Login)
+			if(data.decoded.user.Categoria_Login){
+				if (data.decoded.user.Categoria_Login == 'Aluno'){window.location.href = "../TELAS-ALUNO/aluno-main.html"}
+				else if (data.decoded.user.Categoria_Login == 'Empresa'){window.location.href = "../TELAS-EMPRESA/empresa-main.html"}
+				else if (data.decoded.user.Categoria_Login == 'Admin'){window.location.href = "../telas-admin/admin-main.html"}
+				else(alert('Erro ao redirecionar. Categoria_Login = '+data.decoded.user.Categoria_Login))
 			
                 const message = await response.text();
                 alert(message);
-				
+            }
             } catch (error) {
                 alert('Erro ao enviar dados: ' + error.message);
             }

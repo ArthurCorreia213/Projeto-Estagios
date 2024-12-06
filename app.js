@@ -3,7 +3,7 @@ const sql = require('mssql');
 const cors = require('cors');
 const app = express();
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const port = 3000;
 
 const JWT_SECRET = 'senha'
@@ -209,7 +209,7 @@ app.post('/cadastro', async (req, res) => {
 });
 
 app.post('/add_vaga_endereco', async (req, res) => {
-    const { cargo, contato, vagas, salario, tempo_de_contrato, horario, beneficios, requisitos, empresa } = req.body;
+    const { cargo, contato, vagas, salario, tempo_de_contrato, horario, beneficios, requisitos, empresa, detalhes } = req.body;
     const { rua, cidade, estado, numero, complemento } = req.body;
 	
 	const authHeader = req.headers['authorization'];
@@ -220,7 +220,6 @@ app.post('/add_vaga_endereco', async (req, res) => {
     jwt.verify(token, JWT_SECRET, (err, user) => {
         if (err) return res.status(403).json({ message: 'Token inválido ou expirado.' });
         req.user = user; // Armazena o payload decodificado para uso posterior
-        next();
     });
 
     try {
@@ -254,10 +253,11 @@ app.post('/add_vaga_endereco', async (req, res) => {
             .input('horario', sql.NVarChar, horario)
             .input('beneficios', sql.NVarChar, beneficios)
             .input('requisitos', sql.NVarChar, requisitos)
+            .input('detalhes', sql.NVarChar, detalhes)
             .input('ID_Endereco', sql.Int, ID_Endereco)
 			.input('empresa', sql.Int, empresa)
-            .query(`INSERT INTO Vagas (Cargo, Contato, Vagas, Salario, Tempo_De_Contrato, Horario, Beneficios, Requisitos, ID_Endereco, empresa)
-                    VALUES (@Cargo, @Contato, @Vagas, @Salario, @Tempo_De_Contrato, @Horario, @Beneficios, @Requisitos, @ID_Endereco, @empresa)`);
+            .query(`INSERT INTO Vagas (Cargo, Contato, Vagas, Salario, Tempo_De_Contrato, Horario, Beneficios, Requisitos, ID_Endereco, ID_Empresa, Detalhes)
+                    VALUES (@Cargo, @Contato, @Vagas, @Salario, @Tempo_De_Contrato, @Horario, @Beneficios, @Requisitos, @ID_Endereco, @empresa, @detalhes)`);
 
         // Confirmar a transação
         await transaction.commit();
@@ -308,7 +308,6 @@ app.post('/add_candidato', async (req, res) => {
 
 			if (emailExists) {
 				return res.status(200).json({ exists: true, message: 'Email já registrado.' });
-				return
 			}
 		} catch (error) {
 			return res.status(500).json({ error: 'Erro ao verificar o email.' });
@@ -431,7 +430,7 @@ app.post('/login', async (req, res) => {
         // Consultar o usuário no banco
         const result = await pool.request()
             .input('email', sql.VarChar, email)
-            .query('SELECT Login.*, Empresas.*, Candidatos.* FROM Login LEFT JOIN Empresas ON Login.ID_Login = Empresas.ID_Login LEFT JOIN Candidatos ON Login.ID_Login = Candidatos.ID_Login WHERE Login.Email = @email AND (Empresas.ID_Login IS NOT NULL OR Candidatos.ID_Login IS NOT NULL);');
+            .query('SELECT Login.*, Empresas.*, Candidatos.*, Endereco.*  FROM Login LEFT JOIN Empresas ON Login.ID_Login = Empresas.ID_Login LEFT JOIN Candidatos ON Login.ID_Login = Candidatos.ID_Login LEFT JOIN Endereco ON Candidatos.ID_Endereco =  Endereco.ID_Endereco WHERE Login.Email = @email AND (Empresas.ID_Login IS NOT NULL OR Candidatos.ID_Login IS NOT NULL);');
 
         const user = result.recordset[0];
 
@@ -440,7 +439,7 @@ app.post('/login', async (req, res) => {
         }
 
         // Verificar a senha
-        const isPasswordValid = await bcrypt.compare(password, user.password_hash);
+        const isPasswordValid = await bcrypt.compare(senha, user.Senha);
 		// const isPasswordValid = (senha==user.Senha);
         if (!isPasswordValid) {
             return res.status(401).json({ message: 'Credenciais inválidas'});
@@ -455,12 +454,12 @@ app.post('/login', async (req, res) => {
         const token = jwt.sign(
             { user },
             JWT_SECRET,
-             expiresIn: '1h' } // Tempo de expiração do token
+            //  expiresIn: '1h' } // Tempo de expiração do token
         );
 
         var decoded = jwt.verify(token, JWT_SECRET)
 
-        return res.status(200).json({ message: 'Login aprovado', decoded, token, categoria_login: decoded.user.Categoria_Login });
+        return res.status(200).json({ message: 'Login aprovado', decoded, token});
     } catch (error) {
         console.error('Erro ao fazer login:', error);
         return res.status(500).json({ message: 'Erro interno no servidor' });
@@ -482,54 +481,58 @@ app.post('/add_curriculo', async (req, res) => {
 			.input('id', sql.Int, id)
 			.query('UPDATE Candidatos SET Habilidades = @habilidades, Experiencia = @experiencia, Sobre_mim = @sobre_mim WHERE ID_Candidato = @id')
 
-        return res.status(200).json({ message: 'Alterações salvas', decoded, token });
+        return res.status(200).json({ message: 'Alterações salvas'});
     } catch (error) {
         console.error('Erro ao fazer login:', error);
         return res.status(500).json({ message: 'Erro interno no servidor' });
     }
 });
 
-app.post('/logout', (req, res) => {
-    // Remove o cookie que armazena o token
-    localStorage.removeItem('token');
-	window.location.href = '/'
-    return res.status(200).json({ message: 'Logout realizado com sucesso' });
-});
-
-
-
-                         // CRIAR COLUNAS EXPERIENCIA< HABILIDADES E SOBRE MIM COM VARCHAR(300) NA TABELA candidatos
-						 // CRIAR TABELA DE HISTORICO/CANDIDATURAS QUE RECEBE ID_VAGA, ID_Candidato E ID_Empresa COMO CHAVES ESTRANGEIRAS
-						 
-						 
-						 
-// app.get('/api/vagas-empresa-selecionada', (req, res) => {
-    // const id = req.query.id; // Busca o ID nos query params
-    // // Consulta ao banco
-    // db.query('SELECT * FROM items WHERE id = ?', [id], (err, result) => {
-        // if (err) return res.status(500).send(err);
-        // res.status(200).json(result);
-    // });
+// app.post('/logout', (req, res) => {
+//     // Remove o cookie que armazena o token
+//     localStorage.removeItem('token');
+// 	window.location.href = '/'
+//     return res.status(200).json({ message: 'Logout realizado com sucesso' });
 // });
 
-app.get('/api/', (req, res) => {
-    const token = req.headers.authorization?.split(' ')[1]; // Extrai o token do cabeçalho
-
-    if (!token) {
-        return res.status(401).send('Token não fornecido.');
-    }
-
+app.get('/api/vagas-empresa-selecionada', async (req, res) => {
+    const id = req.query.id; // Busca o ID nos query params
     try {
-        // Verifica e decodifica o token
-        const payload = jwt.verify(token, 'sua-chave-secreta'); // Substitua pela chave secreta do JWT
-        const id = payload.ID_Empresa;
-
-        // Consulta ao banco de dados
-        db.query('SELECT * FROM items WHERE id = @id', (err, result) => {
-            if (err) return res.status(500).send('Erro ao consultar o banco de dados.');
-            res.json(result);
-        });
+        const pool = await sql.connect(dbConfig);
+        const result = await pool.request()
+            .input('id', sql.Int, id)
+            .query('SELECT * FROM Vagas JOIN Endereco on vagas.ID_Endereco = Endereco.ID_Endereco JOIN Empresas ON Empresas.ID_Empresa = Vagas.ID_Empresa WHERE Vagas.ID_Empresa = @id');
+        res.json(result.recordset); // Retorna os alunos no formato JSON
     } catch (err) {
-        return res.status(401).send('Token inválido.');
+        console.error(err);
+        res.status(500).send('Erro ao buscar vagas.');
     }
+    // Consulta ao banco
+    // const result = await pool.request()
+    //     .query('SELECT * FROM Vagas WHERE id = ?', [id], (err, result) => {
+    //         if (err) return res.status(500).send(err);
+    //         res.status(200).json(result);
+    //     });
 });
+
+// app.get('/api/', (req, res) => {
+//     const token = req.headers.authorization?.split(' ')[1]; // Extrai o token do cabeçalho
+
+//     if (!token) {
+//         return res.status(401).send('Token não fornecido.');
+//     }
+
+//     try {
+//         // Verifica e decodifica o token
+//         const payload = jwt.verify(token, 'sua-chave-secreta'); // Substitua pela chave secreta do JWT
+//         const id = payload.ID_Empresa;
+
+//         // Consulta ao banco de dados
+//         db.query('SELECT * FROM items WHERE id = @id', (err, result) => {
+//             if (err) return res.status(500).send('Erro ao consultar o banco de dados.');
+//             res.json(result);
+//         });
+//     } catch (err) {
+//         return res.status(401).send('Token inválido.');
+//     }
+// });

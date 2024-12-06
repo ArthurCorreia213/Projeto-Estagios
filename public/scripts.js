@@ -32,7 +32,7 @@
         }
     }
 	
-	    async function carregarInfo(cargo, rua, numero, bairro, cidade, estado, vagas) {
+	    async function carregarInfo(cargo, rua, numero, bairro, cidade, estado, vagas, tempo, horario, beneficios, requisitos, detalhes) {
         try {
             // const response = await fetch('/api/vagas');
             // const vagas = await response.json();
@@ -47,7 +47,7 @@
 
             card.innerHTML = `
             <p id="cargo">
-                ${cargo}
+                <strong> Cargo: ${cargo} </strong>
             </p>
 
             <p id="localizacao">
@@ -58,34 +58,30 @@
                 Vagas: ${vagas}
             </p>
 
-            <p id="tempo-contrato">Tempo de contrato: </p>
+            <p id="tempo-contrato">Tempo de contrato: ${tempo}</p>
 
             <p id="horario">
-              
+              Horário: ${horario}
             </p>
 
             <p id="beneficios">
-                Benefícios:
+                Benefícios: 
 				<ul>
-					<li>Vale refeição;</li>
-					<li>Vale Transporte;</li>
-					<li>Possibilidade de efetivação ao fim do contrato;</li>
+                    ${beneficios}
                 </ul>
             </p>
 
             <p id="requisitos">
 				Requisitos:
 				<ul>
-					<li>Cursar Técnico/Superior em Desenvolvimento de Sistemas;</li>
-                    <li>Conclusão: 2º semestre 2025 / 2º semestre 2026;</li>
-                    <li>Morar em SP</li>
+					${requisitos}
                 </ul>
             </p>
 
             <p id="detalhes">
 				Detalhes da vaga:
                 <ul>
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quibusdam praesentium suscipit officiis maiores quos error, facilis obcaecati asperiores. Ullam tempora sequi ducimus doloremque dicta nobis ad, at nisi. Dicta!
+					${detalhes}
                 </ul>
             </p>
             `;

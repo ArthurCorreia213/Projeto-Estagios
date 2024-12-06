@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,9 +9,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/css-aluno/style-index-aluno.css">
     <title>Estágios SENAI MOOCA</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/footer.css">
+	
+	<script src="../scripts.js"></script>
+	
+
+    <style>
+
+        /* CONFIGURANDO CARDS: */
+        #teste{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding-top: 5%;
+        }
+
+        #vagas-info {
+    position: -webkit-sticky; /* Para suporte em Safari */
+    position: sticky; 
+    top: 5%; /* Fixa o elemento a partir de 5% do topo da tela */
+    left: 35%; 
+    right: 0;
+    z-index: 10; /* Garante que o elemento fique sobre outros elementos */
+    height: 100vh;
+    border-left: 1px solid black;
+}
+
+#vagas-info-container {
+    display: flex;
+    justify-content: flex-start; /* Alinha o conteúdo à direita */
+}
+
+    </style>
+
 </head>
 <body>
     <header>
@@ -17,184 +52,161 @@
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
         </div>
-        <div class="link-header">
-            <a href="aluno-dados.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
-        </div>
+        <a href="aluno-perfil.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
+        <button type="button" onclick="deslogar()">DESLOGAR DESTA JOÇA</button>
     </header>
 
-    <article>
-
-        <div class="PESQUISA">
-            <div id="pesquisa">
-                <h2 id="vagas-disponiveis">Vagas Disponíveis</h2>
-                <input type="text" placeholder="Pesquise por cargo, empresa, localização, etc" name="" id="pesquisa-vagas">
-                <img src="../imagens/icones/Vector.svg" width="25px" alt="">
-                Filtros
+    <main>
+		<div class="teste">
+        <article>
+            <div class="sub-header">
+                <!-- <h1 id="cabecalho-title">BEM-VINDO(A) AO PORTAL DE ESTÁGIOS DO SENAI MOOCA</h1> -->
             </div>
-        </div>
 
-        <div class="CARDS">
-            <div id="vagas-cards" >
-                <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-                    <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
-            
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
-            
-                        <button popovertarget="my-popover" type="button" style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
-
-                        <div class="popover" popover id="my-popover">
-                            <p id="cargo">
-                                Cargo: Desenvolvimento de Sistemas
-                            </p>
-
-                            <p id="empresa">
-                                Seu Zé INC.
-                            </p>
-
-                            <p id="localizacao">
-                                Localização: Rua do Oratório, 215, Mooca, SP
-                            </p>
-
-                            <p id="vagas">
-                                Vagas: 20
-                            </p>
-
-                            <p id="tempo-contrato">Tempo de contrato: 1 ano</p>
-
-                            <p id="horario">
-                                Horário: 9:00 às 16:00
-                            </p>
-
-                            <p id="beneficios">
-                                Benefícios:
-                                <ul>
-                                    <li>Vale refeição;</li>
-                                    <li>Vale Transporte;</li>
-                                    <li>Possibilidade de efetivação ao fim do contrato;</li>
-                                </ul>
-                            </p>
-
-                            <p id="requisitos">
-                                Requisitos:
-                                <ul>
-                                    <li>Cursar Técnico/Superior em Desenvolvimento de Sistemas;</li>
-                                    <li>Conclusão: 2º semestre 2025 / 2º semestre 2026;</li>
-                                    <li>Morar em SP</li>
-                                </ul>
-                            </p>
-
-                            <p id="detalhes">
-                                Detalhes da vaga:
-                                <ul>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quibusdam praesentium suscipit officiis maiores quos error, facilis obcaecati asperiores. Ullam tempora sequi ducimus doloremque dicta nobis ad, at nisi. Dicta!
-                                </ul>
-                            </p>
-
-                            <button type="button" popovertarget="my-popover2" style="background-color: #333333;
-                            border: none;
-                            border-radius: 3px;
-                            padding: 1px 10px;
-                            color: #E5E9EA;
-                            "><h3>CANDIDATAR-SE</h3></button>
-                                <div popover id="my-popover2"  style="padding: 10px 20px; border: none; background-color: #333333; color: #E5E9EA;"><p>DESEJA SE CANDIDATAR A VAGA?</p>
-                                    <div class="b-escolha-2" style="display: flex; justify-content: space-between; padding: 10px 20px;">
-                                        <button type="button" style="background-color: #333333; border: 1px solid #B91D32; color: #B91D32; padding: 5px 10px ; border-radius: 5px;" popovertarget="my-popover2">CANCELAR</button>
-                                            <button type="button" style="background-color: #333333; border: 1px solid #105F00; color: #105F00; padding: 5px 10px; border-radius: 5px;" popovertarget="my-popover3">SIM</button>
-
-                                                <div popover id="my-popover3" style="border: none; background-color: #333333; color: #E5E9EA;"><h3>CANDIDATURA ENVIADA</h3>
-                                                    <div class="last-choice" style="display: flex; justify-content: center; align-items: center;">
-                                                        <button popovertarget="my-popover3" type="button" style="border: #E5E9EA 1px solid; color: #DCDCDC; background-color: #333333; border-radius: 5px;"><p>FECHAR</p></button>
-                                                    </div>
-
-                                                </div>
-                                    </div>
-                                </div>
-                        </div>
-                </div>
-                
-                <br><br>
-            </div>
+            <!-- <hr> -->
+        </article>
 <!-- 
-Está uma bagunça esses popover, mas esta legal, o problema é que tem que configurar algumas classes, pois ta tipo somente um popover! (configurar no js?) -->
-
-            <div id="vagas-cards" >
-                <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-                    <p id="card-titulo" style="font-size: 22px;">Desenvolvimento de Sistemas</p>
-            
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Padaria Seu Zé</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Salario: R$980,00</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">São Paulo, SP</p>
-                    <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: 20</p>
-            
-                        <button popovertarget="my-popover" type="button" style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
-
-                        <div popover id="my-popover">
-                            <p id="cargo">
-                                Cargo: Desenvolvimento de Sistemas
-                            </p>
-
-                            <p id="empresa">
-                                Seu Zé INC.
-                            </p>
-
-                            <p id="localizacao">
-                                Localização: Rua do Oratório, 215, Mooca, SP
-                            </p>
-
-                            <p id="vagas">
-                                Vagas: 20
-                            </p>
-
-                            <p id="tempo-contrato">Tempo de contrato: 1 ano</p>
-
-                            <p id="horario">
-                                Horário: 9:00 às 16:00
-                            </p>
-
-                            <p id="beneficios">
-                                Benefícios:
-                                <ul>
-                                    <li>Vale refeição;</li>
-                                    <li>Vale Transporte;</li>
-                                    <li>Possibilidade de efetivação ao fim do contrato;</li>
-                                </ul>
-                            </p>
-
-                            <p id="requisitos">
-                                Requisitos:
-                                <ul>
-                                    <li>Cursar Técnico/Superior em Desenvolvimento de Sistemas;</li>
-                                    <li>Conclusão: 2º semestre 2025 / 2º semestre 2026;</li>
-                                    <li>Morar em SP</li>
-                                </ul>
-                            </p>
-
-                            <p id="detalhes">
-                                Detalhes da vaga:
-                                <ul>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quibusdam praesentium suscipit officiis maiores quos error, facilis obcaecati asperiores. Ullam tempora sequi ducimus doloremque dicta nobis ad, at nisi. Dicta!
-                                </ul>
-                            </p>
-
-                            <button class="b-candidatar" type="button" popovertarget="my-popover2"><h3>CANDIDATAR-SE</h3></button>
-                                <div popover id="my-popover2"><p>DESEJA SE CANDIDATAR A VAGA?</p>
-                                    <button type="button" popovertarget="my-popover2">CANCELAR</button>
-                                        <button type="button" popovertarget="my-popover3">SIM</button>
-                                            <div popover id="my-popover3"><h3>CANDIDATURA ENVIADA</h3>
-                                            <button popovertarget="my-popover3" type="button" ><p>FECHAR</p></button>
-                                            </div>
-                                </div>
-                        </div>
-                </div>
-                
-                <br><br>
-            </div>
-        </main>
+        SISTEMA DE VAGAS: -->
+        
+        <div id="pesquisa">
+            <p id="vagas-disponiveis">Vagas Disponíveis</p>
+            <input type="text" placeholder="Pesquise por cargo, empresa, localização, etc" name="" id="pesquisa-vagas">
+            <img src="imagens/icones/Vector.svg" width="25px" alt="">
+            Filtros
         </div>
-    </article>
+		</div id="teste">
+
+		<div id="vagas-geral">
+
+            <div id="teste">
+
+            </div>
+
+            <div id="vagas-info-container" >
+                <div id="vagas-info" style="border-left: 1px solid black; padding-left: 5%; height: 100vh;">
+                    Clique em "Ver detalhes", para obter mais informações da vaga.
+                </div id="vagas-info">
+            </div>
+
+		</div id="vagas-geral">
+<!-- 
+        FIM DO SISTEMA DE VAGAS -->
+
+        
+		
+		<script>
+
+                // Função para deslogar
+    function deslogar() {
+        // Remove o token armazenado no localStorage
+        localStorage.removeItem('token');
+        
+        // Redireciona o usuário para a tela de login
+        window.location.href = "aluno-perfil.html"; // Redireciona para a tela de login
+
+
+    }
+
+			carregarVagas()
+			
+    window.addEventListener('scroll', () => {
+        const vagasContainer = document.getElementById('vagas-container');
+        const vagasInfo = document.getElementById('vagas-info');
+        const vagasInfoContainer = document.getElementById('vagas-info-container');
+
+        // Obtenha as coordenadas de #vagas-container e #vagas-info-container em relação à viewport
+        const vagasContainerRect = vagasContainer.getBoundingClientRect();
+        const vagasInfoContainerRect = vagasInfoContainer.getBoundingClientRect();
+
+        // Detecta se o topo de #vagas-container entrou na viewport
+        if (vagasContainerRect.top <= 0 && vagasContainerRect.bottom > vagasInfo.offsetHeight) {
+            // Div #vagas-info fica fixa enquanto #vagas-container está visível
+			vagasInfo.style.left = "35%"
+            vagasInfo.style.position = "fixed";
+            vagasInfo.style.top = "5%";
+            vagasInfo.style.right = `${window.innerWidth - vagasInfoContainerRect.right}px`; // Ajusta para alinhar com o contêiner
+        } else if (vagasContainerRect.bottom <= vagasInfo.offsetHeight) {
+            // Div #vagas-info se alinha ao rodapé da seção
+            vagasInfo.style.position = "absolute";
+			vagasInfo.style.left = "0%"
+            vagasInfo.style.top = `${vagasContainer.offsetHeight - vagasInfo.offsetHeight}px`;
+            vagasInfo.style.right = "0"; // Garante alinhamento correto no contêiner
+        } else {
+            // Reseta para a posição inicial antes da seção
+            vagasInfo.style.position = "absolute";
+            vagasInfo.style.top = "auto";
+			vagasInfo.style.left = "0%";
+            vagasInfo.style.right = "0";
+        }
+    });
+			
+    //window.addEventListener('scroll', function () {
+      //  const vagasContainer = document.getElementById('vagas-container');
+       // const vagasInfo = document.getElementById('vagas-info');
+
+        // Verifica as posições da seção e da div em relação à viewport
+        //const vagasContainerRect = vagasContainer.getBoundingClientRect();
+        //const isWithinViewport = vagasContainerRect.top <= 0 && vagasContainerRect.bottom > 0;
+
+        // Adiciona ou remove a classe fixa com base na posição
+        //if (isWithinViewport) {
+        //    vagasInfo.classList.add('fixed');
+        //} else {
+        //    vagasInfo.classList.remove('fixed');
+        //}
+    //});
+
+			//document.getElementById('vagas-container').addEventListener("scroll", function(){
+			//document.getElementById('vagas-info').style.position= "fixed"
+			//});
+
+
+            //CONFIGURANDO VAGAS:
+
+            async function carregarempresas() {
+    try {
+        const response = await fetch('/api/vagas');
+        if (!response.ok) throw new Error('Erro ao buscar empresas.');
+
+        const empresas = await response.json();
+        console.log(empresas); // Verifique os dados aqui
+        
+        const tbody = document.getElementById('teste');
+        tbody.innerHTML = ''; // Limpar o conteúdo atual
+        empresas.forEach(vagas => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+    <div id="container" style="background-color: #DCDCDC; width: 230px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
+        <p id="card-titulo" style="font-size: 22px;">${vagas.Cargo}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">R$${vagas.Salario}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Contato}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Vagas}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Estado}</p>
+
+
+        <div id="b-more-detail">
+            <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%; cursor: pointer;" onclick="carregarInfo('${vagas.Cargo}', '${vagas.Rua}', '${vagas.Numero}', '${vagas.Bairro}', '${vagas.Cidade}', '${vagas.Estado}','${vagas.Vagas}', '${vagas.Tempo_De_Contrato}', '${vagas.Horario}', '${vagas.Beneficios}', '${vagas.Requisitos}', '${vagas.Detalhes}')">Ver detalhes</button>
+        </div>
+    </div>
+            `;
+            tbody.appendChild(div);
+        });
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao carregar as empresas. Tente novamente mais tarde.' + error.message);
+    }
+}
+
+
+
+        window.onload = carregarempresas;
+
+
+        
+		</script>
+    </main>
+
+
 
     <footer>
         <div id="texto">
