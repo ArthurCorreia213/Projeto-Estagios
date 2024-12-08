@@ -52,9 +52,15 @@
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
         </div>
-        <a href="aluno-perfil.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
-        <button type="button" onclick="deslogar()">DESLOGAR DESTA JOÇA</button>
+        <div class="user-actions">
+            <button type="button" id="logoutButton" onclick="deslogar()"><img src="../imagens/icones/logout_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="sair"></button>
+            <a href="aluno-perfil.html">
+                <img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt="">
+            </a>
+            
+        </div>
     </header>
+    
 
     <main>
 		<div class="teste">
@@ -102,7 +108,7 @@
         localStorage.removeItem('token');
         
         // Redireciona o usuário para a tela de login
-        window.location.href = "aluno-perfil.html"; // Redireciona para a tela de login
+        window.location.href = "../telas-aluno/aluno-perfil.html"; // Redireciona para a tela de login
 
 
     }

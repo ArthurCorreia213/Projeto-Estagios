@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="../css/css-empresa/area-nav-e.css">
     <link rel="stylesheet" href="../css/css-empresa/empresa-vagas.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <script>
+        function deslogar() {
+    // Remove o token armazenado no localStorage
+    localStorage.removeItem('token');
+    
+    // Redireciona o usuário para a tela de login
+    window.location.href = "../index.html"; // Redireciona para a tela de login
+
+
+}
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
 
@@ -21,8 +32,12 @@
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
         </div>
-        <div class="link-header">
-            <a href="empresa-dados.html"><img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt=""></a>
+        <div class="user-actions">
+            <button type="button" id="logoutButton" onclick="deslogar()"><img src="../imagens/icones/logout_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="sair"></button>
+            <a href="empresa-dados.html">
+                <img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt="">
+            </a>
+            
         </div>
     </header>
 

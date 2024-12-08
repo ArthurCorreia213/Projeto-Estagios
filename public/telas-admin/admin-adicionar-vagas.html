@@ -14,6 +14,17 @@
 	
 	<link rel="stylesheet" href="../css/css-admin/area-nav-adm.css">
     <title>Estágios SENAI MOOCA</title>
+    <script>
+        function deslogar() {
+    // Remove o token armazenado no localStorage
+    localStorage.removeItem('token');
+    
+    // Redireciona o usuário para a tela de login
+    window.location.href = "../index.html"; // Redireciona para a tela de login
+
+
+}
+</script>
 </head>
 <body>
 
@@ -21,6 +32,9 @@
         <div class="logo">
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
+        </div>
+        <div class="user-actions">
+            <button type="button" id="logoutButton" onclick="deslogar()"><img src="../imagens/icones/logout_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="sair"></button> 
         </div>
     </header>
 	
