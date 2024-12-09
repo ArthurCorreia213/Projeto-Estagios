@@ -36,7 +36,7 @@
                         <!-- 
                     NOME: -->
                         <div class="field">
-                            <label for="nome">Nome: <span>*</span></label>
+                            <label for="nome">Nome:</label>
                             <input type="text" id="nome" name="nome" disabled>
                         </div>
 <!-- 
@@ -67,34 +67,44 @@
 <!-- 
                         NASCIMENTO: -->
                         <div class="field">
-                            <label for="data-nascimento">Data de nascimento: <span>*</span></label>
+                            <label for="data-nascimento">Data de nascimento: </label>
                             <input type="text" id="data-nascimento" name="data-nascimento" disabled value="24/10/2004">
                         </div>
 <!-- 
                         Escolaridade: -->
                         <div class="field">
-                            <label for="escolaridade">Escolaridade: <span>*</span></label>
+                            <label for="escolaridade">Escolaridade: </label>
                             <input type="text" id="escolaridade" name="escolaridade" disabled>
                         </div>
 <!-- 
                         INSCRIÇAO NO CRUSO: -->
 
                         <div class="field">
-                            <label for="data_de_inicio">Data de Inscrição: <span>*</span></label>
+                            <label for="data_de_inicio">Data de Inscrição: </label>
                             <input type="text" id="data_de_inicio" name="data_de_inicio" disabled value="00/00/0000">
                         </div>
 <!-- 
                         ENDEREÇO: -->
 
                         <div class="field">
-                            <label class="label" for="rua">Rua:</label>
-                            <input class="input" type="text" id="rua" name="localizacao" disabled>
+                            <div class="r-n-c">
 
-                            <label class="label" for="numero">Numero:</label>
-                            <input class="input" type="text" id="numero" name="localizacao" disabled>
+                                <div>
+                                    <label class="label" for="rua">Rua:</label>
+                                    <input class="input" type="text" id="rua" name="localizacao" disabled>
+                                </div>
 
-                            <label class="label" for="complemento">Complemento:</label>
-                            <input class="input" type="text" id="complemento" name="localizacao" disabled>
+                                <div>
+                                    <label class="label" for="numero">Numero:</label>
+                                    <input class="input" type="text" id="numero" name="localizacao" disabled>
+                                </div>
+
+                                <div>
+                                    <label class="label" for="complemento">Complemento:</label>
+                                    <input class="input" type="text" id="complemento" name="localizacao" disabled>
+                                </div>
+
+                            </div>
 
                             <label class="label" for="estado">Estado:</label>
                             <input class="input" type="text" id="estado" name="localizacao" disabled> 
@@ -111,20 +121,20 @@
                     CURSO: -->
                     <div class="form-column">
                         <div class="field">
-                            <label for="curso">Curso Inscrito: <span>*</span></label>
+                            <label for="curso">Curso Inscrito: </label>
                             <input type="text" id="curso" name="curso" class="input" disabled>
                         </div>
 <!-- 
                         HORARIO DO CURSO: -->
                         <div class="field">
-                            <label for="horario">Horário do curso: <span>*</span></label>
+                            <label for="horario">Horário do curso: </label>
                             <input type="text" id="horario" name="horario" disabled value="MANHA">
                         </div>
 <!-- 
                         SEMESTRE DO CURSO: -->
 
                         <div class="field">
-                            <label for="semestre">Semestre atual: <span>*</span></label>
+                            <label for="semestre">Semestre atual: </label>
                             <input type="text" name="semestre" id="semestre"  disabled>
                         </div>
 						
@@ -186,7 +196,7 @@
         const token = localStorage.getItem('token');
         if (!token) {
             alert('Token não encontrado. Faça login para continuar.');
-            window.location.href = '../login.html'; // Redirecionar para login se necessário
+            window.location.href = '../login.html'; //Redirecionar para login se necessário
             return;
         }
 
@@ -233,6 +243,7 @@
 	    event.preventDefault(); 
 		
 		const token = localStorage.getItem('token');
+
         if (!token) {
             alert('Token não encontrado. Faça login para continuar.');
             window.location.href = '/login'; // Redirecionar para login se necessário
