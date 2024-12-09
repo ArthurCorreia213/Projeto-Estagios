@@ -212,9 +212,9 @@
             document.getElementById('telefone').value = decoded.user.Telefone;
             document.getElementById('email').value = decoded.user.Email;
             document.getElementById('cpf').value = decoded.user.CPF;
-            document.getElementById('data-nascimento').value = decoded.user.Data_Nascimento;
+            document.getElementById('data-nascimento').value = decoded.user.Data_Nascimento.slice(0,11);
             document.getElementById('escolaridade').value = decoded.user.Escolaridade;
-            document.getElementById('data_de_inicio').value = decoded.user.Data_De_Inicio;
+            document.getElementById('data_de_inicio').value = decoded.user.Data_De_Inicio.slice(0,11);
             document.getElementById('rua').value = decoded.user.Rua;
             document.getElementById('numero').value = decoded.user.Numero;
             document.getElementById('complemento').value = decoded.user.Complemento;
@@ -265,6 +265,10 @@
                 body: JSON.stringify(vaga) 
             }); 
             const message = await response.text();
+			
+			decoded.user.Habilidades = document.getElementById('habilidades').value
+			decoded.user.Experiencia = document.getElementById('experiencia').value
+			decoded.user.Sobre_Mim = document.getElementById('sobre_mim').value
         } catch (error) { 
             alert('Erro ao enviar dados: ' + error.message); 
         } 

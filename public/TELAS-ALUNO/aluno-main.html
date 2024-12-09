@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/footer.css">
 	
+	<script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+	
 	<script src="../scripts.js"></script>
 	
 
@@ -172,26 +174,26 @@
             async function carregarempresas() {
     try {
         const response = await fetch('/api/vagas');
-        if (!response.ok) throw new Error('Erro ao buscar empresas.');
+        if (!response.ok) throw new Error('Erro ao buscar vagas.');
 
-        const empresas = await response.json();
-        console.log(empresas); // Verifique os dados aqui
+        const vagas = await response.json();
+        console.log(vagas); // Verifique os dados aqui
         
         const tbody = document.getElementById('teste');
         tbody.innerHTML = ''; // Limpar o conteúdo atual
-        empresas.forEach(vagas => {
+        vagas.forEach(vaga => {
             const div = document.createElement('div');
             div.innerHTML = `
     <div id="container" style="background-color: #DCDCDC; width: 230px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-        <p id="card-titulo" style="font-size: 22px;">${vagas.Cargo}</p>
-        <p id="card-info" style="font-size: 16px; padding-top: 6px;">R$${vagas.Salario}</p>
-        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Contato}</p>
-        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Vagas}</p>
-        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Estado}</p>
+        <p id="card-titulo" style="font-size: 22px;">${vaga.Cargo}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">R$${vaga.Salario}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Contato}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Vagas}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Cidade}, ${vaga.Estado}</p>
 
 
         <div id="b-more-detail">
-            <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%; cursor: pointer;" onclick="carregarInfo('${vagas.Cargo}', '${vagas.Rua}', '${vagas.Numero}', '${vagas.Bairro}', '${vagas.Cidade}', '${vagas.Estado}','${vagas.Vagas}', '${vagas.Tempo_De_Contrato}', '${vagas.Horario}', '${vagas.Beneficios}', '${vagas.Requisitos}', '${vagas.Detalhes}')">Ver detalhes</button>
+            <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%; cursor: pointer;" onclick="carregarInfo('${vagas.Cargo}', '${vagas.Rua}', '${vagas.Numero}', '${vagas.Bairro}', '${vagas.Cidade}', '${vagas.Estado}','${vagas.Vagas}', '${vagas.Tempo_De_Contrato}', '${vagas.Horario}', '${vagas.Beneficios}', '${vagas.Requisitos}', '${vagas.Detalhes}, '${vagas.ID_Empresa}', '${vagas.ID_Vaga}'')">Ver detalhes</button>
         </div>
     </div>
             `;
@@ -199,12 +201,42 @@
         });
     } catch (error) {
         console.error(error);
-        alert('Erro ao carregar as empresas. Tente novamente mais tarde.' + error.message);
+        alert('Erro ao carregar as vagas. Tente novamente mais tarde.' + error.message);
     }
 }
 
+    document.getElementById('vagas-info-container').addEventListener('submit', async (event) => {
+        event.preventDefault();
+			
+		const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Token não encontrado. Faça login para continuar.');
+            window.location.href = '../login.html'; //Redirecionar para login se necessário
+            return;
+        }
 
+        try {
+            // Decodificar o token
+            const decoded = jwt_decode(token);
 
+            const produto = {
+				id_candidato = decoded.user.ID_Candidato,
+				id_vaga = selecionarID('${vagas.ID_Vaga}')
+            };
+
+            try {
+                const response = await fetch('/candidatar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(produto)
+                });
+                const message = await response.text();
+                alert(message);
+            } catch (error) {
+                alert('Erro ao enviar dados: ' + error.message);
+            }
+        });
+}
         window.onload = carregarempresas;
 
 

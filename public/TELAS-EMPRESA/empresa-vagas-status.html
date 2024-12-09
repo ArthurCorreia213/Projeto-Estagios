@@ -10,6 +10,38 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/css-empresa/vagas-status.css">
     <link rel="stylesheet" href="../css/css-empresa/area-nav-e.css">
+	<link rel="stylesheet" href="../css/modal.css">
+	
+	<script>
+	
+	// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+	
+	</script>
+		
     <script>
         function deslogar() {
     // Remove o token armazenado no localStorage
@@ -65,74 +97,96 @@
                 <p id="cabecalho-text">Aqui obtemos informações sobre as candidaturas registradas de forma geral:</p>
             </div>
 
-            <div id="vagas-cards">
-                <div id="vagas-info">
-                    <p id="vagas-titulo">Desenvolvimento de Sistemas</p>
-                    <p class="vagas-info-p">Padaria Seu Zé</p>
-                    <p class="vagas-info-p">Salario: R$980,00</p>
-                    <p class="vagas-info-p">São Paulo, SP</p>
-                    <p class="vagas-info-p">Vagas: 20</p>
-                </div>
+ <!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
 
-                <div id="vagas-botoes">
-                    <button class="vagas-b" popovertarget="popover-todoscand-1" id="btn-todos-candidatos">Todos os candidatos</button>
-                    <!-- <a class="vagas-b" href="http://" id="btn-melhores-candidatos">Melhores candidatos</a> -->
-                </div>
-            </div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
-                <div popover id="popover-todoscand-1" class="popover-candidatos">
-                    <h3>TODOS OS CANDIDATOS:</h3>
-                    <div class="tabelas-alunos">
-                        <table>
-                            <tr>
-                            <th>Identificador</th>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Celular</th>
-                            </tr>
-                            <tr>
-                            <td>001</td>
-                            <td>Roberto Carlos</td>
-                            <td>robertin184@email.com</td>
-                            <td>11 12345-1234</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
 
-            <div id="vagas-cards">
-                <div id="vagas-info">
-                    <p id="vagas-titulo">Desenvolvimento de Sistemas</p>
-                    <p class="vagas-info-p">Padaria Seu Zé</p>
-                    <p class="vagas-info-p">Salario: R$980,00</p>
-                    <p class="vagas-info-p">São Paulo, SP</p>
-                    <p class="vagas-info-p">Vagas: 20</p>
-                </div>
-
-                <div id="vagas-botoes">
-                    <a class="vagas-b" href="http://" id="btn-todos-candidatos">Todos os candidatos</a>
-                    <a class="vagas-b" href="http://" id="btn-melhores-candidatos">Melhores candidatos</a>
-                </div>
-            </div>
-            
-            <div id="vagas-cards">
-                <div id="vagas-info">
-                    <p id="vagas-titulo">Desenvolvimento de Sistemas</p>
-                    <p class="vagas-info-p">Padaria Seu Zé</p>
-                    <p class="vagas-info-p">Salario: R$980,00</p>
-                    <p class="vagas-info-p">São Paulo, SP</p>
-                    <p class="vagas-info-p">Vagas: 20</p>
-                </div>
-
-                <div id="vagas-botoes">
-                    <a class="vagas-b" href="http://" id="btn-todos-candidatos">Todos os candidatos</a>
-                    <a class="vagas-b" href="http://" id="btn-melhores-candidatos">Melhores candidatos</a>
-                </div>
-            </div>
+</div> 
 
         </article>
 
     </main>
+	
+	<script>
+            async function carregarempresas() {
+    try {
+        const response = await fetch('/api/vagas');
+        if (!response.ok) throw new Error('Erro ao buscar vagas.');
+
+        const vagas = await response.json();
+        console.log(vagas); // Verifique os dados aqui
+        
+        const tbody = document.getElementById('teste');
+        tbody.innerHTML = ''; // Limpar o conteúdo atual
+        vagas.forEach(vaga => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+    <div id="container" style="background-color: #DCDCDC; width: 230px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
+        <p id="card-titulo" style="font-size: 22px;">${vaga.Cargo}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">R$${vaga.Salario}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Contato}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Vagas}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Cidade}, ${vaga.Estado}</p>
+
+
+        <div id="b-more-detail">
+            <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%; cursor: pointer;" onclick="">Ver detalhes</button>
+        </div>
+    </div>
+            `;
+            tbody.appendChild(div);
+        });
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao carregar as vagas. Tente novamente mais tarde.' + error.message);
+    }
+}
+
+
+
+
+            async function carregarCandidaturas() {
+    try {
+        const response = await fetch('/candidatos-vaga');
+        if (!response.ok) throw new Error('Erro ao buscar candidaturas.');
+
+        const candidaturas = await response.json();
+        console.log(vagas); // Verifique os dados aqui
+        
+                // Selecionar o corpo da tabela
+                const tbody = document.querySelector('#empresas-table tbody');
+                tbody.innerHTML = ''; // Limpar o conteúdo atual
+    
+                // Iterar sobre os dados recebidos e criar linhas na tabela
+                empresas.forEach(candidato => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${candidato.Nome}</td>
+                        <td>${candidato.Escolaridade}</td>
+                        <td>${candidato.Telefone}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao carregar as vagas. Tente novamente mais tarde.' + error.message);
+    }
+}
+
+
+
+
+
+	window.onload = carregarempresas
+	</script>
 
     <footer>
         

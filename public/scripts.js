@@ -32,7 +32,7 @@
         }
     }
 	
-	    async function carregarInfo(cargo, rua, numero, bairro, cidade, estado, vagas, tempo, horario, beneficios, requisitos, detalhes) {
+	    async function carregarInfo(cargo, rua, numero, bairro, cidade, estado, vagas, tempo, horario, beneficios, requisitos, detalhes, id_vaga, id_empresa) {
         try {
             // const response = await fetch('/api/vagas');
             // const vagas = await response.json();
@@ -84,6 +84,10 @@
 					${detalhes}
                 </ul>
             </p>
+			
+			<p id="detalhes">
+				<button id="selecionarID('${id_vaga}')"></button>
+            </p>
             `;
 
             container.appendChild(card);
@@ -92,3 +96,8 @@
             console.error('Erro ao carregar vagas:', error);
         }
     }
+	
+	function selecionarID(id) {
+		return id
+		alert(id)
+	}

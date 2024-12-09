@@ -113,6 +113,11 @@ body {
     transition: all 0.3s ease;
 }
 
+#habilidades, #experiencia, #sobre_mim{
+	height:80px;
+	/* padding:0px 0px; */
+}
+
 button {
     padding: 10px 20px;
     font-size: 14px;

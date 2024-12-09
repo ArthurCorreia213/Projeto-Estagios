@@ -536,3 +536,42 @@ app.get('/api/vagas-empresa-selecionada', async (req, res) => {
 //         return res.status(401).send('Token inválido.');
 //     }
 // });
+
+app.post('/candidatar', async (req, res) => {
+    const { id_vaga, id_candidato } = req.body;
+
+    try {
+        // Conectar ao banco de dados
+        const pool = await sql.connect(dbConfig);
+
+        // Consultar o usuário no banco
+        const result = await pool.request()
+			.input('id_vaga', sql.Int, id_vaga)
+			.input('id_candidato', sql.Int, id_candidato)
+			.query('INSERT INTO Candidaturas (ID_Candidato, ID_Vaga) VALUES (@id_candidato, @id_vaga)')
+
+        return res.status(200).json({ message: 'Candidatura enviada'});
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        return res.status(500).json({ message: 'Erro interno no servidor' });
+    }
+});
+
+app.post('/candidatos-vaga', async (req, res) => {
+    const { id_vaga } = req.body;
+
+    try {
+        // Conectar ao banco de dados
+        const pool = await sql.connect(dbConfig);
+
+        // Consultar o usuário no banco
+        const result = await pool.request()
+			.input('id_vaga', sql.Int, id_vaga)
+			.query('SELECT * FROM Candidaturas INNER JOIN Candidatos ON Candidatos.ID_Candidato = Candidaturas.ID_Candidato LEFT JOIN Cursos ON Candidatos.ID_Curso = Cursos.ID_Curso')
+
+        return res.status(200).json({ message: 'Candidatura enviada'});
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        return res.status(500).json({ message: 'Erro interno no servidor' });
+    }
+});
