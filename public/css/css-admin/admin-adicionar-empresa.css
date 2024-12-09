@@ -1,4 +1,4 @@
-body {
+.botoes-card {
     margin: 0;
     padding: 0;
     background-color: #E6E6E6;
@@ -79,4 +79,112 @@ input{
 .buttons>button:hover{
     cursor: pointer;
     transform: scale(1.05); 
+}
+
+.card{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 35%;
+    height: 40%;
+
+    display: none;
+
+    border-radius: 8px;
+
+    border: 1px solid #000;
+
+    transition: 0.5s ease-in-out;
+
+    & .logo-senai{
+        display: flex;
+        align-items: center;
+
+        width: 30%;
+        height: 100%;
+
+        background-color: #FF0000;
+
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+
+        & img{
+            width: 100%;
+
+            background-color: #FF0000;
+        }
+    }
+
+    & .informacoes-direita{
+        display: flex;
+        align-items: center;
+
+        flex-direction: column;
+
+        width: 70%;
+
+        background-color: #fff;
+
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+
+        & img{
+            width: 50%;
+        }
+
+        & p{
+            font-size: 2em;
+
+            text-shadow: -3px 3px 3px #00000033;
+        }
+
+        & .botoes-card{
+            width: 100%;
+
+            background-color: #fff;
+
+            display: flex;
+            justify-content: space-around;
+
+
+            & button{
+                width: 30%;
+                font-size: 1.4em;
+
+                border-radius: 0.2em;
+
+                padding: 0.3em;
+
+                border: transparent;
+            }
+            
+            & #voltar-btn{
+                background-color: #B91D32;
+                color: #fff;
+            }
+
+            & #continuar-btn{
+                background-color: #105F00;
+                color: #fff;
+            }
+
+            & a{
+                background-color: #fff;
+                width: 30%;
+
+                & button{
+                    width: 100%;
+                }
+            }
+
+            & button:hover{
+                scale: 1.1;
+                cursor: pointer;
+                filter: brightness(90%);
+            }
+        }
+    }
 }

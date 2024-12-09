@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../css/css-empresa/area-nav-e.css">
     <link rel="stylesheet" href="../css/css-empresa/empresa-vagas.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <script src="../scripts.js"></script>
+
+    <link rel="stylesheet" href="../css/modal.css">
     <script>
         function deslogar() {
     // Remove o token armazenado no localStorage
@@ -27,6 +30,7 @@
     <title>Estágios SENAI MOOCA</title>
 </head>
 <body>
+    
     <header>
         <div class="logo">
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
@@ -51,7 +55,6 @@
             <div class="links-navbar">
                 <a href="empresa-vagas.html" class="botao-navbar links-n"><b>Vagas</b></a>
                 <a href="empresa-adicionar-vaga.html" class="botao-navbar links-n"><b>Anunciar Vagas</b></a>
-                <a href="empresa-vagas-status.html" class="botao-navbar links-n"><b>Status</b></a>
             </div>
         </div>
     </div>
@@ -60,21 +63,24 @@
 
         <div class="SUB-HEADER">
             <h3>Estas são as vagas de sua empresa em nosso sistema:</h3>
-            <div class="botao">
-                <a href="empresa-vagas-status.html"><button type="button">STATUS</button></a>
-            </div>
         </div>
 
         <div id="VAGAS-EMPRESA">
             
-        <div class="CARDS">
-            
+            <div class="CARDS">
+                
+            </div>
 
-
-        </main>
-        </div>
         </div>
 
+        <div id="candidatos-modal" class="hidden">
+            <div class="modal-content">
+                <h2>Candidatos</h2>
+                <button id="fechar-modal" class="close-button">Fechar</button>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+        
     </article>
 
 
@@ -144,7 +150,7 @@
                 card.className = 'card';
 
                 card.innerHTML = `
-                <div id="container" style="background-color: #DCDCDC; width: 200px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
+                <div id="container" style="background-color: #DCDCDC; width: 230px; height: 320px; border: 2px solid #827D7E; padding: 20px;">
                 <p id="card-titulo" style="font-size: 22px;">${vaga.Cargo}</p>
         
                 <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Nome}</p>
@@ -152,19 +158,143 @@
                 <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Cidade}, ${vaga.Estado}</p>
                 <p id="card-info" style="font-size: 16px; padding-top: 6px;">Vagas: ${vaga.Vagas}</p>
         
-                <button onclick="carregarInfo()" style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">Ver detalhes</button>
+               <button onclick="carregarcandvaga(${vaga.ID_Vaga})" 
+                style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%;">
+                Ver detalhes
+                </button>
+
+
+
 				</div>
+
                 `;
 
                 container.appendChild(card);
-            });
+            });     
+            
     
             } catch (error) {
                 console.error('Erro:', error.message);
                 document.getElementById('result').textContent = `Erro: ${error.message}`;
             }
         }
+
+        async function carregarcandvaga(idVaga) {
+    try {
+        const response = await fetch(`/api/candidatos-vaga?id_vaga=${idVaga}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`, 
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar os candidatos.');
+        }
+
+        const candidatos = await response.json();
+        exibirCandidatos(candidatos);
+    } catch (error) {
+        console.error('Erro:', error.message);
+    }
+}
+
     
+
+// Função para exibir o modal e listar os candidatos
+function exibirCandidatos(candidatos) {
+    const modal = document.getElementById('candidatos-modal'); 
+    const modalBody = document.getElementById('modal-body');
+
+    // Remove a classe 'hidden' para exibir o modal
+    modal.classList.remove('hidden'); 
+
+    // Limpa o conteúdo anterior
+    modalBody.innerHTML = '';
+
+    // Adiciona os candidatos no modal
+    candidatos.forEach(candidato => {
+        const candidatoDiv = document.createElement('div');
+        candidatoDiv.classList.add('candidato-info'); 
+        candidatoDiv.innerHTML = `
+            <p><strong>Nome:</strong> ${candidato.Nome}</p>
+            <p><strong>Email:</strong> ${candidato.Email}</p>
+            <p><strong>Telefone:</strong> ${candidato.Telefone}</p>
+            <p><strong>Curso:</strong> ${candidato.Curso}</p>
+            <hr>
+        `;
+        modalBody.appendChild(candidatoDiv);
+    });
+}
+
+// Função para fechar o modal
+function fecharModal() {
+    const modal = document.getElementById('candidatos-modal');
+    modal.classList.add('hidden'); // Adiciona a classe 'hidden' para ocultar o modal
+}
+
+// Evento para fechar o modal ao clicar no botão "Fechar"
+document.getElementById('fechar-modal').addEventListener('click', fecharModal);
+
+// Evento para fechar o modal ao clicar fora do conteúdo do modal
+document.getElementById('candidatos-modal').addEventListener('click', (e) => {
+    const modalContent = document.querySelector('.modal-content');
+    
+    // Verifica se o clique foi fora do conteúdo do modal
+    if (!modalContent.contains(e.target)) {
+        fecharModal();
+    }
+});
+
+
+
+
+
+function exibirCandidatos(candidatos) {
+    const modal = document.getElementById('candidatos-modal'); 
+    const modalBody = document.getElementById('modal-body');
+    
+    // Exibe o modal
+    modal.classList.remove('hidden'); 
+
+    // Limpa o conteúdo anterior
+    modalBody.innerHTML = '';
+
+    // Adiciona os candidatos no modal
+    candidatos.forEach(candidato => {
+        const candidatoDiv = document.createElement('div');
+        candidatoDiv.classList.add('candidato-info'); // Classe opcional para aplicar estilo
+        candidatoDiv.innerHTML = `
+            <p><strong>Nome:</strong> ${candidato.Nome}</p>
+            <p><strong>Email:</strong> ${candidato.Email}</p>
+            <p><strong>Telefone:</strong> ${candidato.Telefone}</p>
+            <p><strong>Curso:</strong> ${candidato.Curso}</p>
+            <hr>
+        `;
+        modalBody.appendChild(candidatoDiv);
+    });
+}
+
+function fecharModal() {
+    const modal = document.getElementById('candidatos-modal');
+    modal.classList.add('hidden'); // Oculta o modal
+}
+
+// Adiciona o evento de clique no botão de fechar
+document.getElementById('fechar-modal').addEventListener('click', fecharModal);
+
+// Fechar modal ao clicar fora do conteúdo (ou seja, no "fundo escuro")
+document.getElementById('candidatos-modal').addEventListener('click', (e) => {
+    const modalContent = document.querySelector('.modal-content');
+    if (!modalContent.contains(e.target)) {
+        fecharModal();
+    }
+});
+
+
+
+
+
         // Executa a função quando a página carregar
         window.onload = fetchDataOnLoad;
     </script>

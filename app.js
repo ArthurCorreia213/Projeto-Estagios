@@ -66,6 +66,17 @@ app.get('/api/candidatos', async (req, res) => {
     }
 })
 
+app.get('/api/vagas-inicial', async (req, res) => {
+    try {
+        const pool = await sql.connect(dbConfig);
+        const result = await pool.request().query('SELECT TOP(3)* FROM Vagas JOIN Endereco on vagas.ID_Endereco = Endereco.ID_Endereco');
+        res.json(result.recordset); // Retorna os alunos no formato JSON
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Erro ao buscar vagas.' + err.message);
+    }
+})
+
 app.get('/api/vagas', async (req, res) => {
     try {
         const pool = await sql.connect(dbConfig);
@@ -280,6 +291,7 @@ app.post('/add_candidato', async (req, res) => {
     const { nome, telefone, data_nascimento, escolaridade, data_de_inicio, cpf } = req.body;
     const { rua, cidade, estado, numero, complemento } = req.body;
     const { email, senha, categoria_login } = req.body
+    const { curso, horario } = req.body
 
     try {
         // Conectar ao banco de dados
@@ -312,6 +324,13 @@ app.post('/add_candidato', async (req, res) => {
 		} catch (error) {
 			return res.status(500).json({ error: 'Erro ao verificar o email.' });
 		}		
+
+        const resultCurso = await transaction.request()
+        .input('curso', sql.VarChar, curso)
+        .input('horario', sql.VarChar, horario)
+        .query(`SELECT ID_Curso FROM Curso WHERE Nome_Curso = @curso AND Horario = @horario`)
+
+        const ID_Curso = resultCurso.recordset[0].ID_Curso
 
         const resultLogin = await transaction.request()
         .input('email', sql.VarChar, email)
@@ -346,8 +365,9 @@ app.post('/add_candidato', async (req, res) => {
             .input('cpf', sql.NVarChar, cpf)
             .input('ID_Endereco', sql.Int, ID_Endereco)
             .input('ID_Login', sql.Int, ID_Login)
-            .query(`INSERT INTO Candidatos (Nome, Telefone, Data_Nascimento, Escolaridade, Data_De_Inicio, CPF, ID_Endereco, ID_Login)
-                    VALUES (@Nome, @Telefone, @Data_Nascimento, @Escolaridade, @Data_De_Inicio, @CPF, @ID_Endereco, @ID_Login)`);
+            .input('ID_Curso', sql.Int, ID_Curso)
+            .query(`INSERT INTO Candidatos (Nome, Telefone, Data_Nascimento, Escolaridade, Data_De_Inicio, CPF, ID_Endereco, ID_Login, ID_Curso)
+                    VALUES (@Nome, @Telefone, @Data_Nascimento, @Escolaridade, @Data_De_Inicio, @CPF, @ID_Endereco, @ID_Login, @ID_Curso)`);
 
         // Confirmar a transação
         await transaction.commit();
@@ -430,7 +450,7 @@ app.post('/login', async (req, res) => {
         // Consultar o usuário no banco
         const result = await pool.request()
             .input('email', sql.VarChar, email)
-            .query('SELECT Login.*, Empresas.*, Candidatos.*, Endereco.*  FROM Login LEFT JOIN Empresas ON Login.ID_Login = Empresas.ID_Login LEFT JOIN Candidatos ON Login.ID_Login = Candidatos.ID_Login LEFT JOIN Endereco ON Candidatos.ID_Endereco =  Endereco.ID_Endereco WHERE Login.Email = @email AND (Empresas.ID_Login IS NOT NULL OR Candidatos.ID_Login IS NOT NULL);');
+            .query('SELECT Login.*, Empresas.*, Candidatos.*, Endereco.*, Curso.*  FROM Login LEFT JOIN Empresas ON Login.ID_Login = Empresas.ID_Login LEFT JOIN Candidatos ON Login.ID_Login = Candidatos.ID_Login LEFT JOIN Endereco ON Candidatos.ID_Endereco =  Endereco.ID_Endereco  LEFT JOIN Curso ON Candidatos.ID_Curso = Curso.ID_Curso WHERE Login.Email = @email AND (Empresas.ID_Login IS NOT NULL OR Candidatos.ID_Login IS NOT NULL);');
 
         const user = result.recordset[0];
 
@@ -557,21 +577,46 @@ app.post('/candidatar', async (req, res) => {
     }
 });
 
-app.post('/candidatos-vaga', async (req, res) => {
-    const { id_vaga } = req.body;
+// app.get('/candidatos-vaga', async (req, res) => {
+//     const { id_vaga } = req.body;
+
+//     try {
+//         // Conectar ao banco de dados
+//         const pool = await sql.connect(dbConfig);
+
+//         // Consultar o usuário no banco
+//         const result = await pool.request()
+// 			.input('id_vaga', sql.Int, id_vaga)
+// 			.query('SELECT * FROM Candidaturas INNER JOIN Candidatos ON Candidatos.ID_Candidato = Candidaturas.ID_Candidato LEFT JOIN Curso ON Candidatos.ID_Curso = Curso.ID_Curso WHERE Candidaturas.ID_Vaga = @id_vaga')
+
+//         return res.status(200).json({ message: 'Candidatura enviada'});
+//     } catch (error) {
+//         console.error('Erro ao fazer login:', error);
+//         return res.status(500).json({ message: 'Erro interno no servidor' });
+//     }
+// });
+
+app.get('/api/candidatos-vaga', async (req, res) => {
+    const { id_vaga } = req.query; // Receber o ID da vaga por query params
 
     try {
-        // Conectar ao banco de dados
         const pool = await sql.connect(dbConfig);
 
-        // Consultar o usuário no banco
+        // Consulta para buscar candidatos da vaga específica
         const result = await pool.request()
-			.input('id_vaga', sql.Int, id_vaga)
-			.query('SELECT * FROM Candidaturas INNER JOIN Candidatos ON Candidatos.ID_Candidato = Candidaturas.ID_Candidato LEFT JOIN Cursos ON Candidatos.ID_Curso = Cursos.ID_Curso')
+            .input('id_vaga', sql.Int, id_vaga)
+            .query(`
+                SELECT *
+                FROM Candidaturas 
+                INNER JOIN Candidatos ON Candidatos.ID_Candidato = Candidaturas.ID_Candidato 
+                LEFT JOIN Curso ON Candidatos.ID_Curso = Curso.ID_Curso 
+                LEFT JOIN Login ON Candidatos.ID_Login = Login.ID_Login
+                WHERE Candidaturas.ID_Vaga = @id_vaga
+            `);
 
-        return res.status(200).json({ message: 'Candidatura enviada'});
+        res.status(200).json(result.recordset); // Retorna os candidatos
     } catch (error) {
-        console.error('Erro ao fazer login:', error);
-        return res.status(500).json({ message: 'Erro interno no servidor' });
+        console.error('Erro ao buscar candidatos:', error);
+        res.status(500).json({ message: 'Erro ao buscar candidatos' });
     }
 });

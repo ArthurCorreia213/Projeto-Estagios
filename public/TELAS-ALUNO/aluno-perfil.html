@@ -208,19 +208,19 @@
             alert(decoded.user.Nome)
 
             // Preencher os campos do formulário com os dados do token
-            document.getElementById('nome').value = decoded.user.Nome;
-            document.getElementById('telefone').value = decoded.user.Telefone;
-            document.getElementById('email').value = decoded.user.Email;
+            document.getElementById('nome').value = decoded.user.Nome.slice(1);
+            document.getElementById('telefone').value = decoded.user.Telefone.slice(1);
+            document.getElementById('email').value = decoded.user.Email.slice();
             document.getElementById('cpf').value = decoded.user.CPF;
-            document.getElementById('data-nascimento').value = decoded.user.Data_Nascimento.slice(0,11);
+            document.getElementById('data-nascimento').value = decoded.user.Data_Nascimento.slice(0,10);
             document.getElementById('escolaridade').value = decoded.user.Escolaridade;
-            document.getElementById('data_de_inicio').value = decoded.user.Data_De_Inicio.slice(0,11);
+            document.getElementById('data_de_inicio').value = decoded.user.Data_De_Inicio.slice(0,10);
             document.getElementById('rua').value = decoded.user.Rua;
             document.getElementById('numero').value = decoded.user.Numero;
             document.getElementById('complemento').value = decoded.user.Complemento;
             document.getElementById('estado').value = decoded.user.Estado;
             document.getElementById('cidade').value = decoded.user.Cidade;
-            document.getElementById('curso').value = decoded.user.Curso;
+            document.getElementById('curso').value = decoded.user.Nome_Curso;
             document.getElementById('horario').value = decoded.user.Horario;
             document.getElementById('semestre').value = decoded.user.Semestre;
             document.getElementById('habilidades').value = decoded.user.Habilidades;

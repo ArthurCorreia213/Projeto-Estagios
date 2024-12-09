@@ -48,7 +48,6 @@
             <div class="links-navbar">
                 <a href="empresa-vagas.html" class="botao-navbar links-n"><b>Vagas</b></a>
                 <a href="empresa-adicionar-vaga.html" class="botao-navbar links-n"><b>Anunciar Vagas</b></a>
-                <a href="empresa-vagas-status.html" class="botao-navbar links-n"><b>Status</b></a>
             </div>
         </div>
     </div>
@@ -57,19 +56,19 @@
         <div class="container">
             <div class="row">
                 <div class="label">Empresa:</div>
-                <div class="data" id="empresa">[Dado da Empresa]</div>
+                <div class="data" id="empresa"></div>
             </div>
             <div class="row">
                 <div class="label">CNPJ:</div>
-                <div class="data" id="cnpj">[Dado do CNPJ]</div>
+                <div class="data" id="cnpj"></div>
             </div>
             <div class="row">
                 <div class="label">Email:</div>
-                <div class="data" id="email">[Email]</div>
+                <div class="data" id="email"></div>
             </div>
             <div class="row">
                 <div class="label">Telefone:</div>
-                <div class="data" id="telefone">[Telefone]</div>
+                <div class="data" id="telefone"></div>
             </div>
 
             <div class="button-container">
@@ -102,12 +101,12 @@
         try {
             // Decodificar o token
             const decoded = jwt_decode(token);
-
+            
             // Preencher os campos do formulário com os dados do token
-            document.getElementById('empresa').innerHTML = decoded.user.nome || '';
-            document.getElementById('cnpj').innerHTML = decoded.user.telefone || '';
-            document.getElementById('email').innerHTML = decoded.user.email || '';
-            document.getElementById('telefone').innerHTML = decoded.user.cpf || '';
+            document.getElementById('empresa').innerHTML = decoded.user.Nome || '';
+            document.getElementById('cnpj').innerHTML = decoded.user.CNPJ || '';
+            document.getElementById('email').innerHTML = decoded.user.Email || '';
+            document.getElementById('telefone').innerHTML = decoded.user.Telefone || '';
         } catch (error) {
             console.error('Erro ao decodificar o token:', error);
             alert('Erro ao processar os dados do token. Tente novamente.');
@@ -116,6 +115,8 @@
 
     // Chamar a função ao carregar a página
     window.onload = preencherFormularioComToken;
+
+    
 </script>
 
 	

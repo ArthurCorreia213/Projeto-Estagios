@@ -13,18 +13,8 @@
 	<link rel="stylesheet" href="../css/css-admin/navegacao-alertas.css">
 	
 	<link rel="stylesheet" href="../css/css-admin/area-nav-adm.css">
+    <link rel="stylesheet" href="../css/card-alert.css">
     <title>Estágios SENAI MOOCA</title>
-    <script>
-        function deslogar() {
-    // Remove o token armazenado no localStorage
-    localStorage.removeItem('token');
-    
-    // Redireciona o usuário para a tela de login
-    window.location.href = "../index.html"; // Redireciona para a tela de login
-
-
-}
-</script>
 </head>
 <body>
 
@@ -41,7 +31,7 @@
     <div id="admin-navbar">
         <div class="container-navbar">
             <div class="nav-not-hom">
-                <a href="admin-alertas-vagas.html" class="botao-navbar" id="botao-notificacoes">
+                <a href="admin-alertas-empresa.html" class="botao-navbar" id="botao-notificacoes">
                     <img src="../imagens/icones/icone-notificacao.svg" id="icone-notificacoes" alt="Notificações">
                 </a>
                 <a href="admin-main.html" class="botao-navbar" id="botao-home">
@@ -152,16 +142,70 @@
     
                 <div class="coluna-2">
                     <div class="buttons">
-                        <button type="submit" class="save">SALVAR</button>
+                        <button type="submit" class="save" id="salvar5">SALVAR</button>
                         <button type="reset" class="cancel">CANCELAR</button>
                     </div>
                 </div>
     
             </form>
         </div>
+
+        <div class="card">
+            <div class="logo-senai">
+                <!-- <img src="../imagens/gerais/LOGO.svg" alt="logo_senai"> -->
+                <img src="../imagens/gerais/card-logo.svg" alt="">
+            </div>
+    
+    
+            <div class="informacoes-direita">
+                <img src="../imagens/icones/carta-confirmar.svg" alt="">
+    
+                <p class="texto-adicionar">Empresa adicionada</p>
+    
+                <div class="botoes-card">
+                    <button id="continuar-btn">Continuar</button>
+                    <button id="voltar-btn">Voltar</button>
+                </div>
+            </div>
+        </div>
     </article>
     
+    <script>
+        function deslogar() {
+    // Remove o token armazenado no localStorage
+    localStorage.removeItem('token');
+    
+    // Redireciona o usuário para a tela de login
+    window.location.href = "../index.html"; // Redireciona para a tela de login
+    
 
+    document.getElementById('salvar5').addEventListener('click', function(){
+            const salvar = document.getElementsByClassName("card")[0]
+            salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none'
+            
+            // const escurecer = document.getElementById('escurecer');
+            
+            // // Alterna o filtro de brilho para o container com o id escurecer
+            // if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
+            //     escurecer.style.filter = 'brightness(80%)';
+            // } else {
+            //     escurecer.style.filter = 'brightness(100%)';
+            // }
+        })
+
+        document.getElementById('continuar-btn').addEventListener('click', function() {
+            const continuar = document.getElementsByClassName("card")[0];
+            const form = document.getElementById('EmpresaForm');
+
+            // Esconde o card
+            continuar.style.display = 'none';
+
+            // Reseta o formulário
+            form.reset();
+        });
+
+}
+</script>
 
     <footer>
         <div id="texto">

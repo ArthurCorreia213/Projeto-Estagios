@@ -99,7 +99,7 @@
             <div class="sub-header">
                 <h1 id="cabecalho-title">Para a sua empresa</h1>
                 <p id="cabecalho-text">Gostaria de divulgar suas vagas para alunos do SENAI? Basta se cadastrar!</p>
-                <a href="login.html"><button id="cabecalho-login" href="login.html">Faça Login ou Cadastre-se para divulgar vagas</button></a>
+                <a href="TELAS-LOGIN/cadastro.html"><button id="cabecalho-login" href="TELAS-LOGIN/cadastro.html">Cadastre-se para divulgar vagas</button></a>
             </div>
         </article>
 		</div class = "teste">
@@ -169,7 +169,7 @@
 
             async function carregarempresas() {
     try {
-        const response = await fetch('/api/vagas');
+        const response = await fetch('/api/vagas-inicial');
         if (!response.ok) throw new Error('Erro ao buscar empresas.');
 
         const empresas = await response.json();

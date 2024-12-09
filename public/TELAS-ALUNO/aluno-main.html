@@ -48,7 +48,7 @@
     </style>
 
 </head>
-<body>
+<body id="body">
     <header>
         <div class="logo">
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
@@ -115,7 +115,7 @@
 
     }
 
-			carregarVagas()
+			// carregarVagas()
 			
     window.addEventListener('scroll', () => {
         const vagasContainer = document.getElementById('vagas-container');
@@ -181,19 +181,19 @@
         
         const tbody = document.getElementById('teste');
         tbody.innerHTML = ''; // Limpar o conteúdo atual
-        vagas.forEach(vaga => {
+        vagas.forEach(vagas => {
             const div = document.createElement('div');
             div.innerHTML = `
     <div id="container" style="background-color: #DCDCDC; width: 230px; height: 300px; border: 2px solid #827D7E; padding: 20px;">
-        <p id="card-titulo" style="font-size: 22px;">${vaga.Cargo}</p>
-        <p id="card-info" style="font-size: 16px; padding-top: 6px;">R$${vaga.Salario}</p>
-        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Contato}</p>
-        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Vagas}</p>
-        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vaga.Cidade}, ${vaga.Estado}</p>
+        <p id="card-titulo" style="font-size: 22px;">${vagas.Cargo}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">R$${vagas.Salario}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Contato}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Vagas}</p>
+        <p id="card-info" style="font-size: 16px; padding-top: 6px;">${vagas.Cidade}, ${vagas.Estado}</p>
 
 
         <div id="b-more-detail">
-            <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%; cursor: pointer;" onclick="carregarInfo('${vagas.Cargo}', '${vagas.Rua}', '${vagas.Numero}', '${vagas.Bairro}', '${vagas.Cidade}', '${vagas.Estado}','${vagas.Vagas}', '${vagas.Tempo_De_Contrato}', '${vagas.Horario}', '${vagas.Beneficios}', '${vagas.Requisitos}', '${vagas.Detalhes}, '${vagas.ID_Empresa}', '${vagas.ID_Vaga}'')">Ver detalhes</button>
+            <button style="background-color: #827D7E; color: #FFF; margin-left: 25%; margin-top: 10%; cursor: pointer;" onclick="carregarInfo('${vagas.Cargo}', '${vagas.Rua}', '${vagas.Numero}', '${vagas.Bairro}', '${vagas.Cidade}', '${vagas.Estado}','${vagas.Vagas}', '${vagas.Tempo_De_Contrato}', '${vagas.Horario}', '${vagas.Beneficios}', '${vagas.Requisitos}', '${vagas.Detalhes}', '${vagas.ID_Vaga}')">Ver detalhes</button>
         </div>
     </div>
             `;
@@ -205,38 +205,71 @@
     }
 }
 
-    document.getElementById('vagas-info-container').addEventListener('submit', async (event) => {
-        event.preventDefault();
-			
-		const token = localStorage.getItem('token');
-        if (!token) {
-            alert('Token não encontrado. Faça login para continuar.');
-            window.location.href = '../login.html'; //Redirecionar para login se necessário
-            return;
-        }
+async function candidatarVaga() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Token não encontrado. Faça login para continuar.');
+        window.location.href = '../login.html'; // Redirecionar para login se necessário
+        return;
+    }
 
-        try {
-            // Decodificar o token
-            const decoded = jwt_decode(token);
+    // Decodificar o token para obter o ID do candidato
+    const decoded = jwt_decode(token);
+    const produto = {
+        id_candidato: decoded.user.ID_Candidato,
+        id_vaga: idVagaSelecionada // Utiliza o valor global de idVagaSelecionada
+    };
 
-            const produto = {
-				id_candidato = decoded.user.ID_Candidato,
-				id_vaga = selecionarID('${vagas.ID_Vaga}')
-            };
+    alert(`Enviando a candidatura:\nID Candidato: ${produto.id_candidato}\nID Vaga: ${produto.id_vaga}`);
 
-            try {
-                const response = await fetch('/candidatar', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(produto)
-                });
-                const message = await response.text();
-                alert(message);
-            } catch (error) {
-                alert('Erro ao enviar dados: ' + error.message);
-            }
+    try {
+        const response = await fetch('/candidatar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(produto)
         });
+        const message = await response.text();
+        alert(message);
+    } catch (error) {
+        alert('Erro ao enviar dados: ' + error.message);
+    }
 }
+
+
+    // document.getElementById('body').addEventListener('submit', async (event) => {
+    //     event.preventDefault();
+			
+	// 	const token = localStorage.getItem('token');
+    //     if (!token) {
+    //         alert('Token não encontrado. Faça login para continuar.');
+    //         window.location.href = '../login.html'; //Redirecionar para login se necessário
+    //         return;
+    //     }
+
+
+    //         // Decodificar o token
+    //         const decoded = jwt_decode(token);
+
+    //         const produto = {
+	// 			id_candidato : decoded.user.ID_Candidato,
+	// 			id_vaga : idVagaSelecionada
+    //         };
+
+    //         alert(JSON.stringify(produto))
+
+    //         try {
+    //             const response = await fetch('/candidatar', {
+    //                 method: 'POST',
+    //                 headers: { 'Content-Type': 'application/json' },
+    //                 body: JSON.stringify(produto)
+    //             });
+    //             const message = await response.text();
+    //             alert(message);
+    //         } catch (error) {
+    //             alert('Erro ao enviar dados: ' + error.message);
+    //         }
+    //     });
+
         window.onload = carregarempresas;
 
 

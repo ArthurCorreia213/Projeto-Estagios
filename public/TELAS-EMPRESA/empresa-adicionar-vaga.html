@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/css-empresa/adicionar-vaga.css">
     <link rel="stylesheet" href="../css/css-empresa/area-nav-e.css">
+    <!-- <link rel="stylesheet" href="../css/card-alert.css"> -->
 
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script>
@@ -19,10 +20,8 @@
     
     // Redireciona o usuário para a tela de login
     window.location.href = "../index.html"; // Redireciona para a tela de login
-
-
-}
-</script>
+    }
+    </script>
     
     <title>Estágios SENAI MOOCA</title>
 </head>
@@ -51,7 +50,6 @@
             <div class="links-navbar">
                 <a href="empresa-vagas.html" class="botao-navbar links-n"><b>Vagas</b></a>
                 <a href="empresa-adicionar-vaga.html" class="botao-navbar links-n"><b>Anunciar Vagas</b></a>
-                <a href="empresa-vagas-status.html" class="botao-navbar links-n"><b>Status</b></a>
             </div>
         </div>
     </div>
@@ -215,7 +213,7 @@ que é a mesma da tela do adm -->
     
                 <div class="coluna-2">
                     <div class="buttons">
-                        <input type="submit" class="save" value="SALVAR">
+                        <input type="submit" class="save" value="SALVAR" id="salvar5">
                         <button type="reset" class="cancel">CANCELAR</button>
                     </div>
                 </div>
@@ -223,6 +221,25 @@ que é a mesma da tela do adm -->
             </form>
         </div>
     </article>
+
+    <div class="card">
+        <div class="logo-senai">
+            <!-- <img src="../imagens/gerais/LOGO.svg" alt="logo_senai"> -->
+            <img src="../imagens/gerais/card-logo.svg" alt="">
+        </div>
+
+
+        <div class="informacoes-direita">
+            <img src="../imagens/icones/carta-confirmar.svg" alt="">
+
+            <p class="texto-adicionar">Vaga adicionada</p>
+
+            <div class="botoes-card">
+                <button id="continuar-btn">Continuar</button>
+                <a href="empresa-vagas.html"><button id="voltar-btn">Voltar</button></a>
+            </div>
+        </div>
+    </div>
 
     
     <footer>
@@ -337,13 +354,41 @@ que é a mesma da tela do adm -->
                     body: JSON.stringify(vaga) 
                 }); 
                 const message = await response.text(); 
-                alert(message); 
+                // alert(message); 
             } catch (error) { 
                 alert('Erro ao enviar dados: ' + error.message); 
             } 
         }); 
+
+
+        document.getElementById('salvar5').addEventListener('click', function() {
+            console.log('Botão SALVAR clicado!');
+            const salvar = document.getElementsByClassName('card')[0];
+            salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none';
+        
+            // const escurecer = document.getElementById('vagaForm');
+            
+            // // Alterna o filtro de brilho para o container com o id escurecer
+            // if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
+            //     escurecer.style.filter = 'brightness(80%)';
+            // } else {
+            //     escurecer.style.filter = 'brightness(100%)';
+            // }
+        
+        });
+
+
+        document.getElementById('continuar-btn').addEventListener('click', function() {
+            const continuar = document.getElementsByClassName("card")[0];
+            const form = document.getElementById('EmpresaForm');
+
+            // Esconde o card
+            continuar.style.display = 'none';
+
+            // Reseta o formulário
+            form.reset();
+        });
     </script>
 
 </body>
 </html>
-

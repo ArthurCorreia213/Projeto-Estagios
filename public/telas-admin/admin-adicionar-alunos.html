@@ -13,7 +13,9 @@
 	<link rel="stylesheet" href="../css/css-admin/navegacao-alertas.css">
 	
 	<link rel="stylesheet" href="../css/css-admin/area-nav-adm.css">
+    <link rel="stylesheet" href="../css/card-alert.css">
     <title>Estágios SENAI MOOCA</title>
+
     <script>
         function deslogar() {
     // Remove o token armazenado no localStorage
@@ -25,6 +27,7 @@
 
 }
 </script>
+
 </head>
 <body id="escurecer">
 
@@ -42,7 +45,7 @@
     <div id="admin-navbar">
         <div class="container-navbar">
             <div class="nav-not-hom">
-                <a href="admin-alertas-vagas.html" class="botao-navbar" id="botao-notificacoes">
+                <a href="admin-alertas-empresa.html" class="botao-navbar" id="botao-notificacoes">
                     <img src="../imagens/icones/icone-notificacao.svg" id="icone-notificacoes" alt="Notificações">
                 </a>
                 <a href="admin-main.html" class="botao-navbar" id="botao-home">
@@ -200,25 +203,28 @@
                         </div>
 
                         <div class="buttons">
-                            <input type="submit" class="save" value="SALVAR">
+                            <input type="submit" class="save" value="SALVAR" id="salvar5">
                             <button type="reset" class="cancel">CANCELAR</button>
                         </div>
 
                         <div class="card">
                             <div class="logo-senai">
-                                <img src="../imagens/gerais/LOGO.svg" alt="logo_senai">
+                                <!-- <img src="../imagens/gerais/LOGO.svg" alt="logo_senai"> -->
+                                <img src="../imagens/gerais/card-logo.svg" alt="">
                             </div>
-
-                            <!-- <div class="informacoes-direita">
+                    
+                    
+                            <div class="informacoes-direita">
                                 <img src="../imagens/icones/carta-confirmar.svg" alt="">
-
+                    
                                 <p class="texto-adicionar">Aluno adicionado</p>
-
+                    
                                 <div class="botoes-card">
-                                    <button>Continuar</button>
-                                    <button>Voltar</button>
+                                    <button id="continuar-btn">Continuar</button>
+                                    <a href="admin-lista-alunos.html"><button id="voltar-btn">Voltar</button></a>
                                 </div>
-                            </div> -->
+                            </div>
+                        </div>
 
                         </div>
     
@@ -269,6 +275,9 @@
             senha: document.getElementById('senha').value, 
             categoria_login: 'Aluno', 
 
+            curso: document.getElementById('curso').value,
+            horario: document.getElementById('horario').value, 
+
             nome: document.getElementById('nome').value, 
             telefone: document.getElementById('telefone').value, 
             data_nascimento: document.getElementById('data-nascimento').value, 
@@ -284,6 +293,7 @@
             cidade: document.getElementById('cidade').value
         };
 
+        document.getElementById('salvar5').addEventListener('click', function(){
         try { 
             const response = await fetch('/add_candidato', { 
                 method: 'POST', 
@@ -291,11 +301,28 @@
                 body: JSON.stringify(vaga) 
             }); 
             const message = await response.text(); 
-            alert(message); 
+            // alert(message); 
+
+            // document.getElementById('salvar5').addEventListener('click', function(){
+            const salvar = document.getElementsByClassName("card")[0]
+            salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none'
+            
+            // const escurecer = document.getElementById('escurecer');
+            
+            // // Alterna o filtro de brilho para o container com o id escurecer
+            // if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
+            //     escurecer.style.filter = 'brightness(80%)';
+            // } else {
+            //     escurecer.style.filter = 'brightness(100%)';
+            // }
+        
+
+
         } catch (error) { 
             alert('Erro ao enviar dados: ' + error.message); 
         } 
     }); 
+    })
 
     function formatarCPF(cpf){
         let CPF = cpf.value.replace(/\D/g, "")
@@ -323,6 +350,32 @@
 
         number.value = numeros
     }
+
+    // document.getElementById('salvar5').addEventListener('click', function(){
+    //         const salvar = document.getElementsByClassName("card")[0]
+    //         salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none'
+            
+    //         // const escurecer = document.getElementById('escurecer');
+            
+    //         // // Alterna o filtro de brilho para o container com o id escurecer
+    //         // if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
+    //         //     escurecer.style.filter = 'brightness(80%)';
+    //         // } else {
+    //         //     escurecer.style.filter = 'brightness(100%)';
+    //         // }
+    //     })
+
+    document.getElementById('continuar-btn').addEventListener('click', function() {
+        const continuar = document.getElementsByClassName("card")[0];
+        const form = document.getElementById('InscricaoForm');
+
+        // Esconde o card
+        continuar.style.display = 'none';
+
+        // Reseta o formulário
+        form.reset();
+    });
+
 
     </script>
 

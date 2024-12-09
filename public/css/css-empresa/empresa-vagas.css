@@ -9,9 +9,18 @@ button{
     transition: all ease-in-out 100ms;
 }
 
-.CARDS{
+#VAGAS-EMPRESA{
+    margin-top: 2%;
     width: 80%;
     margin-left: 20%;
+}
+
+article{
+    padding-top: 5%;
+}
+
+.card{
+    padding-top: 2%;
 }
 
 button:hover{
