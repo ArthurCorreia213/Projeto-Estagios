@@ -96,7 +96,7 @@ async function carregarVagas() {
             </p>
 			
 			<p id="detalhes">
-				<button id="btnCandidatar" onclick="selecionarID(${id_vaga}); candidatarVaga();">Candidatar</button>
+				<button id="btnCandidatar" style="background-color: #D9D9D9; Border: None; Padding: 10px 15px; cursor: Pointer; border-radius: 2px; color: #333" onclick="selecionarID(${id_vaga}); candidatarVaga();"><strong>Candidatar</strong></button>
             </p>
             `;
 

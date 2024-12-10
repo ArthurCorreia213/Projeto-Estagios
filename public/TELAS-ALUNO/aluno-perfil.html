@@ -23,6 +23,13 @@
             <img src="../imagens/gerais/LOGO.svg" id="SENAI">
             <h1 id="titulo">PORTAL DE ESTÁGIOS</h1>
         </div>
+        <div class="user-actions">
+            <button type="button" id="logoutButton" onclick="deslogar()"><img src="../imagens/icones/logout_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="sair"></button>
+            <a href="aluno-perfil.html">
+                <img src="../imagens/gerais/bem-vindo-user.svg" id="USER" alt="">
+            </a>
+            
+        </div>
     </header>
 
     <article>
@@ -188,6 +195,17 @@
         </div>
     </article>
     <script>
+
+                // Função para deslogar
+                function deslogar() {
+        // Remove o token armazenado no localStorage
+        localStorage.removeItem('token');
+        
+        // Redireciona o usuário para a tela de login
+        window.location.href = "../telas-aluno/aluno-perfil.html"; // Redireciona para a tela de login
+
+
+    }
 
 
 
