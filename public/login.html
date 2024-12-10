@@ -68,7 +68,7 @@
                     <div class="LOGAR">
 
                         <input type="submit" value="Entrar" class="btn1">
-                        <a href="TELAS-LOGIN/cadastro.html"><button class="btn2" type="button">Não tenho Acesso (EMPRESA)</button></a>
+                        <!-- <a href="TELAS-LOGIN/cadastro.html"><button class="btn2" type="button">Não tenho Acesso (EMPRESA)</button></a> -->
                         <a href="TELAS-LOGIN/cadastro-aluno.html"><button class="btn2" type="button">Não tenho Acesso (ALUNO)</button></a>
 
                     </div>
@@ -98,7 +98,6 @@
 				localStorage.setItem('token', data.token);
 				alert('Login realizado com sucesso!');
 			}
-            alert(data.decoded.user.Categoria_Login)
 			if(data.decoded.user.Categoria_Login){
 				if (data.decoded.user.Categoria_Login == 'Aluno'){window.location.href = "../TELAS-ALUNO/aluno-main.html"}
 				else if (data.decoded.user.Categoria_Login == 'Empresa'){window.location.href = "../TELAS-EMPRESA/empresa-main.html"}

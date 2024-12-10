@@ -103,10 +103,10 @@
             const decoded = jwt_decode(token);
             
             // Preencher os campos do formulário com os dados do token
-            document.getElementById('empresa').innerHTML = decoded.user.Nome || '';
-            document.getElementById('cnpj').innerHTML = decoded.user.CNPJ || '';
-            document.getElementById('email').innerHTML = decoded.user.Email || '';
-            document.getElementById('telefone').innerHTML = decoded.user.Telefone || '';
+            document.getElementById('empresa').innerHTML = decoded.user.Nome;
+            document.getElementById('cnpj').innerHTML = decoded.user.CNPJ;
+            document.getElementById('email').innerHTML = decoded.user.Email;
+            document.getElementById('telefone').innerHTML = decoded.user.Telefone;
         } catch (error) {
             console.error('Erro ao decodificar o token:', error);
             alert('Erro ao processar os dados do token. Tente novamente.');
