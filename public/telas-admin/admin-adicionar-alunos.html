@@ -293,7 +293,6 @@
             cidade: document.getElementById('cidade').value
         };
 
-        document.getElementById('salvar5').addEventListener('click', function(){
         try { 
             const response = await fetch('/add_candidato', { 
                 method: 'POST', 
@@ -302,27 +301,10 @@
             }); 
             const message = await response.text(); 
             // alert(message); 
-
-            // document.getElementById('salvar5').addEventListener('click', function(){
-            const salvar = document.getElementsByClassName("card")[0]
-            salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none'
-            
-            // const escurecer = document.getElementById('escurecer');
-            
-            // // Alterna o filtro de brilho para o container com o id escurecer
-            // if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
-            //     escurecer.style.filter = 'brightness(80%)';
-            // } else {
-            //     escurecer.style.filter = 'brightness(100%)';
-            // }
-        
-
-
         } catch (error) { 
             alert('Erro ao enviar dados: ' + error.message); 
         } 
-    }); 
-    })
+    });
 
     function formatarCPF(cpf){
         let CPF = cpf.value.replace(/\D/g, "")
@@ -351,19 +333,19 @@
         number.value = numeros
     }
 
-    // document.getElementById('salvar5').addEventListener('click', function(){
-    //         const salvar = document.getElementsByClassName("card")[0]
-    //         salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none'
+    document.getElementById('salvar5').addEventListener('click', function(){
+            const salvar = document.getElementsByClassName("card")[0]
+            salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none'
             
-    //         // const escurecer = document.getElementById('escurecer');
+            // const escurecer = document.getElementById('escurecer');
             
-    //         // // Alterna o filtro de brilho para o container com o id escurecer
-    //         // if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
-    //         //     escurecer.style.filter = 'brightness(80%)';
-    //         // } else {
-    //         //     escurecer.style.filter = 'brightness(100%)';
-    //         // }
-    //     })
+            // // Alterna o filtro de brilho para o container com o id escurecer
+            // if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
+            //     escurecer.style.filter = 'brightness(80%)';
+            // } else {
+            //     escurecer.style.filter = 'brightness(100%)';
+            // }
+        })
 
     document.getElementById('continuar-btn').addEventListener('click', function() {
         const continuar = document.getElementsByClassName("card")[0];

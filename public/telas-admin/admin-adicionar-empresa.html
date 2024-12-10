@@ -62,12 +62,16 @@
         <div class="container">
             <form action="/cadastro" method="POST" id="EmpresaForm">
                 <div class="row">
-                    <label for="empresa">Empresa:</label>
-                    <input type="text"  id="empresa" name="empresa">
+                    <label for="nome">Empresa:</label>
+                    <input type="text"  id="nome" name="nome">
                 </div>
                 <div class="row">
                     <label for="cnpj">CNPJ:</label>
                     <input type="text" id="cnpj" name="cnpj" maxlength="18" oninput="formatarCNPJ(this)">
+                </div>
+                <div class="row">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" maxlength="15" oninput="formatarTELEFONE(this)">
                 </div>
                 <!-- <div class="row" id="row1">
                     <div class="row1-s">                    <label for="rua">Rua:</label>
@@ -97,8 +101,8 @@
                     <input type="email" id="email" name="email">
                 </div>
                 <div class="row">
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone" maxlength="15" oninput="formatarTELEFONE(this)">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha">
                 </div>
                 <div class="buttons">
                     <button type="submit" class="save" id="salvar5">SALVAR</button>
@@ -129,11 +133,14 @@
 
     <script>
 
-        document.getElementById('EmpresaForm').addEventListener('submit', async (event) => {
+document.getElementById('EmpresaForm').addEventListener('submit', async (event) => {
             event.preventDefault();
 
             const produto = {
-                nome: document.getElementById('empresa').value,
+                senha: document.getElementById('senha').value, 
+                categoria_login: 'Pendente/Empresa', 
+
+                nome: document.getElementById('nome').value,
                 cnpj: document.getElementById('cnpj').value,
                 email: document.getElementById('email').value,
                 telefone: document.getElementById('telefone').value,
@@ -147,11 +154,47 @@
                     body: JSON.stringify(produto)
                 });
                 const message = await response.text();
-                // alert(message);
+                document.getElementById('salvar5').addEventListener('click', function(){
+            const salvar = document.getElementsByClassName("card")[0]
+            salvar.style.display = salvar.style.display === 'none' || salvar.style.display === '' ? 'flex' : 'none'
+            
+            // const escurecer = document.getElementById('escurecer');
+            
+            // // Alterna o filtro de brilho para o container com o id escurecer
+            // if (escurecer.style.filter === '' || escurecer.style.filter === 'brightness(100%)') {
+            //     escurecer.style.filter = 'brightness(80%)';
+            // } else {
+            //     escurecer.style.filter = 'brightness(100%)';
+            // }
+        })
             } catch (error) {
                 alert('Erro ao enviar dados: ' + error.message);
             }
         });
+
+        // document.getElementById('EmpresaForm').addEventListener('submit', async (event) => {
+        //     event.preventDefault();
+
+        //     const produto = {
+        //         nome: document.getElementById('empresa').value,
+        //         cnpj: document.getElementById('cnpj').value,
+        //         email: document.getElementById('email').value,
+        //         telefone: document.getElementById('telefone').value,
+        //         status_cadastro: 'Pendente'
+        //     };
+
+        //     try {
+        //         const response = await fetch('/cadastro', {
+        //             method: 'POST',
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify(produto)
+        //         });
+        //         const message = await response.text();
+        //         // alert(message);
+        //     } catch (error) {
+        //         alert('Erro ao enviar dados: ' + error.message);
+        //     }
+        // });
 
         function formatarCNPJ(campo){
             let cnpj = campo.value.replace(/\D/g, "");

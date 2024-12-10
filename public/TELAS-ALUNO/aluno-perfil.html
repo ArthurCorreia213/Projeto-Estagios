@@ -222,8 +222,9 @@
             // Decodificar o token
             const decoded = jwt_decode(token);
 
-            alert(JSON.stringify(decoded))
-            alert(decoded.user.Nome)
+            // descomente a parte abaixo para mostrar dados como alert:
+            // alert(JSON.stringify(decoded))
+            // alert(decoded.user.Nome)
 
             // Preencher os campos do formulário com os dados do token
             document.getElementById('nome').value = decoded.user.Nome.slice(1);

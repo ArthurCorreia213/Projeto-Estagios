@@ -112,7 +112,7 @@
                 // Decodificar o token
                 const decoded = jwt_decode(token);  
                 const id = decoded.user.ID_Empresa  
-                alert(id)            
+                // alert(id)            
 
                 if (!id) {
                     throw new Error('ID não encontrado no payload do JWT.');
@@ -133,7 +133,7 @@
                 const data = await response.json();
 
 
-                alert(JSON.stringify(data))
+                // alert(JSON.stringify(data))
                 // Renderizar os dados na página
                 // const resultContainer = document.getElementById('result');
                 // resultContainer.textContent = JSON.stringify(data, null, 2); // Formata os dados
@@ -271,7 +271,7 @@ function exibirCandidatos(candidatos) {
             <p><strong>Nome:</strong> ${candidato.Nome}</p>
             <p><strong>Email:</strong> ${candidato.Email}</p>
             <p><strong>Telefone:</strong> ${candidato.Telefone}</p>
-            <p><strong>Curso:</strong> ${candidato.Curso}</p>
+            <p><strong>Curso:</strong> ${candidato.Nome_Curso}</p>
             <hr>
         `;
         modalBody.appendChild(candidatoDiv);

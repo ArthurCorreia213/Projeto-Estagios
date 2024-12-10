@@ -48,19 +48,23 @@
 
     <article>
         <div class="container">
-            <form id="vagaForm">
+            <form action="/add_vaga_endereco-adm" method="POST" id="vagaForm">
                 <div class="coluna-1">
+                    <div class="row">
+                        <label class="label" for="cargo">Cargo:</label>
+                        <input class="input" type="text" id="cargo" name="cargo">
+                    </div>
                     <div class="row">
                         <label class="label" for="salario">Salário:</label>
                         <input class="input" type="text" id="salario" name="salario">
                     </div>
                     <div class="row">
-                        <label class="label" for="data-inicio">Data de início:</label>
-                        <input class="input" type="date" id="data-inicio" name="data-inicio">
+                        <label class="label" for="salario">Número de vagas:</label>
+                        <input class="input" type="text" id="vagas" name="vagas">
                     </div>
                     <div class="row">
-                        <label class="label" for="data-termino">Data de término:</label>
-                        <input class="input" type="date" id="data-termino" name="data-termino">
+                        <label class="label" for="tempo">Tempo de Contrato:</label>
+                        <input class="input" type="text" id="tempo" name="tempo">
                     </div>
                     <div class="row" id="horario-row">
                         <div class="h-trabalho-t">
@@ -76,17 +80,17 @@
                     <!-- Benefícios - Checkbox -->
                     <div class="row">
                         <label class="label">Benefícios:</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="beneficios" value="vale-alimentacao"> Vale-Alimentação</label><br>
-                            <label><input type="checkbox" name="beneficios" value="vale-refeicao"> Vale-Refeição</label><br>
-                            <label><input type="checkbox" name="beneficios" value="plano-saude"> Plano de Saúde</label><br>
-                            <label><input type="checkbox" name="beneficios" value="plano-odontologico"> Plano Odontológico</label><br>
-                            <label><input type="checkbox" name="beneficios" value="vale-combustivel"> Vale-Combustível</label><br>
-                            <label><input type="checkbox" name="beneficios" value="jornada-flexivel"> Jornada de Trabalho Flexível</label><br>
-                            <label><input type="checkbox" name="beneficios" value="auxilio-creche"> Auxílio-Creche</label><br>
-                            <label><input type="checkbox" name="beneficios" value="auxilio-educacao"> Auxílio-Educação</label><br>
-                            <label><input type="checkbox" name="beneficios" value="vale-cultura"> Vale-Cultura</label><br>
-                            <label><input type="checkbox" name="beneficios" value="vale-academia"> Vale-Academia</label>
+                        <div class="checkbox-group" id="beneficios">
+                            <label><input type="checkbox" name="beneficios" value="Vale-alimentacao"> Vale-Alimentação</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Vale-refeicao"> Vale-Refeição</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Plano-saude"> Plano de Saúde</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Plano-odontologico"> Plano Odontológico</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Vale-combustivel"> Vale-Combustível</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Jornada-flexivel"> Jornada de Trabalho Flexível</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Auxilio-creche"> Auxílio-Creche</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Auxilio-educacao"> Auxílio-Educação</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Vale-cultura"> Vale-Cultura</label><br>
+                            <label><input type="checkbox" name="beneficios" value="Vale-academia"> Vale-Academia</label>
                         </div>
                     </div>
     
@@ -95,41 +99,28 @@
                         <label class="label" for="rua">Rua:</label>
                         <input class="input" type="text" id="rua" name="localizacao">
                         <label class="label" for="rua">Numero:</label>
-                        <input class="input" type="text" id="rua" name="localizacao">
-                        <label class="label" for="bairro">Bairro:</label>
-                        <input class="input" type="text" id="bairro" name="localizacao">
+                        <input class="input" type="text" id="numero" name="localizacao">
                         <label class="label" for="estado">Estado:</label>
                         <input class="input" type="text" id="estado" name="localizacao"> 
                         <label class="label" for="cidade">Cidade:</label>
                         <input class="input" type="text" id="cidade" name="localizacao"> 
-                    </div>
-    
-                    <!-- Cargo - Dropdown -->
-                    <div class="row">
-                        <label class="label" for="cargo">Cargo:</label>
-                        <select class="input" id="cargo" name="cargo">
-                            <option value="gerente">Gerente</option>
-                            <option value="analista">Analista</option>
-                            <option value="desenvolvedor">Desenvolvedor</option>
-                            <option value="assistente">Assistente</option>
-                            <option value="coordenador">Coordenador</option>
-                            <option value="estagiario">Estagiário</option>
-                        </select>
+                        <label class="label" for="complemento">Complemento:</label>
+                        <input class="input" type="text" id="complemento" name="localizacao"> 
                     </div>
     
                     <!-- Requisitos - Checkbox -->
                     <div class="row">
                         <label class="label">Requisitos:</label>
                         <div id="requisitos" class="checkbox-group">
-                            <label><input type="checkbox" name="requisitos" value="experiencia"> Experiência em área relacionada</label><br>
-                            <label><input type="checkbox" name="requisitos" value="ingles"> Inglês Intermediário ou Avançado</label><br>
-                            <label><input type="checkbox" name="requisitos" value="formacao-superior"> Formação Superior Completa</label><br>
-                            <label><input type="checkbox" name="requisitos" value="comunicacao"> Boa Comunicação</label><br>
-                            <label><input type="checkbox" name="requisitos" value="trabalho-equipe"> Trabalho em Equipe</label><br>
+                            <label><input type="checkbox" name="requisitos" value="Experiencia na área"> Experiência em área relacionada</label><br>
+                            <label><input type="checkbox" name="requisitos" value="Ingles intermediário/avançado"> Inglês Intermediário ou Avançado</label><br>
+                            <label><input type="checkbox" name="requisitos" value="Formacao-superior"> Formação Superior Completa</label><br>
+                            <label><input type="checkbox" name="requisitos" value="Comunicacao"> Boa Comunicação</label><br>
+                            <label><input type="checkbox" name="requisitos" value="Trabalho em equipe"> Trabalho em Equipe</label><br>
                             <!-- <label><input type="checkbox" name="requisitos" value="proatividade"> Proatividade</label><br> -->
-                            <label><input type="checkbox" name="requisitos" value="facilidade-aprendizado"> Facilidade de Aprendizado</label><br>
-                            <label><input type="checkbox" name="requisitos" value="cursando-dev"> Cursando/Concluído Técnico em desenvolvimento de sistemas</label><br>
-                            <label><input type="checkbox" name="requisitos" value="cursando-log"> Cursando/Concluído Técnico em Logística</label>
+                            <label><input type="checkbox" name="requisitos" value="Facilidade de aprendizado"> Facilidade de Aprendizado</label><br>
+                            <label><input type="checkbox" name="requisitos" value="Cursando/Concluído Técnico em desenvolvimento de sistemas"> Cursando/Concluído Técnico em desenvolvimento de sistemas</label><br>
+                            <label><input type="checkbox" name="requisitos" value="Cursando/Concluído Técnico em Logística"> Cursando/Concluído Técnico em Logística</label>
                         </div>
                     </div>
     
@@ -138,35 +129,21 @@
                         <label class="label full-width" for="detalhes">Detalhes:</label>
                         <textarea class="input full-width" id="detalhes" name="detalhes" rows="4"></textarea>
                     </div>
+					
+					<div class="row">
+                        <label class="label" for="contato">Contato:</label>
+                        <input class="input" type="text" id="contato" name="contato" placeholder="Insira um endereço e-mail ou telefone">
+                    </div>
                 </div>
     
                 <div class="coluna-2">
                     <div class="buttons">
-                        <button type="submit" class="save" id="salvar5">SALVAR</button>
+                        <input type="submit" class="save" value="SALVAR" id="salvar5">
                         <button type="reset" class="cancel">CANCELAR</button>
                     </div>
                 </div>
     
             </form>
-        </div>
-
-        <div class="card">
-            <div class="logo-senai">
-                <!-- <img src="../imagens/gerais/LOGO.svg" alt="logo_senai"> -->
-                <img src="../imagens/gerais/card-logo.svg" alt="">
-            </div>
-    
-    
-            <div class="informacoes-direita">
-                <img src="../imagens/icones/carta-confirmar.svg" alt="">
-    
-                <p class="texto-adicionar">Empresa adicionada</p>
-    
-                <div class="botoes-card">
-                    <button id="continuar-btn">Continuar</button>
-                    <button id="voltar-btn">Voltar</button>
-                </div>
-            </div>
         </div>
     </article>
     
@@ -177,7 +154,7 @@
     
     // Redireciona o usuário para a tela de login
     window.location.href = "../index.html"; // Redireciona para a tela de login
-    
+        }
 
     document.getElementById('salvar5').addEventListener('click', function(){
             const salvar = document.getElementsByClassName("card")[0]
@@ -204,7 +181,75 @@
             form.reset();
         });
 
-}
+        function ben_valor(){
+    // Seleciona todos os checkboxes marcados
+    const selecionados = document.querySelectorAll('input[name="beneficios"]:checked');
+    
+    // Mapeia os valores dos elementos selecionados
+    const valores = Array.from(selecionados).map(checkbox => checkbox.value);
+	
+	return valores.join(", ")
+	}
+	
+	function req_valor(){
+    // Seleciona todos os checkboxes marcados
+    const selecionados = document.querySelectorAll('input[name="requisitos"]:checked');
+    
+    // Mapeia os valores dos elementos selecionados
+    const valores = Array.from(selecionados).map(checkbox => checkbox.value);
+	
+	return valores.join(", ")
+	}
+	
+	function horario(){
+		return document.querySelector('#horario-inicio').value+ '-' +document.querySelector('#horario-fim').value
+	}
+	
+        document.getElementById('vagaForm').addEventListener('submit', async (event) => { 
+            event.preventDefault(); 
+			
+		const token = localStorage.getItem('token');
+        if (!token) {
+            alert('Token não encontrado. Faça login para continuar.');
+            window.location.href = '/login'; // Redirecionar para login se necessário
+            return;
+        }
+		const decoded = jwt_decode(token)
+        alert(decoded.ID_Empresa)
+
+            const vaga = { 
+				cargo: document.getElementById('cargo').value, 
+                salario: document.getElementById('salario').value, 
+                horario: horario(), 
+                beneficios: ben_valor(),
+                requisitos: req_valor(), 
+                detalhes: document.getElementById('detalhes').value, 
+                contato: document.getElementById('contato').value, 
+                vagas: document.getElementById('vagas').value, 
+                tempo_de_contrato: document.getElementById('tempo').value,
+				empresa: decoded.user.ID_Empresa,
+
+                rua: document.getElementById('rua').value, 
+                numero: document.getElementById('numero').value, 
+                estado: document.getElementById('estado').value, 
+                complemento: document.getElementById('complemento').value, 
+                cidade: document.getElementById('cidade').value
+            };
+
+            try { 
+                const response = await fetch('/add_vaga_endereco-adm', { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`  }, 
+                    body: JSON.stringify(vaga) 
+                }); 
+                const message = await response.text(); 
+                // alert(message); 
+            } catch (error) { 
+                alert('Erro ao enviar dados: ' + error.message); 
+            } 
+        }); 
+
+
 </script>
 
     <footer>

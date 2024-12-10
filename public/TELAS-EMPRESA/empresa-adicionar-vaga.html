@@ -317,17 +317,14 @@ que é a mesma da tela do adm -->
 	}
 	
         document.getElementById('vagaForm').addEventListener('submit', async (event) => { 
-            event.preventDefault(); 
-			
-		const token = localStorage.getItem('token');
+        event.preventDefault(); 
+        const token = localStorage.getItem('token');
         if (!token) {
             alert('Token não encontrado. Faça login para continuar.');
-            window.location.href = '/login'; // Redirecionar para login se necessário
+            window.location.href = '../login.html'; // Redirecionar para login se necessário
             return;
         }
-		const decoded = jwt_decode(token)
-        alert(decoded.ID_Empresa)
-
+        const decoded = jwt_decode(token);
             const vaga = { 
 				cargo: document.getElementById('cargo').value, 
                 salario: document.getElementById('salario').value, 

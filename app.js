@@ -213,9 +213,67 @@ app.post('/cadastro', async (req, res) => {
         // Confirmar a transação
         await transaction.commit();
 
-        res.send('Produto adicionado com sucesso!');
+        res.send('Cadastro feito com sucesso!');
     } catch (error) {
         res.status(500).send('Erro ao adicionar produto: ' + error.message);
+    }
+});
+
+app.post('/add_vaga_endereco-adm', async (req, res) => {
+    const { cargo, contato, vagas, salario, tempo_de_contrato, horario, beneficios, requisitos, empresa, detalhes } = req.body;
+    const { rua, cidade, estado, numero, complemento } = req.body;
+
+    try {
+        // Conectar ao banco de dados
+        const pool = await sql.connect(dbConfig);
+
+        // Iniciar uma transação
+        const transaction = new sql.Transaction(pool);
+        await transaction.begin();
+
+        // Inserir o endereço e obter o ID gerado
+        const resultEndereco = await transaction.request()
+            .input('rua', sql.VarChar, rua)
+            .input('cidade', sql.VarChar, cidade)
+            .input('estado', sql.VarChar, estado)
+            .input('numero', sql.VarChar, numero)
+            .input('complemento', sql.VarChar, complemento)
+            .query(`INSERT INTO Endereco (rua, cidade, estado, numero, complemento) 
+                    OUTPUT INSERTED.ID_Endereco
+                    VALUES (@rua, @cidade, @estado, @numero, @complemento)`);
+
+        const ID_Endereco = resultEndereco.recordset[0].ID_Endereco;
+
+        // Inserir o cliente com o ID do endereço
+        await transaction.request()
+            .input('cargo', sql.NVarChar, cargo)
+            .input('contato', sql.NVarChar, contato)
+            .input('vagas', sql.Int, vagas)
+            .input('salario', sql.Float, salario)
+            .input('tempo_de_contrato', sql.NVarChar, tempo_de_contrato)
+            .input('horario', sql.NVarChar, horario)
+            .input('beneficios', sql.NVarChar, beneficios)
+            .input('requisitos', sql.NVarChar, requisitos)
+            .input('detalhes', sql.NVarChar, detalhes)
+            .input('ID_Endereco', sql.Int, ID_Endereco)
+			.input('empresa', sql.Int, empresa)
+            .query(`INSERT INTO Vagas (Cargo, Contato, Vagas, Salario, Tempo_De_Contrato, Horario, Beneficios, Requisitos, ID_Endereco, ID_Empresa, Detalhes)
+                    VALUES (@Cargo, @Contato, @Vagas, @Salario, @Tempo_De_Contrato, @Horario, @Beneficios, @Requisitos, @ID_Endereco, @empresa, @detalhes)`);
+
+        // Confirmar a transação
+        await transaction.commit();
+
+        res.send('Vaga cadastrada com sucesso');
+    } catch (error) {
+        console.error(error);
+
+        // Reverter a transação em caso de erro
+        // if (transaction) {
+        //     await transaction.rollback();
+        // }
+        res.status(500).send({ error: 'Erro ao cadastrar cliente e endereço' });
+    } finally {
+        sql.close();
     }
 });
 
@@ -273,7 +331,7 @@ app.post('/add_vaga_endereco', async (req, res) => {
         // Confirmar a transação
         await transaction.commit();
 
-        res.status(201).send({ message: 'Cliente e endereço cadastrados com sucesso!' });
+        res.send('Vaga cadastrada com sucesso');
     } catch (error) {
         console.error(error);
 
@@ -618,5 +676,40 @@ app.get('/api/candidatos-vaga', async (req, res) => {
     } catch (error) {
         console.error('Erro ao buscar candidatos:', error);
         res.status(500).json({ message: 'Erro ao buscar candidatos' });
+    }
+});
+
+app.post('/cadastro-adm', async (req, res) => {
+    const {  email } = req.body;
+    const { senha, categoria_login } = req.body
+
+    try {
+        // Conectar ao banco de dados
+        const pool = await sql.connect(dbConfig);
+
+        // Iniciar uma transação
+        const transaction = new sql.Transaction(pool);
+        await transaction.begin();
+		
+		async function hash_senha(senha) {
+		const saltRounds = 10; // Número de rounds para aumentar a complexidade
+		const senha_hash = await bcrypt.hash(senha, saltRounds);
+		return senha_hash;
+		}
+
+		const senha_com_hash = await hash_senha(senha);
+
+        const resultLogin = await transaction.request()
+        .input('email', sql.VarChar, email)
+        .input('senha_com_hash', sql.VarChar, senha_com_hash)
+        .input('categoria_login', sql.VarChar, categoria_login)
+        .query(`INSERT INTO Login (Email, Senha, Categoria_Login) 
+                VALUES (@email, @senha_com_hash, @categoria_login)`);
+
+        await transaction.commit();
+
+        res.send('Cadastro feito com sucesso!');
+    } catch (error) {
+        res.status(500).send('Erro ao adicionar produto: ' + error.message);
     }
 });
