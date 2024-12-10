@@ -1,7 +1,5 @@
 # Projeto Estágios SENAI
 
-## 💻 Pré-requisitos
-
 ## 🚀 Instalando Projeto Estágios SENAI
 
 Antes de rodar o site é necessário:
